@@ -22,7 +22,7 @@ import styles from "./page.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const CATEGORIES = [
+const MOCK_CATEGORIES = [
   "FPS",
   "RPG",
   "Platformer",
@@ -31,9 +31,9 @@ const CATEGORIES = [
   "Stratégie",
   "Autre",
 ];
-const FORMATS = ["Solo", "Duo", "Équipe (3-5)", "Équipe (6+)"];
-const NIVEAUX = ["Débutant", "Intermédiaire", "Avancé", "Expert"];
-const MAX_PART = ["50", "100", "200", "500", "1000", "Illimité"];
+const MOCK_FORMATS = ["Solo", "Duo", "Équipe (3-5)", "Équipe (6+)"];
+const MOCK_NIVEAUX = ["Débutant", "Intermédiaire", "Avancé", "Expert"];
+const MOCK_MAX_PART = ["50", "100", "200", "500", "1000", "Illimité"];
 
 const AVATARS = [
   {
@@ -164,7 +164,7 @@ export default function CreerGameJamPage() {
                 type="select"
                 value={categorie}
                 onChange={setCategorie}
-                options={CATEGORIES}
+                options={MOCK_CATEGORIES}
                 placeholder="Sélectionner une catégorie"
                 obligatory
               />
@@ -173,7 +173,7 @@ export default function CreerGameJamPage() {
                 type="select"
                 value={format}
                 onChange={setFormat}
-                options={FORMATS}
+                options={MOCK_FORMATS}
                 placeholder="Sélectionner un format"
                 obligatory
               />
@@ -185,7 +185,7 @@ export default function CreerGameJamPage() {
                 type="select"
                 value={niveau}
                 onChange={setNiveau}
-                options={NIVEAUX}
+                options={MOCK_NIVEAUX}
                 placeholder="Sélectionner le niveau"
                 obligatory
               />
@@ -194,7 +194,7 @@ export default function CreerGameJamPage() {
                 type="select"
                 value={maxPart}
                 onChange={setMaxPart}
-                options={MAX_PART}
+                options={MOCK_MAX_PART}
                 placeholder="Ex: 500"
                 obligatory
               />
