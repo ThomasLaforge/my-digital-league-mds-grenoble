@@ -10,7 +10,7 @@ export default {
     async session({ session, token }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
-        session.user.isOrga = token.isOrga ?? false;
+        session.user.isOrga = (token.isOrga as boolean) ?? false;
       }
       return session;
     },
@@ -20,5 +20,5 @@ export default {
       }
       return token;
     },
-  }
+  },
 } satisfies NextAuthConfig;

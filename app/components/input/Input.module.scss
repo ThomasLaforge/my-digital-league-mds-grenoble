@@ -1,29 +1,29 @@
-@import "../../styles/variables.scss";
+@use "../../styles/variables" as *;
 
 .inputContainer {
-  margin-bottom: $--spacing-md;
+  margin-bottom: $spacing-md;
   display: flex;
   flex-direction: column;
 }
 
 .inputLabel {
-  margin-bottom: $--spacing-sm;
+  margin-bottom: $spacing-sm;
   font-weight: bold;
-  color: $--color-light;
+  color: $color-light;
 }
 
 .inputField {
-  background-color: $--color-bg-dark;
-  padding: $--spacing-sm;
-  border-radius: $--border-radius-sm;
-  border: 1px solid $--color-light;
-  font-size: $--font-size-md;
+  background-color: $color-bg-dark;
+  padding: $spacing-sm;
+  border-radius: $border-radius-sm;
+  border: 1px solid $color-light;
+  font-size: $font-size-md;
   transition: border-color 0.2s ease-in-out;
 }
 
 .inputField:focus {
   outline: none;
-  border-color: $--color-primary;
+  border-color: $color-primary;
 }
 
 .inputField.errorActive {
@@ -37,6 +37,6 @@
 
 .errorMessage {
   color: #ff5252;
-  font-size: $--font-size-md;
-  margin-top: $--spacing-sm;
+  font-size: $font-size-md;
+  margin-top: $spacing-sm;
 }

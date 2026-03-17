@@ -1,34 +1,34 @@
-@import "../../styles/variables.scss";
+@use "../../styles/variables" as *;
 
 .footer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: $--spacing-xl;
-  color: $--color-light;
+  gap: $spacing-xl;
+  color: $color-light;
   margin-top: auto;
-  padding: $--spacing-lg 0;
-  font-size: $--font-size-xs;
+  padding: $spacing-lg 0;
+  font-size: $font-size-xs;
 
-  @media (min-width: $--mobile) {
-    padding: $--spacing-xl 0;
+  @media (min-width: $mobile) {
+    padding: $spacing-xl 0;
   }
 
-  @media (min-width: $--tablet) {
+  @media (min-width: $tablet) {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    gap: $--spacing-xxl;
+    gap: $spacing-xxl;
   }
 }
 
 .brand {
   display: flex;
   flex-direction: column;
-  gap: $--spacing-md;
+  gap: $spacing-md;
   width: 100%;
 
-  @media (min-width: $--tablet) {
+  @media (min-width: $tablet) {
     width: auto;
     max-width: 34rem;
   }
@@ -49,8 +49,8 @@
 .socials {
   display: flex;
   flex-wrap: wrap;
-  gap: $--spacing-lg;
-  margin-top: $--spacing-sm;
+  gap: $spacing-lg;
+  margin-top: $spacing-sm;
 
   > * {
     position: relative;
@@ -75,7 +75,7 @@
 
 .categoryLink {
   margin: 0;
-  font-size: $--font-size-sm;
+  font-size: $font-size-sm;
   font-weight: 600;
 }
 
@@ -84,13 +84,13 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: $--spacing-md;
+  gap: $spacing-md;
 
-  @media (min-width: $--mobile) {
-    gap: $--spacing-lg;
+  @media (min-width: $mobile) {
+    gap: $spacing-lg;
   }
 
-  @media (min-width: $--tablet) {
+  @media (min-width: $tablet) {
     min-width: 0;
   }
 }
@@ -98,23 +98,23 @@
 .linksContainer {
   display: flex;
   flex-direction: column;
-  gap: $--spacing-lg;
+  gap: $spacing-lg;
   width: 100%;
 
-  @media (min-width: $--tablet) {
+  @media (min-width: $tablet) {
     width: auto;
     flex: 1;
     min-width: 0;
     flex-direction: row;
     justify-content: flex-end;
-    gap: $--spacing-xxl;
+    gap: $spacing-xxl;
   }
 }
 
 .links {
   display: flex;
   flex-direction: column;
-  gap: $--spacing-md;
+  gap: $spacing-md;
   min-width: 0;
   white-space: nowrap;
   overflow-wrap: normal;
@@ -124,7 +124,7 @@
   ul {
     display: flex;
     flex-direction: column;
-    gap: $--spacing-sm;
+    gap: $spacing-sm;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -150,8 +150,8 @@
       border-radius: 99px;
       background: linear-gradient(
         90deg,
-        $--color-secondary 0%,
-        $--color-primary 100%
+        $color-secondary 0%,
+        $color-primary 100%
       );
       transform: scaleX(0);
       transform-origin: left;

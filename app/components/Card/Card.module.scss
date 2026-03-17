@@ -1,24 +1,24 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixins.scss";
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .card {
-  background-color: $--color-bg-component-dark;
-  border-radius: $--border-radius-md;
-  padding: $--spacing-md;
+  background-color: $color-bg-component-dark;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   border: 1px solid transparent;
 
-  @media (min-width: $--laptop) {
+  @media (min-width: $laptop) {
     max-width: 400px;
   }
 
   .header {
     display: flex;
     align-items: center;
-    gap: $--spacing-sm;
-    margin-bottom: $--spacing-md;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
     .iconWrapper {
       flex-shrink: 0;
       display: flex;
@@ -28,31 +28,31 @@
       height: 40px;
 
       svg {
-        color: $--color-light;
+        color: $color-light;
         width: 16px;
         height: 16px;
       }
     }
     .title {
-      font-size: $--font-size-md;
+      font-size: $font-size-md;
       font-weight: 600;
-      color: $--color-light;
+      color: $color-light;
       margin: 0;
       line-height: 1.3;
       flex: 1;
 
-      @media (min-width: $--tablet) {
-        font-size: $--font-size-md;
+      @media (min-width: $tablet) {
+        font-size: $font-size-md;
       }
     }
   }
 }
 
 .description {
-  color: $--color-text-dark;
-  font-size: $--font-size-sm;
+  color: $color-text-dark;
+  font-size: $font-size-sm;
   line-height: 1.5;
-  margin: 0 0 $--spacing-lg 0;
+  margin: 0 0 $spacing-lg 0;
   display: -webkit-box;
   line-clamp: 2;
   -webkit-line-clamp: 2;
@@ -62,29 +62,29 @@
 }
 
 .buttonWrapper {
-  margin-top: $--spacing-md;
+  margin-top: $spacing-md;
 }
 
 // Card variants
 .register {
   .header {
-    gap: $--spacing-md;
+    gap: $spacing-md;
     .iconWrapper {
-      background-color: $--color-bg-dark;
-      border-radius: $--border-radius-xl;
+      background-color: $color-bg-dark;
+      border-radius: $border-radius-xl;
       width: 40px;
       height: 40px;
       svg {
-        color: $--color-icon-dark;
+        color: $color-icon-dark;
         width: 13px;
         height: 17px;
       }
     }
     .title {
-      font-size: $--font-size-md;
+      font-size: $font-size-md;
 
-      @media (min-width: $--tablet) {
-        font-size: $--font-size-lg;
+      @media (min-width: $tablet) {
+        font-size: $font-size-lg;
       }
     }
   }
@@ -92,68 +92,68 @@
   .details {
     display: flex;
     flex-direction: row;
-    gap: $--spacing-sm;
-    margin-bottom: $--spacing-lg;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
     .detailRow {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: $--spacing-xs;
-      padding: $--spacing-xs 0;
+      gap: $spacing-xs;
+      padding: $spacing-xs 0;
 
-      @media (min-width: $--tablet) {
+      @media (min-width: $tablet) {
         justify-content: space-between;
         align-items: left;
       }
       .label {
-        font-size: $--font-size-xs;
-        color: $--color-text-dark;
+        font-size: $font-size-xs;
+        color: $color-text-dark;
         font-weight: 500;
 
-        @media (min-width: $--tablet) {
-          font-size: $--font-size-sm;
+        @media (min-width: $tablet) {
+          font-size: $font-size-sm;
         }
       }
       .value {
-        font-size: $--font-size-xs;
-        color: $--color-light;
+        font-size: $font-size-xs;
+        color: $color-light;
         font-weight: 400;
         display: flex;
         align-items: center;
-        gap: $--spacing-xs;
+        gap: $spacing-xs;
 
         svg {
           width: 14px;
           height: 14px;
-          color: $--color-icon-dark;
+          color: $color-icon-dark;
         }
 
-        @media (min-width: $--tablet) {
-          font-size: $--font-size-sm;
+        @media (min-width: $tablet) {
+          font-size: $font-size-sm;
         }
       }
     }
   }
 
-  @media (min-width: $--tablet) {
-    padding: $--spacing-lg;
+  @media (min-width: $tablet) {
+    padding: $spacing-lg;
   }
 }
 
 .featured {
   display: flex;
   flex-direction: column;
-  padding: $--spacing-md;
+  padding: $spacing-md;
 
-  @media (min-width: $--tablet) {
-    padding: $--spacing-lg;
+  @media (min-width: $tablet) {
+    padding: $spacing-lg;
   }
   .header {
-    gap: $--spacing-md;
+    gap: $spacing-md;
     .iconWrapper {
-      background-color: $--color-primary;
-      border-radius: $--border-radius-xl;
-      color: $--color-icon-dark;
+      background-color: $color-primary;
+      border-radius: $border-radius-xl;
+      color: $color-icon-dark;
       width: 40px;
       height: 40px;
       svg {
@@ -162,35 +162,35 @@
       }
     }
     .title {
-      font-size: $--font-size-md;
+      font-size: $font-size-md;
 
-      @media (min-width: $--tablet) {
-        font-size: $--font-size-lg;
+      @media (min-width: $tablet) {
+        font-size: $font-size-lg;
       }
     }
   }
   .metaInfo {
-    color: $--color-light;
+    color: $color-light;
     flex-direction: column;
     .metaDate {
       display: flex;
       flex-direction: row;
-      gap: $--spacing-xs;
+      gap: $spacing-xs;
       .metaDebut {
-        font-size: $--font-size-xs;
-        font-family: $--font-family-montserrat;
+        font-size: $font-size-xs;
+        font-family: $font-family-montserrat;
         font-weight: 700;
         line-height: 1.7;
       }
       .metaDurée {
-        font-size: $--font-size-sm;
-        font-family: $--font-family-inter;
+        font-size: $font-size-sm;
+        font-family: $font-family-inter;
         font-weight: 400;
       }
     }
     .metaAnimé {
-      color: $--color-text-dark;
-      font-size: $--font-size-sm;
+      color: $color-text-dark;
+      font-size: $font-size-sm;
       .metaValue {
         text-decoration: underline;
       }
