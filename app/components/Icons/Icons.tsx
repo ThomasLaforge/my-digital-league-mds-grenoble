@@ -529,7 +529,7 @@ export const ClockIcon = ({
   <svg
     width={width}
     height={height}
-    viewBox="0 0 13 17.5312"
+    viewBox="0 0 50 50"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
