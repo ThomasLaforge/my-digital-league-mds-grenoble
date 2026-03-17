@@ -53,7 +53,11 @@ export default function Input(props: InputProps) {
             ))}
           </select>
           <span className={styles.chevron}>
-            <ChevronDownIcon width={12} height={8} color="$--color-icon-dark" />
+            <ChevronDownIcon
+              width={12}
+              height={8}
+              color="var(--color-icon-dark)"
+            />
           </span>
         </div>
       ) : (
