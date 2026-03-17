@@ -10,8 +10,8 @@ describe("CardIcon Component", () => {
     render(
       <CardIcon
         icon={<MockIcon />}
-        titre="Test Label"
-        sousTitre="Test sous-titre"
+        title="Test Label"
+        subtitle="Test sous-titre"
       />
     );
     expect(screen.getByText("Test Label")).toBeInTheDocument();
@@ -23,8 +23,8 @@ describe("CardIcon Component", () => {
     render(
       <CardIcon
         icon={<MockIcon />}
-        titre="Test Label"
-        sousTitre="Test sous-titre"
+        title="Test Label"
+        subtitle="Test sous-titre"
       />
     );
     expect(screen.getByText("Test sous-titre")).toBeInTheDocument();
@@ -36,8 +36,8 @@ describe("CardIcon Component", () => {
     render(
       <CardIcon
         icon={<MockIcon />}
-        titre="Test Label"
-        sousTitre="Test sous-titre"
+        title="Test Label"
+        subtitle="Test sous-titre"
       />
     );
     expect(screen.getByTestId("plus-icon")).toBeInTheDocument();
@@ -49,8 +49,8 @@ describe("CardIcon Component - Structure", () => {
     render(
       <CardIcon
         icon={<MockIcon />}
-        titre="Test Label"
-        sousTitre="Test sous-titre"
+        title="Test Label"
+        subtitle="Test sous-titre"
       />
     );
     expect(screen.getByText("Test Label").closest("div")).toBeInTheDocument();
