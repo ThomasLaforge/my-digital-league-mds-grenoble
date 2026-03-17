@@ -8,7 +8,7 @@
 
 .inputLabel {
   margin-bottom: $spacing-sm;
-  font-weight: bold;
+  font-weight: 600;
   color: $color-light;
 }
 
@@ -39,4 +39,52 @@
   color: #ff5252;
   font-size: $font-size-md;
   margin-top: $spacing-sm;
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+select.inputField {
+  width: 100%;
+  appearance: none;
+  cursor: pointer;
+  padding-right: $--spacing-xxl;
+  option {
+    background: $--color-bg-dark;
+  }
+}
+
+.chevron {
+  position: absolute;
+  right: $--spacing-md;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+select.inputField {
+  width: 100%;
+  appearance: none;
+  cursor: pointer;
+  padding-right: $--spacing-xxl;
+  option {
+    background: $--color-bg-dark;
+  }
+}
+
+.chevron {
+  position: absolute;
+  right: $--spacing-md;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
 }
