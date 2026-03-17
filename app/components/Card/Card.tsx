@@ -34,20 +34,22 @@ export function BaseCard(props: PropsWithChildren) {
   return <div className={styles.card}>{props.children}</div>;
 }
 
-export default function Card({
-  icon,
-  name,
-  date,
-  description,
-  heure,
-  lieu,
-  animatedBy,
-  duration,
-  onClick,
-  disabled = false,
-  variant = "minimale",
-  status = "upcoming",
-}: CardProps) {
+export default function Card(props: CardProps) {
+  const {
+    icon,
+    name,
+    date,
+    description,
+    heure,
+    lieu,
+    animatedBy,
+    duration,
+    onClick,
+    disabled = false,
+    variant = "minimale",
+    status = "upcoming",
+  } = props;
+
   const isClickable = onClick && !disabled;
   const eventDate = new Date(date);
 
