@@ -17,13 +17,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.containerLogo}>
         <Link href="/">
-          <Image
-            className={styles.logo}
-            src="/logo.svg"
-            alt="Logo"
-            width={150}
-            height={40}
-          />
+          <Image className={styles.logo} src="/logo.svg" alt="Logo" width={150} height={40}/>
         </Link>
       </div>
 
@@ -34,54 +28,32 @@ export default function Header() {
         aria-expanded={isMenuOpen}
         onClick={toggleMenu}
       >
-        <span
-          className={isMenuOpen ? styles.buttonOpen : styles.buttonOpen}
-        ></span>
-        <span
-          className={isMenuOpen ? styles.buttonOpen : styles.buttonOpen}
-        ></span>
-        <span
-          className={isMenuOpen ? styles.buttonOpen : styles.buttonOpen}
-        ></span>
+          <span className={isMenuOpen ? styles.buttonOpen : styles.buttonOpen}></span>
+          <span className={isMenuOpen ? styles.buttonOpen : styles.buttonOpen}></span>
+          <span className={isMenuOpen ? styles.buttonOpen : styles.buttonOpen}></span>
       </button>
 
       <nav className={styles.containerNav} data-open={isMenuOpen}>
         <ul className={styles.nav}>
-          <li>
-            <a className={styles.navLink} href="/jeu">
-              Jeu
-            </a>
-          </li>
-          <li>
-            <a className={styles.navLink} href="/tournois">
-              Tournois
-            </a>
-          </li>
-          <li>
-            <a className={styles.navLink} href="/communaute">
-              Communauté
-            </a>
-          </li>
-          <li>
-            <a className={styles.navLink} href="/support">
-              Support
-            </a>
-          </li>
+            <li><a className={styles.navLink} href="/jeu">Jeu</a></li>
+            <li><a className={styles.navLink} href="/tournois">Tournois</a></li>
+            <li><a className={styles.navLink} href="/communaute">Communauté</a></li>
+            <li><a className={styles.navLink} href="/support">Support</a></li>
         </ul>
 
         <div className={styles.actions}>
+           <Button
+                    fullWidth
+                    type="primary"
+                    href="/auth/login"
+                    label="Connexion"
+                  />
           <Button
-            fullWidth
-            type="primary"
-            href="/auth/login"
-            label="Connexion"
-          />
-          <Button
-            fullWidth
-            type="secondary"
-            href="/auth/register"
-            label="Inscription"
-          />
+                    fullWidth
+                    type="secondary"
+                    href="/auth/register"
+                    label="Inscription"
+                 />
         </div>
       </nav>
     </header>
