@@ -1,5 +1,6 @@
 "use client";
 import styles from "./Input.module.scss";
+import { ChevronDownIcon } from "@/app/components/Icons/Icons";
 
 interface InputProps {
   label?: string;
@@ -11,9 +12,13 @@ interface InputProps {
   error?: boolean;
   errorMessage?: string;
   obligatory?: boolean;
+  options?: string[];
 }
 
 export default function Input(props: InputProps) {
+  const isSelect = props.type === "select";
+  const isTextarea = props.type === "textarea";
+
   return (
     <div className={styles.inputContainer}>
       {props.label && (
@@ -22,14 +27,45 @@ export default function Input(props: InputProps) {
           {props.obligatory && <span className={styles.required}>*</span>}
         </label>
       )}
-      <input
-        type={props.type || "text"}
-        placeholder={props.placeholder}
-        value={props.value}
-        onChange={(e) => props.onChange?.(e.target.value)}
-        disabled={props.disabled}
-        className={`${styles.inputField} ${props.error ? styles.errorActive : ""}`}
-      />
+
+      {isTextarea ? (
+        <textarea
+          className={styles.inputField}
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={(e) => props.onChange?.(e.target.value)}
+          disabled={props.disabled}
+          rows={4}
+        />
+      ) : isSelect ? (
+        <div className={styles.selectWrapper}>
+          <select
+            className={styles.inputField}
+            value={props.value}
+            onChange={(e) => props.onChange?.(e.target.value)}
+            disabled={props.disabled}
+          >
+            {props.placeholder && <option value="">{props.placeholder}</option>}
+            {props.options?.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            ))}
+          </select>
+          <span className={styles.chevron}>
+            <ChevronDownIcon width={12} height={8} color="$--color-icon-dark" />
+          </span>
+        </div>
+      ) : (
+        <input
+          type={props.type || "text"}
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={(e) => props.onChange?.(e.target.value)}
+          disabled={props.disabled}
+          className={`${styles.inputField} ${props.error ? styles.errorActive : ""}`}
+        />
+      )}
 
       {props.error && props.errorMessage && (
         <span className={styles.errorMessage}>{props.errorMessage}</span>
