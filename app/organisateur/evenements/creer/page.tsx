@@ -35,6 +35,9 @@ const MOCK_FORMATS = ["Solo", "Duo", "Équipe (3-5)", "Équipe (6+)"];
 const MOCK_NIVEAUX = ["Débutant", "Intermédiaire", "Avancé", "Expert"];
 const MOCK_MAX_PART = ["50", "100", "200", "500", "1000", "Illimité"];
 
+const errorDateFin =
+  "La date et l'heure de fin doivent être postérieures à la date et l'heure de début";
+
 const AVATARS = [
   {
     id: "lightbulb",
@@ -91,6 +94,14 @@ export default function CreerGameJamPage() {
   const [publier, setPublier] = useState(false);
   const [inscriptions, setInscriptions] = useState(true);
 
+  const isDateFinInvalid = (): boolean => {
+    if (!dateDebut || !heureDebut || !dateFin || !heureFin) return false;
+    return (
+      new Date(`${dateFin}T${heureFin}`).getTime() <=
+      new Date(`${dateDebut}T${heureDebut}`).getTime()
+    );
+  };
+
   const duree = (): string => {
     if (!dateDebut || !heureDebut || !dateFin || !heureFin) return "";
     const diff =
@@ -101,6 +112,7 @@ export default function CreerGameJamPage() {
   };
 
   const handleSubmit = () => {
+    if (isDateFinInvalid()) return;
     console.log({
       titre,
       description,
@@ -232,6 +244,7 @@ export default function CreerGameJamPage() {
                 obligatory
               />
             </div>
+
             <div className={styles.grid2}>
               <Input
                 label="Date de fin"
@@ -239,6 +252,8 @@ export default function CreerGameJamPage() {
                 value={dateFin}
                 onChange={setDateFin}
                 obligatory
+                error={isDateFinInvalid()}
+                errorMessage={errorDateFin}
               />
               <Input
                 label="Heure de fin"
@@ -246,6 +261,8 @@ export default function CreerGameJamPage() {
                 value={heureFin}
                 onChange={setHeureFin}
                 obligatory
+                error={isDateFinInvalid()}
+                errorMessage={errorDateFin}
               />
             </div>
 
@@ -331,6 +348,7 @@ export default function CreerGameJamPage() {
             icon={<PlusIcon width={14} height={14} color="currentColor" />}
             iconPosition="left"
             onClick={handleSubmit}
+            disabled={isDateFinInvalid()}
           />
         </aside>
       </div>
