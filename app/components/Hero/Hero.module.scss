@@ -7,6 +7,8 @@
   border: 1px solid $--color-primary-hover;
   border-radius: $--border-radius-md;
   color: $--color-light;
+  @media screen {
+  }
   padding: $--spacing-xl calc($--spacing-xl * 2);
 }
 
@@ -17,12 +19,13 @@
   align-items: flex-start;
   gap: $--spacing-sm;
   max-width: 551px;
+  height: 100%;
 }
 
 .buttons {
   display: flex;
   gap: $--spacing-md;
-  margin-top: $--spacing-lg;
+  margin-top: $--spacing-xxl;
   font-size: $--font-size-sm;
 }
 
@@ -30,6 +33,7 @@
   font-family: var(--font-montserrat), sans-serif;
   font-size: $--font-size-xs;
   font-weight: bold;
+  margin-top: $--spacing-xl;
 }
 
 .heroTitle {
