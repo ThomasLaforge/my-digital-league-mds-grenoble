@@ -11,14 +11,7 @@ export default auth((req) => {
   const isApiAuthRoute = nextUrl.pathname.startsWith("/api/auth");
   const isAuthRoute = nextUrl.pathname.startsWith("/auth");
   const isPublicRoute = nextUrl.pathname === "/";
-  const isEventCreationRoute = [
-    "/tournois/creation",
-    "/tournois/create",
-    "/tournois/creer",
-  ].some(
-    (route) =>
-      nextUrl.pathname === route || nextUrl.pathname.startsWith(`${route}/`)
-  );
+  const isOrganisateurRoute = nextUrl.pathname.startsWith("/organisateur");
 
   if (isApiAuthRoute) {
     return;
@@ -31,13 +24,13 @@ export default auth((req) => {
     return;
   }
 
-  if (isEventCreationRoute) {
+  if (isOrganisateurRoute) {
     if (!isLoggedIn) {
       return Response.redirect(new URL("/auth/login", nextUrl));
     }
 
     if (!isAdmin) {
-      return Response.redirect(new URL("/tournois", nextUrl));
+      return Response.redirect(new URL("/", nextUrl));
     }
   }
 
