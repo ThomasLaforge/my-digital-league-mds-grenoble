@@ -1,0 +1,149 @@
+@import "../../styles/variables.scss";
+
+.page {
+  color: $--color-light;
+}
+
+.header {
+  margin-bottom: $--spacing-xl;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $--spacing-md;
+  align-items: start;
+  @media (min-width: $--laptop) {
+    grid-template-columns: 1fr 30rem;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: $--spacing-md;
+}
+
+.section {
+  background: $--color-bg-dark;
+  border-radius: $--border-radius-md;
+  padding: $--spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $--spacing-md;
+  h3 {
+    margin: 0;
+  }
+  p {
+    color: $--color-text-dark;
+    margin: 0;
+  }
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-start;
+  gap: $--spacing-md;
+}
+
+.sectionIcon {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  background: $--color-bg-card-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $--spacing-md;
+  @media (min-width: $--mobile) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.avatarGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $--spacing-sm;
+}
+
+.avatarBtn {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background: $--color-secondary;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.avatarActive {
+  background: $--color-primary;
+  outline: 2px solid $--color-light;
+}
+
+.avatarCheck {
+  position: absolute;
+  bottom: -0.4rem;
+  right: -0.4rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: $--color-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $--color-primary;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: $--spacing-md;
+  @media (min-width: $--laptop) {
+    position: sticky;
+    top: $--spacing-lg;
+  }
+}
+
+.card {
+  background: $--color-bg-dark;
+  border-radius: $--border-radius-md;
+  padding: $--spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $--spacing-md;
+}
+
+.cardTitle {
+  padding-bottom: $--spacing-sm;
+  border-bottom: 1px solid $--color-bg-card-dark;
+}
+
+.tips {
+  display: flex;
+  flex-direction: column;
+  gap: $--spacing-sm;
+  li {
+    color: $--color-text-dark;
+    padding-left: $--spacing-md;
+    position: relative;
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: $--color-primary;
+    }
+  }
+}
