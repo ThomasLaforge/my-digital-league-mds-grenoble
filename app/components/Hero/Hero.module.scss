@@ -1,0 +1,45 @@
+@import "../../styles/variables.scss";
+
+.hero {
+  border: 1px solid $--color-primary-hover;
+  border-radius: $--border-radius-md;
+  color: $--color-light;
+  padding: $--spacing-lg;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: $--spacing-sm;
+}
+
+.buttons {
+  display: flex;
+  gap: $--spacing-md;
+  margin-top: $--spacing-lg;
+  font-size: $--font-size-sm;
+}
+
+.gameYear {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: $--font-size-xs;
+  font-weight: bold;
+}
+
+.heroTitle {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: $--font-size-xl;
+  font-weight: bold;
+}
+
+.heroDesc {
+  display: flex;
+  flex-direction: column;
+  gap: $--spacing-sm;
+  font-family: var(--font-inter), sans-serif;
+  font-size: $--font-size-xs;
+  font-weight: 400;
+  color: $--color-disabled;
+}
