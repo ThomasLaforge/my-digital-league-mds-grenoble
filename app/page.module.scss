@@ -1,3 +1,98 @@
+@import "../app/styles/variables";
+
 .main {
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xxl;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin: 0;
+  color: $color-light;
+  font-family: $font-family-montserrat;
+  font-size: $font-size-md;
+  font-weight: 700;
+}
+
+.sectionChevron {
+  display: inline-flex;
+  align-items: center;
+  color: $color-light;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.controlButton {
+  color: $color-light;
+  cursor: pointer;
+  background-color: $color-bg-component-dark;
+  border: none;
+  border-radius: 50%;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+  display: grid;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $spacing-lg;
+
+  > * {
+    max-width: none;
+  }
+}
+.rowImage {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  > * {
+    max-width: none;
+  }
+}
+
+@media (max-width: calc(#{$laptop} - 1px)) {
+  .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: calc(#{$tablet} - 1px)) {
+  .sectionHeader {
+    align-items: flex-start;
+  }
+
+  .sectionTitle {
+    font-size: $font-size-lg;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
 }
