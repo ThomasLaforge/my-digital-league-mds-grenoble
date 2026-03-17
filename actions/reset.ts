@@ -11,17 +11,17 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
   const validatedFields = ResetSchema.safeParse(values);
 
   if (!validatedFields.success) {
-    return { error: "Invalid email!" };
+    return { error: "Adresse mail non valide." };
   }
 
   const { email } = validatedFields.data;
 
   const existingUser = await prisma.user.findUnique({
-    where: { email }
+    where: { email },
   });
 
   if (!existingUser) {
-    return { error: "Email not found!" };
+    return { error: "Adresse mail non trouvée!" };
   }
 
   const passwordResetToken = await generatePasswordResetToken(email);
@@ -29,11 +29,14 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
   try {
     await sendPasswordResetEmail(
       passwordResetToken.email,
-      passwordResetToken.token,
+      passwordResetToken.token
     );
   } catch {
-    return { error: "Could not send reset email. Please try again." };
+    return {
+      error:
+        "Une erreur est survenue lors de l'envoi du mail. Veuillez réessayer.",
+    };
   }
 
-  return { success: "Reset email sent!" };
-}
+  return { success: "Réinitialisation de mot de passe envoyé!" };
+};
