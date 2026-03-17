@@ -49,38 +49,76 @@
   background-color: $color-bg-component-dark;
   border: none;
   border-radius: 50%;
-  place-items: center;
   width: 2.4rem;
   height: 2.4rem;
   transition:
     background-color 0.2s,
     border-color 0.2s;
-  display: grid;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: $spacing-lg;
-
-  > * {
-    max-width: none;
-  }
-}
-.rowImage {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.slider {
+  width: 100%;
+}
+
+.sliderTrack:global(.splide__track) {
+  overflow: hidden !important;
+  padding-bottom: 0.2rem;
+}
+
+.cardSlide {
+  display: flex;
+  align-items: stretch;
 
   > * {
     max-width: none;
+    width: 100%;
   }
 }
 
-@media (max-width: calc(#{$laptop} - 1px)) {
-  .row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.rowImage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-lg;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+
+  @media (min-width: $tablet) {
+    > .logoCard {
+      justify-content: center;
+    }
   }
+}
+
+.logoCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: auto;
+  max-width: 100%;
+  height: 120px;
+  border-radius: $border-radius-md;
+}
+
+/*
+ * Surcharges de style du carrousel Splide
+ * Personnalise le comportement du composant curseur Splide par défaut
+ * 
+ * - `.splide__list`: Étire les diapositives enfants pour remplir la hauteur disponible
+ * - `.splide__slide`: Permet aux diapositives de se dimensionner naturellement en fonction du contenu plutôt que d'une hauteur fixe
+ */
+:global(.splide__list) {
+  align-items: stretch;
+}
+
+:global(.splide__slide) {
+  height: auto;
 }
 
 @media (max-width: calc(#{$tablet} - 1px)) {
@@ -92,7 +130,7 @@
     font-size: $font-size-lg;
   }
 
-  .row {
-    grid-template-columns: 1fr;
+  .controls {
+    gap: $spacing-sm;
   }
 }
