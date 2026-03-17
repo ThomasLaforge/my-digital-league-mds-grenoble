@@ -1,4 +1,4 @@
-@use "../../styles/variables" as *;
+@use "../../styles/variables.scss" as *;
 
 .radioWrapper {
   display: flex;
@@ -28,7 +28,7 @@
   height: 16px;
   border-radius: 50%;
   border: 2px solid $color-primary;
-  background-color: $color-bg-component-dark;
+  background-color: $color-bg-card-dark;
 }
 
 .checked {

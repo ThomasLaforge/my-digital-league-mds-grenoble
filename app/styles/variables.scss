@@ -1,0 +1,52 @@
+// ===== COLOR =====
+
+$color-bg-component-dark: #272932;
+$color-bg-component-dark-hover: #666666;
+$color-bg-dark: #1a1c26;
+$color-light: #ffffff;
+$color-text-dark: #a9a9ad;
+$color-icon-dark: #8f8f8f;
+$color-primary: #5921cb;
+$color-primary-hover: #501eb7;
+$color-primary-light: #e6def7;
+$color-secondary: #8c67f6;
+$color-disabled: #b3b3b3;
+$color-bg-card-dark: $color-bg-component-dark;
+
+// ===== FONT SIZE =====
+
+$font-size-xs: 1.2rem;
+$font-size-sm: 1.4rem;
+$font-size-md: 1.6rem;
+$font-size-lg: 2rem;
+$font-size-xl: 2.4rem;
+
+// ===== FONT FAMILY =====
+
+$font-family-inter: var(--font-inter), sans-serif;
+$font-family-montserrat: var(--font-montserrat), sans-serif;
+
+// ===== SPACING =====
+
+$spacing-xs: 0.4rem;
+$spacing-sm: 0.8rem;
+$spacing-md: 1.6rem;
+$spacing-lg: 2.4rem;
+$spacing-xl: 3.2rem;
+$spacing-xxl: 4.8rem;
+
+// ===== BORDER RADIUS =====
+
+$border-radius-sm: 0.8rem;
+$border-radius-md: 1.6rem;
+$border-radius-lg: 2.4rem;
+$border-radius-xl: 3.2rem;
+
+// ===== RESPONSIVE =====
+
+// Mobile first (min-wdith) et si (max-width) ajout -1px pour eviter le overlap des breakpoints
+
+$mobile: 576px;
+$tablet: 768px;
+$laptop: 1200px;
+$desktop: $laptop;
