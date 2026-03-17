@@ -19,8 +19,8 @@
   border: 1px solid $color-light;
   font-size: $font-size-md;
   transition: border-color 0.2s ease-in-out;
+  font-family: var(--font-inter);
 }
-
 .inputField:focus {
   outline: none;
   border-color: $color-primary;
