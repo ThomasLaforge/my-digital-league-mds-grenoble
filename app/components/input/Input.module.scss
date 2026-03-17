@@ -90,3 +90,8 @@ select.inputField {
   display: flex;
   align-items: center;
 }
+
+.inputField::-webkit-calendar-picker-indicator {
+  filter: invert(60%) sepia(0%) saturate(0%) brightness(90%);
+  cursor: pointer;
+}
