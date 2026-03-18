@@ -11,6 +11,7 @@ $color-primary-hover: #501eb7;
 $color-primary-light: #e6def7;
 $color-secondary: #8c67f6;
 $color-disabled: #b3b3b3;
+$color-bg-card-dark: $color-bg-component-dark;
 
 // ===== FONT SIZE =====
 
@@ -22,8 +23,8 @@ $font-size-xl: 2.4rem;
 
 // ===== FONT FAMILY =====
 
-$font-family-inter: "Inter", sans-serif;
-$font-family-montserrat: "Montserrat", sans-serif;
+$font-family-inter: var(--font-inter), sans-serif;
+$font-family-montserrat: var(--font-montserrat), sans-serif;
 
 // ===== SPACING =====
 
@@ -48,3 +49,4 @@ $border-radius-xl: 3.2rem;
 $mobile: 576px;
 $tablet: 768px;
 $laptop: 1200px;
+$desktop: $laptop;
