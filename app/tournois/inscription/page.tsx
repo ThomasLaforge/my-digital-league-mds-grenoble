@@ -1,17 +1,25 @@
 import DynamicLoadEvent from "./DynamicLoadEvent";
+import { EventGetPayload } from "@/generated/prisma/models/Event";
+import { notFound } from "next/navigation";
 
 type PageProps = {
   searchParams: Promise<{ eventId?: string }>;
 };
 
+export type EventWithGame = EventGetPayload<{
+  include: {
+    game: { select: { id: true; title: true } };
+    _count: { select: { participants: true } };
+  };
+}>;
 export default async function InscriptionPage({ searchParams }: PageProps) {
   const { eventId } = await searchParams;
 
   if (!eventId) {
-    return <DynamicLoadEvent eventId={null} event={null} />;
+    return notFound();
   }
 
-  let event = null;
+  let event: EventWithGame | null = null;
 
   try {
     const res = await fetch(
@@ -19,11 +27,13 @@ export default async function InscriptionPage({ searchParams }: PageProps) {
       { cache: "no-store" }
     );
 
-    if (res.ok) {
+    if (!res.ok) {
+      return notFound();
+    } else {
       event = await res.json();
     }
   } catch {
-    event = null;
+    return notFound();
   }
 
   return <DynamicLoadEvent eventId={eventId} event={event} />;

@@ -2,8 +2,19 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const search = searchParams.get("search");
+
   const games = await prisma.game.findMany({
+    where: search
+      ? {
+          title: {
+            contains: search,
+            mode: "insensitive",
+          },
+        }
+      : {},
     include: { _count: { select: { events: true } } },
     orderBy: { title: "asc" },
   });

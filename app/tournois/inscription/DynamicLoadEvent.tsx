@@ -8,35 +8,19 @@ import Button from "@/app/components/Button/Button";
 import {
   CalendarIcon,
   ClockIcon,
-  LocationIcon,
-  TeamIcon,
   CircleQuestionIcon,
   EnvelopIcon,
   ChevronRightIcon,
 } from "@/app/components/Icons/Icons";
 import { EVENT_LEVEL_OPTIONS } from "@/lib/event-level";
 import styles from "./page.module.scss";
-
-type EventData = {
-  id: string;
-  name: string;
-  date: string;
-  inscriptionDeadline: string;
-  rules: string | null;
-  game: { id: string; title: string };
-  _count: { participants: number };
-  location?: string | null;
-  maxParticipants?: number | null;
-  isFree?: boolean | null;
-  format?: string | null;
-  rewards?: string | null;
-};
+import { EventWithGame } from "@/app/tournois/inscription/page";
 
 const NIVEAUX = EVENT_LEVEL_OPTIONS.map((option) => option.label);
 
 type DynamicLoadEventProps = {
   eventId: string | null;
-  event: EventData | null;
+  event: EventWithGame | null;
 };
 
 export default function DynamicLoadEvent({
@@ -119,6 +103,7 @@ export default function DynamicLoadEvent({
     );
   }
 
+  const inscriptionLimit = event.inscriptionDeadline ?? event.date;
   return (
     <main className={styles.main}>
       <div className={styles.container}>
@@ -137,48 +122,31 @@ export default function DynamicLoadEvent({
             <div className={styles.eventInfos}>
               <div className={styles.eventInfoItem}>
                 <CalendarIcon />
-                <span>{formatDate(event.date)}</span>
+                <span>{formatDate(event.date.toString())}</span>
               </div>
-              {event.location && (
-                <div className={styles.eventInfoItem}>
-                  <LocationIcon />
-                  <span>{event.location}</span>
-                </div>
-              )}
-              {typeof event.maxParticipants === "number" && (
-                <div className={styles.eventInfoItem}>
-                  <TeamIcon />
-                  <span>
-                    {event._count.participants}/{event.maxParticipants}{" "}
-                    participants
-                  </span>
-                </div>
-              )}
               <div className={styles.eventInfoItem}>
                 <ClockIcon />
                 <span>
                   Inscription avant le{" "}
-                  {formatDateTime(event.inscriptionDeadline)}
+                  {formatDateTime(inscriptionLimit.toString())}
                 </span>
               </div>
             </div>
           </div>
 
-          {event._count.participants < (event.maxParticipants ?? Infinity) && (
-            <div className={styles.highlightCard}>
-              <div className={styles.highlightHeader}>
-                <CircleQuestionIcon width={16} height={16} color="#FFFFFF" />
-                <h2 className={styles.highlightTitle}>
-                  Recherche d&apos;équipe activée
-                </h2>
-              </div>
-              <p className={styles.highlightText}>
-                Vous serez inscrit en tant que participant en recherche
-                d&apos;équipe. Vous pourrez être contacté par d&apos;autres
-                joueurs pour compléter leurs équipes.
-              </p>
+          <div className={styles.highlightCard}>
+            <div className={styles.highlightHeader}>
+              <CircleQuestionIcon width={16} height={16} color="#FFFFFF" />
+              <h2 className={styles.highlightTitle}>
+                Recherche d&apos;équipe activée
+              </h2>
             </div>
-          )}
+            <p className={styles.highlightText}>
+              Vous serez inscrit en tant que participant en recherche
+              d&apos;équipe. Vous pourrez être contacté par d&apos;autres
+              joueurs pour compléter leurs équipes.
+            </p>
+          </div>
 
           <div className={styles.formCard}>
             <h2 className={styles.cardTitle}>Type d&apos;inscription</h2>
@@ -257,37 +225,10 @@ export default function DynamicLoadEvent({
               <div className={styles.sidebarRow}>
                 <span className={styles.sidebarLabel}>Date limite</span>
                 <span className={styles.sidebarValue}>
-                  {formatDateTime(event.inscriptionDeadline)}
+                  {formatDateTime(inscriptionLimit.toString())}
                 </span>
               </div>
             </div>
-
-            <div className={styles.sidebarBlock}>
-              <div className={styles.sidebarRow}>
-                <span className={styles.sidebarLabel}>Participation</span>
-                <span className={styles.sidebarValue}>
-                  {event.isFree === false ? "Payant" : "Gratuit"}
-                </span>
-              </div>
-            </div>
-
-            {event.format && (
-              <div className={styles.sidebarBlock}>
-                <div className={styles.sidebarRowTop}>
-                  <span className={styles.sidebarLabel}>Format</span>
-                  <span className={styles.sidebarValue}>{event.format}</span>
-                </div>
-              </div>
-            )}
-
-            {event.rewards && (
-              <div className={styles.sidebarBlock}>
-                <div className={styles.sidebarRowTop}>
-                  <span className={styles.sidebarLabel}>Récompenses</span>
-                  <span className={styles.sidebarValue}>{event.rewards}</span>
-                </div>
-              </div>
-            )}
 
             {event.rules && (
               <div className={styles.sidebarBlock}>
