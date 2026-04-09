@@ -22,6 +22,7 @@ import {
 import styles from "./page.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { EVENT_LEVEL_OPTIONS } from "@/lib/event-level";
 
 const MOCK_CATEGORIES = [
   "Solo",
@@ -31,7 +32,7 @@ const MOCK_CATEGORIES = [
   "Autre",
 ];
 const MOCK_FORMATS = ["Solo", "Duo", "Équipe (3-5)", "Équipe (6+)"];
-const MOCK_NIVEAUX = ["Débutant", "Intermédiaire", "Avancé", "Expert"];
+const NIVEAUX = EVENT_LEVEL_OPTIONS.map((option) => option.label);
 const MOCK_MAX_PART = ["10", "100", "200", "500", "1000", "Illimité"];
 
 const errorDateFin =
@@ -256,7 +257,7 @@ export default function DynamicCreerGameJamPage({ games }: { games: Game[] }) {
                 type="select"
                 value={niveau}
                 onChange={setNiveau}
-                options={MOCK_NIVEAUX}
+                options={NIVEAUX}
                 placeholder="Sélectionner le niveau"
                 obligatory
               />
