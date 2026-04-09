@@ -42,6 +42,33 @@
   gap: $spacing-md;
 }
 
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+}
+
+.linkContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: $spacing-xs;
+}
+
+.inputLabel {
+  font-weight: 600;
+  color: $color-light;
+}
+
+.required {
+  color: #ff5252;
+}
+
 .sectionIcon {
   width: 3.6rem;
   height: 3.6rem;
