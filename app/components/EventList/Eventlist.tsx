@@ -5,19 +5,9 @@ import { BulbIcon } from "../Icons/Icons";
 import Card from "../Card/Card";
 import styles from "./EventList.module.scss";
 import Button from "../Button/Button";
+import { EventWithGame } from "@/app/tournois/inscription/page";
 
-type EventType = {
-  id: string;
-  name: string;
-  rules: string;
-  date: string;
-  inscriptionDeadline: string;
-  createdAt: string;
-  updatedAt: string;
-  game: { id: string; title: string };
-};
-
-export default function EventsList({ events }: { events: EventType[] }) {
+export default function EventsList({ events }: { events: EventWithGame[] }) {
   const [showAll, setShowAll] = useState(false);
 
   const visibleEvents = showAll ? events : events.slice(0, 6);
