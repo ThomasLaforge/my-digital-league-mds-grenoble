@@ -1,0 +1,17 @@
+@use "../../styles/variables" as *;
+
+.avatarContainer {
+  width: $spacing-xxl;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: $color-light;
+  background: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .avatarLetter {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
