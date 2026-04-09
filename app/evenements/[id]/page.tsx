@@ -1,4 +1,4 @@
-import DynamicEventPage from "@/app/evenements/[id]/EventPageClient";
+import DynamicEventPageId from "@/app/evenements/[id]/DynamicEventPageId";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -17,5 +17,5 @@ export default async function EventPage({ params }: Props) {
     return <div>Événement introuvable</div>;
   }
 
-  return <DynamicEventPage event={data} />;
+  return <DynamicEventPageId event={data} />;
 }

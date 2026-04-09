@@ -6,6 +6,8 @@ import Button from "@/app/components/Button/Button";
 import { Roadmap } from "@/app/components/Roadmap/Roadmap";
 import Minicard from "@/app/components/Minicard/Minicard";
 import { FaUser } from "react-icons/fa";
+import { EVENT_LEVEL_OPTIONS, type EventLevel } from "@/lib/event-level";
+import router from "next/router";
 
 type EventPageClientProps = {
   event: {
@@ -14,12 +16,21 @@ type EventPageClientProps = {
     date: string;
     inscriptionDeadline: string;
     rules: string;
+    level?: EventLevel | null;
     game: { id: string; title: string; description: string | null };
     _count: { participants: number };
   };
 };
 
-export default function EventPageClient({ event }: EventPageClientProps) {
+const getLevelLabel = (level?: EventLevel | null) => {
+  if (!level) return "Non renseigné";
+  return (
+    EVENT_LEVEL_OPTIONS.find((option) => option.value === level)?.label ??
+    "Non renseigné"
+  );
+};
+
+export default function DynamicEventPageId({ event }: EventPageClientProps) {
   const startDate = new Date(event.date);
   const deadline = new Date(event.inscriptionDeadline);
 
@@ -36,17 +47,25 @@ export default function EventPageClient({ event }: EventPageClientProps) {
   const roadmapSteps = [
     {
       id: 1,
-      title: "Ouverture officielle & Révélation du thème",
-      description: "Cérémonie d'ouverture en direct avec l'annonce du thème.",
-      date: startDate,
+      title: "Début des inscriptions",
+      description:
+        "Ouverture officielle des inscriptions pour rejoindre l'événement.",
+      date: deadline,
       isCompleted: false,
     },
     {
       id: 2,
-      title: "Clôture des inscriptions",
+      title: "Fin des inscriptions",
       description:
-        "Fin des inscriptions pour les participants souhaitant rejoindre l'événement.",
-      date: deadline,
+        "Clôture des inscriptions avant le lancement officiel de l'événement.",
+      date: startDate,
+      isCompleted: false,
+    },
+    {
+      id: 3,
+      title: "Début de l'événement",
+      description: "Lancement officiel de la game jam et début du challenge.",
+      date: startDate,
       isCompleted: false,
     },
   ];
@@ -106,25 +125,13 @@ export default function EventPageClient({ event }: EventPageClientProps) {
 
             <div className={styles.grid2}>
               <Minicard
-                title="Gameplay"
+                title="Catégorie"
                 text="Fun, mécaniques de jeu et équilibre"
               />
-              <Minicard
-                title="Innovation"
-                text="Originalité et créativité du concept"
-              />
-              <Minicard
-                title="Art & Design"
-                text="Direction artistique et visuelle"
-              />
-              <Minicard
-                title="Audio"
-                text="Musique, effets sonores et ambiance"
-              />
+              <Minicard title="Niveau" text={getLevelLabel(event.level)} />
             </div>
           </section>
 
-          {/* Planning */}
           <section className={styles.section}>
             <div className={styles.sectionHead}>
               <span className={styles.sectionIcon}>
@@ -143,7 +150,6 @@ export default function EventPageClient({ event }: EventPageClientProps) {
             <Roadmap title="Planning de l'événement" steps={roadmapSteps} />
           </section>
 
-          {/* Règles */}
           <section className={styles.section}>
             <div className={styles.sectionHead}>
               <span className={styles.sectionIcon}>
@@ -159,7 +165,6 @@ export default function EventPageClient({ event }: EventPageClientProps) {
           </section>
         </main>
 
-        {/* Bannière de droite, calquée sur la création */}
         <aside className={styles.sidebar}>
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Rejoignez l&apos;aventure !</h3>
@@ -178,9 +183,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
               label="S'inscrire maintenant"
               type="primary"
               fullWidth
-              onClick={() => {
-                // TODO: route d'inscription
-              }}
+              onClick={() => router.push("/tournois/inscription")}
             />
           </div>
 
