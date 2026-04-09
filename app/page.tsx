@@ -3,7 +3,6 @@
 import styles from "./page.module.scss";
 import Image from "next/image";
 import { ReactNode, useRef } from "react";
-import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Card from "./components/Card/Card";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
@@ -265,7 +264,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-       <Hero />
+      <Hero />
       <HomeSection
         title="Tournois en cours"
         previousLabel="Tournois précédents"
