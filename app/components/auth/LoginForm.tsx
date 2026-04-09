@@ -3,13 +3,13 @@
 import { Controller } from "react-hook-form";
 import Link from "next/link";
 
-import { CardWrapper } from "@/app/components/auth/CardWrapper";
-import { FormError } from "@/app/components/auth/FormError";
-import { FormSuccess } from "@/app/components/auth/FormSuccess";
+import { CardWrapper } from "../../../app/components/auth/CardWrapper";
+import { FormError } from "../../../app/components/auth/FormError";
+import { FormSuccess } from "../../../app/components/auth/FormSuccess";
 import styles from "./Auth.module.scss";
 
-import Input from "@/app/components/Input/Input";
-import Button from "@/app/components/Button/Button";
+import Input from "../../../app/components/input/Input";
+import Button from "../../../app/components/Button/Button";
 import { useLogin } from "@/hooks/auth/useLogin";
 export const LoginForm = () => {
   const { form, error, success, isPending, onSubmit } = useLogin();

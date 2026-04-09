@@ -204,18 +204,18 @@ export const EnvelopIcon = ({
 
 export const ChevronRightIcon = ({
   width = 20,
-  height = 16,
+  height = 12,
   color = "black",
 }): ReactNode => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 6 12"
+    viewBox="0 0 6 10"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M0.750007 0.750036L4.59141 5.65441C4.62608 5.69862 4.65361 5.75113 4.67245 5.80893C4.69129 5.8668 4.70106 5.92882 4.70119 5.99144C4.70133 6.05406 4.69183 6.11613 4.67325 6.17408C4.65466 6.23196 4.62736 6.28459 4.59288 6.32895L0.772877 11.25"
+      d="M0.750059 8.9425L4.61834 5.14461C4.65325 5.11037 4.68106 5.06961 4.7002 5.02465C4.71934 4.97964 4.72942 4.93132 4.72987 4.88246C4.73032 4.8336 4.72113 4.7851 4.70282 4.73975C4.68451 4.69444 4.65745 4.65318 4.62317 4.6183L0.825278 0.750024"
       stroke={color}
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -226,13 +226,13 @@ export const ChevronRightIcon = ({
 
 export const ChevronLeftIcon = ({
   width = 20,
-  height = 16,
+  height = 12,
   color = "black",
 }): ReactNode => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 6 12"
+    viewBox="0 0 6 10"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >

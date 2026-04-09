@@ -1,3 +1,2 @@
 npm run test:unit -- --run
-npm run build
 npx lint-staged

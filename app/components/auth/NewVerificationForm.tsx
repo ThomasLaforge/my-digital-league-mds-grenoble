@@ -1,14 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { BeatLoader } from "react-spinners";
 
-import { newVerification } from "@/actions/new-verification";
-import { CardWrapper } from "@/app/components/auth/CardWrapper";
-import { FormError } from "@/app/components/auth/FormError";
-import { FormSuccess } from "@/app/components/auth/FormSuccess";
-import styles from "./Auth.module.scss";
+import { newVerification } from "../../../actions/new-verification";
+import { CardWrapper } from "../../../app/components/auth/CardWrapper";
+import { FormError } from "../../../app/components/auth/FormError";
+import { FormSuccess } from "../../../app/components/auth/FormSuccess";
 
 export const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>();
@@ -16,14 +15,10 @@ export const NewVerificationForm = () => {
 
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
+  const missingTokenError = token ? undefined : "Missing token!";
 
-  const onSubmit = useCallback(() => {
-    if (success || error) return;
-
-    if (!token) {
-      setError("Missing token!");
-      return;
-    }
+  useEffect(() => {
+    if (!token || success || error) return;
 
     newVerification(token)
       .then((data) => {
@@ -32,12 +27,8 @@ export const NewVerificationForm = () => {
       })
       .catch(() => {
         setError("Something went wrong!");
-      })
+      });
   }, [token, success, error]);
-
-  useEffect(() => {
-    onSubmit();
-  }, [onSubmit]);
 
   return (
     <CardWrapper
@@ -45,15 +36,18 @@ export const NewVerificationForm = () => {
       backButtonLabel="Back to login"
       backButtonHref="/auth/login"
     >
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-        {!success && !error && (
-          <BeatLoader />
-        )}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
+        {!success && !error && !missingTokenError && <BeatLoader />}
         <FormSuccess message={success} />
-        {!success && (
-          <FormError message={error} />
-        )}
+        {!success && <FormError message={error ?? missingTokenError} />}
       </div>
     </CardWrapper>
   );
-}
+};
