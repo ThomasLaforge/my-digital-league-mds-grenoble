@@ -14,21 +14,37 @@ interface ButtonProps {
 }
 
 export default function Button(props: ButtonProps) {
-  return (
-    <button
-      className={`${props.type ? `${styles.button} ${styles[props.type]}` : styles.button} ${props.fullWidth ? styles.fullWidth : ""}`}
-      onClick={props.onClick}
-      disabled={props.disabled}
-    >
+  const className = `${props.type ? `${styles.button} ${styles[props.type]}` : styles.button} ${props.fullWidth ? styles.fullWidth : ""}`;
+
+  const content = (
+    <>
       {props.icon &&
       (props.iconPosition === "left" || props.iconPosition === "both")
         ? props.icon
         : null}
-      {props.href ? <Link href={props.href}>{props.label}</Link> : props.label}
+      {props.label}
       {props.icon &&
       (props.iconPosition === "right" || props.iconPosition === "both")
         ? props.icon
         : null}
+    </>
+  );
+
+  if (props.href && !props.disabled) {
+    return (
+      <Link href={props.href} className={className} onClick={props.onClick}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      className={className}
+      onClick={props.onClick}
+      disabled={props.disabled}
+    >
+      {content}
     </button>
   );
 }
