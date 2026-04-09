@@ -17,7 +17,8 @@
     "prettier:check": "prettier --check .",
     "test:unit": "vitest --config vitest.unit.config.ts",
     "test:storybook": "vitest --config vitest.config.ts",
-    "test:coverage": "vitest run --config vitest.unit.config.ts --coverage"
+    "test:coverage": "vitest run --config vitest.unit.config.ts --coverage",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
