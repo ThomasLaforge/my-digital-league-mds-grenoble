@@ -1,4 +1,4 @@
-import styles from "./Minicard.module.scss"
+import styles from "./Minicard.module.scss";
 
 interface MinicardProps {
   title: string;

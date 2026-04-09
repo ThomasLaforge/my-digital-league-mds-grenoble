@@ -1,14 +1,14 @@
 @use "../../styles/variables" as *;
 
 .minicardContainer {
-    background-color: $color-bg-dark;
-    border-radius:$border-radius-md;
-    color: $color-light;
-    padding: $spacing-md;
-    max-width: 25vw;
+  background-color: $color-bg-dark;
+  border-radius: $border-radius-md;
+  color: $color-light;
+  padding: $spacing-md;
+  max-width: 25vw;
 
-    .minicardTitle {
-        font-weight: 600;
-        margin-bottom: $spacing-sm;
-    }
+  .minicardTitle {
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+  }
 }
