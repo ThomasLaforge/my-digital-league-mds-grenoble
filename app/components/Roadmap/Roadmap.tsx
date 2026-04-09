@@ -1,7 +1,7 @@
 import styles from "./Roadmap.module.scss";
-import { RoadmapStep } from "./Roadmap.types";
-import { CalendarIcon } from "@";
-import { formatDate } from "../../../lib/date";
+import { RoadmapStep } from "@/app/components/Roadmap/Roadmap.types";
+import { CalendarIcon } from "@/app/components/Icons/Icons";
+import { formatDate } from "@/lib/date";
 
 interface RoadmapProps {
   steps: RoadmapStep[];
