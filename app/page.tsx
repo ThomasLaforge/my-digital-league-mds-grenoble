@@ -1,12 +1,50 @@
 "use client";
 
+import { date } from "zod";
 import Card, { BaseCard } from "./components/Card/Card";
 import { BulbIcon } from "./components/Icons/Icons";
+import { Roadmap } from "./components/Roadmap/Roadmap";
 
 export default function Home() {
+  const testSteps = [
+    {
+      id: "1",
+      title: "Ouverture des inscriptions - Révélation du Thème",
+      description: "Cérémonie d'ouverture en direct à regarder.",
+      isCompleted: true,
+      date: "20 Mars",
+      heure: "18:00",
+      isUpcoming: true,
+    },
+    {
+      id: "2",
+      title: "Matchs des ouverrtures - test",
+      description: "Phase de poules.",
+      date: "21 Mars",
+      heure: "19:00",
+    },
+    {
+      id: "3",
+      title: "Ouverture des inscriptions - Révélation du Thème",
+      description: "Cérémonie d'ouverture en direct à regarder.",
+      isCompleted: true,
+      date: "20 Mars",
+      heure: "18:00",
+    },
+    {
+      id: "4",
+      title: "Ouverture des inscriptions - Révélation du Thème",
+      description: "Cérémonie d'ouverture en direct à regarder.",
+      isCompleted: true,
+      date: "20 Mars",
+      heure: "18:00",
+    },
+  ];
+
   return (
     <div>
       <main>
+        <Roadmap steps={testSteps} title="Aperçu du test" />
         <section style={{ marginBottom: "3rem" }}>
           <h2>Card register</h2>
 
