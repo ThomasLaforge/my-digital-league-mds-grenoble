@@ -10,9 +10,8 @@ export default function Home() {
       id: "1",
       title: "Ouverture des inscriptions - Révélation du Thème",
       description: "Cérémonie d'ouverture en direct à regarder.",
-      isCompleted: true,
+      isCompleted: false,
       date: new Date("2026-03-20T18:00:00"),
-      isUpcoming: true,
     },
     {
       id: "2",

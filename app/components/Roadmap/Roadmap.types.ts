@@ -4,5 +4,4 @@ export interface RoadmapStep {
   description: string;
   date: Date;
   isCompleted?: boolean;
-  isUpcoming?: boolean;
 }
