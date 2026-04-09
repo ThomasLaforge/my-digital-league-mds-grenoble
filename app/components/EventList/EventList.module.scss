@@ -1,0 +1,24 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listContainer {
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $spacing-lg;
+  align-items: space-around;
+  justify-content: space-around;
+}
+
+.listContainer > * {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}

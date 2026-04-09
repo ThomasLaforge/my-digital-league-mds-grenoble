@@ -1,11 +1,29 @@
+import styles from "./tournois.module.scss";
+import EventsList from "../components/EventList/Eventlist";
+
 export const metadata = {
   title: "Tournois",
 };
 
-export default function TournoisPage() {
+async function getEvents() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/events`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return [];
+  }
+
+  return res.json();
+}
+
+export default async function TournoisPage() {
+  const events = await getEvents();
+
   return (
     <main>
-      <h1>Tournois</h1>
+      <div className={styles.title}>GameJams et Tournois gaming</div>
+      <EventsList events={events} />
     </main>
   );
 }
