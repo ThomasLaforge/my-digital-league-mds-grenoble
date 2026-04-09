@@ -1,11 +1,18 @@
 import styles from "./Roadmap.module.scss";
-import { RoadmapStep } from "@/app/components/Roadmap/Roadmap.types";
 import { CalendarIcon } from "@/app/components/Icons/Icons";
 import { formatDate } from "@/lib/date";
 
 interface RoadmapProps {
   steps: RoadmapStep[];
   title: string;
+}
+
+interface RoadmapStep {
+  id: string | number;
+  title: string;
+  description: string;
+  date: Date;
+  isCompleted?: boolean;
 }
 
 export const Roadmap = ({ steps, title }: RoadmapProps) => {
