@@ -2,44 +2,11 @@
 
 import Card, { BaseCard } from "./components/Card/Card";
 import { BulbIcon } from "./components/Icons/Icons";
-import { Roadmap } from "./components/Roadmap/Roadmap";
 
 export default function Home() {
-  const testRoadmap = [
-    {
-      id: "1",
-      title: "Ouverture des inscriptions - Révélation du Thème",
-      description: "Cérémonie d'ouverture en direct à regarder.",
-      isCompleted: false,
-      date: new Date("2026-03-20T18:00:00"),
-    },
-    {
-      id: "2",
-      title: "Matchs d'ouverture - Tournoi de qualification",
-      description: "Phase de poules.",
-      date: new Date("2026-03-21T19:00:00"),
-      isCompleted: true,
-    },
-    {
-      id: "3",
-      title: "Ouverture des inscriptions - Révélation du Thème",
-      description: "Cérémonie d'ouverture en direct à regarder.",
-      isCompleted: true,
-      date: new Date("2026-03-20T18:00:00"),
-    },
-    {
-      id: "4",
-      title: "Ouverture des inscriptions - Révélation du Thème",
-      description: "Cérémonie d'ouverture en direct à regarder.",
-      isCompleted: true,
-      date: new Date("2026-03-20T18:00:00"),
-    },
-  ];
-
   return (
     <div>
       <main>
-        <Roadmap steps={testRoadmap} title="Roadmap" />
         <section style={{ marginBottom: "3rem" }}>
           <h2>Card register</h2>
 
