@@ -1,9 +1,9 @@
 "use client";
 
-import { CardWrapper } from "@/app/components/auth/CardWrapper";
-import { FormError } from "@/app/components/auth/FormError";
-import { FormSuccess } from "@/app/components/auth/FormSuccess";
-import { useNewPassword } from "@/hooks/auth/useNewPassword";
+import { CardWrapper } from "../../../app/components/auth/CardWrapper";
+import { FormError } from "../../../app/components/auth/FormError";
+import { FormSuccess } from "../../../app/components/auth/FormSuccess";
+import { useNewPassword } from "../../../hooks/auth/useNewPassword";
 import styles from "./Auth.module.scss";
 
 export const NewPasswordForm = () => {
