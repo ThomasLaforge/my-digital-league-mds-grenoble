@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@use "../../../styles/variables" as *;
 
 .page {
   color: $color-light;
@@ -31,12 +31,8 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
-  h3 {
-    margin: 0;
-  }
   p {
     color: $color-text-dark;
-    margin: 0;
   }
 }
 
