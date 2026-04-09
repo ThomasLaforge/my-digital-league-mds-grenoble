@@ -1,4 +1,4 @@
-@use "../../../styles/variables" as *;
+@import "../../../styles/variables.scss";
 
 .page {
   color: $color-light;
@@ -42,33 +42,6 @@
   gap: $spacing-md;
 }
 
-.inputWrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.labelRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: $spacing-sm;
-}
-
-.linkContainer {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: $spacing-xs;
-}
-
-.inputLabel {
-  font-weight: 600;
-  color: $color-light;
-}
-
-.required {
-  color: #ff5252;
-}
-
 .sectionIcon {
   width: 3.6rem;
   height: 3.6rem;
@@ -78,56 +51,6 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-
-.grid2 {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-md;
-  @media (min-width: $mobile) {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.avatarGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $spacing-sm;
-}
-
-.avatarBtn {
-  position: relative;
-  width: 6rem;
-  height: 6rem;
-  border-radius: 50%;
-  background: $color-secondary;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.85;
-  }
-}
-
-.avatarActive {
-  background: $color-primary;
-  outline: 2px solid $color-light;
-}
-
-.avatarCheck {
-  position: absolute;
-  bottom: -0.4rem;
-  right: -0.4rem;
-  width: 1.8rem;
-  height: 1.8rem;
-  border-radius: 50%;
-  background: $color-light;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: $color-primary;
 }
 
 .sidebar {
