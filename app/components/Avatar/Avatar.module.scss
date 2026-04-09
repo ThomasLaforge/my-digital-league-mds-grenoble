@@ -1,7 +1,6 @@
 @use "../../styles/variables" as *;
 
 .avatarContainer {
-  width: $spacing-xxl;
   aspect-ratio: 1;
   border-radius: 50%;
   color: $color-light;
@@ -11,7 +10,35 @@
   justify-content: center;
 
   .avatarLetter {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
   }
+}
+
+.variant-header {
+  width: 40px;
+}
+
+.variant-profile {
+  width: 122px;
+  border: 8px solid $color-bg-component-dark;
+  background-color: $color-light;
+  color: $color-primary;
+
+  .avatarLetter {
+    font-size: 4.5rem;
+    font-weight: 600;
+  }
+}
+
+.text-white {
+  color: $color-light;
+}
+
+.text-black {
+  color: $color-bg-dark;
+}
+
+.text-primary {
+  color: $color-primary;
 }

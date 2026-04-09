@@ -10,8 +10,25 @@ const meta: Meta<typeof Avatar> = {
 export default meta;
 type Story = StoryObj<typeof Avatar>;
 
-export const Classic: Story = {
+export const Header: Story = {
   args: {
+    variant: "header",
     letter: "T",
+  },
+};
+
+export const ProfilePrimaryText: Story = {
+  args: {
+    variant: "profile",
+    letter: "A",
+    textColor: "primary",
+  },
+};
+
+export const ProfileDarkText: Story = {
+  args: {
+    variant: "profile",
+    letter: "B",
+    textColor: "black",
   },
 };
