@@ -7,9 +7,10 @@
   border: 1px solid $--color-primary-hover;
   border-radius: $--border-radius-md;
   color: $--color-light;
-  @media screen {
+  padding: $--spacing-md;
+  @media screen and (min-width: $--tablet) {
+    padding: $--spacing-xl calc($--spacing-xl * 2);
   }
-  padding: $--spacing-xl calc($--spacing-xl * 2);
 }
 
 .mainContent {
@@ -24,6 +25,7 @@
 
 .buttons {
   display: flex;
+
   gap: $--spacing-md;
   margin-top: $--spacing-xxl;
   font-size: $--font-size-sm;
