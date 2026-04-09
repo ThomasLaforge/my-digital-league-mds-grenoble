@@ -1,6 +1,6 @@
 // ===== MIXINS =====
 
-@use "./_variables.scss" as *;
+@use "./variables" as *;
 
 @mixin flex-row-to-column {
   display: flex;

@@ -1,7 +1,7 @@
 // ===== IMPORTS =====
-@use "./_reset" as *;
-@use "./_variables" as *;
-@use "./_mixins" as *;
+@use "./reset" as *;
+@use "./variables" as *;
+@use "./mixins" as *;
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
 
 // ===== GLOBAL STYLES =====
