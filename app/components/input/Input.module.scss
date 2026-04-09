@@ -51,15 +51,15 @@ select.inputField {
   width: 100%;
   appearance: none;
   cursor: pointer;
-  padding-right: $--spacing-xxl;
+  padding-right: $spacing-xxl;
   option {
-    background: $--color-bg-dark;
+    background: $color-bg-dark;
   }
 }
 
 .chevron {
   position: absolute;
-  right: $--spacing-md;
+  right: $spacing-md;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
@@ -75,15 +75,15 @@ select.inputField {
   width: 100%;
   appearance: none;
   cursor: pointer;
-  padding-right: $--spacing-xxl;
+  padding-right: $spacing-xxl;
   option {
-    background: $--color-bg-dark;
+    background: $color-bg-dark;
   }
 }
 
 .chevron {
   position: absolute;
-  right: $--spacing-md;
+  right: $spacing-md;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;

@@ -1,19 +1,19 @@
 @import "../../../styles/variables.scss";
 
 .page {
-  color: $--color-light;
+  color: $color-light;
 }
 
 .header {
-  margin-bottom: $--spacing-xl;
+  margin-bottom: $spacing-xl;
 }
 
 .layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $--spacing-md;
+  gap: $spacing-md;
   align-items: start;
-  @media (min-width: $--laptop) {
+  @media (min-width: $laptop) {
     grid-template-columns: 1fr 30rem;
   }
 }
@@ -21,21 +21,21 @@
 .main {
   display: flex;
   flex-direction: column;
-  gap: $--spacing-md;
+  gap: $spacing-md;
 }
 
 .section {
-  background: $--color-bg-component-dark;
-  border-radius: $--border-radius-md;
-  padding: $--spacing-lg;
+  background: $color-bg-component-dark;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
   display: flex;
   flex-direction: column;
-  gap: $--spacing-md;
+  gap: $spacing-md;
   h3 {
     margin: 0;
   }
   p {
-    color: $--color-text-dark;
+    color: $color-text-dark;
     margin: 0;
   }
 }
@@ -43,14 +43,14 @@
 .sectionHead {
   display: flex;
   align-items: flex-start;
-  gap: $--spacing-md;
+  gap: $spacing-md;
 }
 
 .sectionIcon {
   width: 3.6rem;
   height: 3.6rem;
   border-radius: 50%;
-  background: $--color-bg-dark;
+  background: $color-bg-dark;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,8 +60,8 @@
 .grid2 {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $--spacing-md;
-  @media (min-width: $--mobile) {
+  gap: $spacing-md;
+  @media (min-width: $mobile) {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -69,7 +69,7 @@
 .avatarGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: $--spacing-sm;
+  gap: $spacing-sm;
 }
 
 .avatarBtn {
@@ -77,7 +77,7 @@
   width: 6rem;
   height: 6rem;
   border-radius: 50%;
-  background: $--color-secondary;
+  background: $color-secondary;
   border: none;
   display: flex;
   align-items: center;
@@ -89,8 +89,8 @@
 }
 
 .avatarActive {
-  background: $--color-primary;
-  outline: 2px solid $--color-light;
+  background: $color-primary;
+  outline: 2px solid $color-light;
 }
 
 .avatarCheck {
@@ -100,42 +100,42 @@
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 50%;
-  background: $--color-light;
+  background: $color-light;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $--color-primary;
+  color: $color-primary;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: $--spacing-md;
-  @media (min-width: $--laptop) {
+  gap: $spacing-md;
+  @media (min-width: $laptop) {
     position: sticky;
-    top: $--spacing-lg;
+    top: $spacing-lg;
   }
 }
 
 .card {
-  background: $--color-bg-component-dark;
-  border-radius: $--border-radius-md;
-  padding: $--spacing-md;
+  background: $color-bg-component-dark;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
   display: flex;
   flex-direction: column;
-  gap: $--spacing-md;
+  gap: $spacing-md;
 }
 
 .cardTitle {
-  padding-bottom: $--spacing-sm;
-  border-bottom: 1px solid $--color-bg-dark;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-bg-dark;
 }
 
 .tips {
   display: flex;
   flex-direction: column;
-  gap: $--spacing-md;
+  gap: $spacing-md;
   li {
-    font-size: $--font-size-sm;
+    font-size: $font-size-sm;
   }
 }

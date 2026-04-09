@@ -39,15 +39,15 @@ h3 {
 }
 
 :root {
-  --color-bg-card-dark: #{$--color-bg-card-dark};
-  --color-bg-card-dark-hover: #{$--color-bg-card-dark-hover};
-  --color-bg-dark: #{$--color-bg-dark};
-  --color-light: #{$--color-light};
-  --color-text-dark: #{$--color-text-dark};
-  --color-icon-dark: #{$--color-icon-dark};
-  --color-primary: #{$--color-primary};
-  --color-primary-hover: #{$--color-primary-hover};
-  --color-primary-light: #{$--color-primary-light};
-  --color-secondary: #{$--color-secondary};
-  --color-disabled: #{$--color-disabled};
+  --color-bg-dark: #{$color-bg-dark};
+  --color-bg-card-dark: #{$color-bg-dark};
+  --color-bg-component-dark: #{$color-bg-component-dark};
+  --color-light: #{$color-light};
+  --color-text-dark: #{$color-text-dark};
+  --color-icon-dark: #{$color-icon-dark};
+  --color-primary: #{$color-primary};
+  --color-primary-hover: #{$color-primary-hover};
+  --color-primary-light: #{$color-primary-light};
+  --color-secondary: #{$color-secondary};
+  --color-disabled: #{$color-disabled};
 }
