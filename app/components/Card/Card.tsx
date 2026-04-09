@@ -36,6 +36,7 @@ export function BaseCard(props: PropsWithChildren) {
 
 export default function Card(props: CardProps) {
   const {
+    id,
     icon,
     name,
     date,
@@ -52,6 +53,7 @@ export default function Card(props: CardProps) {
 
   const isClickable = onClick && !disabled;
   const eventDate = new Date(date);
+  const registrationHref = `/tournois/inscription?eventId=${id}`;
 
   return (
     <div
@@ -117,6 +119,7 @@ export default function Card(props: CardProps) {
             <Button
               label={status === "ongoing" ? "S'inscrire" : "Voir détails"}
               type="primary"
+              href={status === "ongoing" ? registrationHref : `/tournois/${id}`}
               onClick={() => {
                 onClick?.();
               }}
@@ -157,6 +160,7 @@ export default function Card(props: CardProps) {
               type="primary"
               icon={<ArrowCircleRightIcon />}
               iconPosition="right"
+              href={status === "ongoing" ? registrationHref : `/tournois/${id}`}
               onClick={() => {
                 onClick?.();
               }}
