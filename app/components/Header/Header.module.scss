@@ -1,13 +1,13 @@
-@import "../../styles/variables.scss";
+@use "../../styles/variables" as *;
 
 .header {
   display: flex;
   align-items: center;
-  padding: $--spacing-md $--spacing-lg;
+  padding: $spacing-md 0rem;
   position: relative;
-  background: $--color-bg-card-dark;
+  background: $color-bg-dark;
   justify-content: space-between;
-  gap: $--spacing-lg;
+  gap: $spacing-lg;
 
   .containerLogo {
     flex: 0 0 auto;
@@ -30,13 +30,13 @@
       display: block;
       width: 2.25rem;
       height: 3rem;
-      background: $--color-light;
-      margin: $--spacing-xs 0;
-      border-radius: $--border-radius-sm;
+      background: $color-light;
+      margin: $spacing-xs 0;
+      border-radius: $border-radius-sm;
       transition: all 0.3s ease;
     }
 
-    @media (min-width: $--tablet) {
+    @media (min-width: $tablet) {
       display: none;
     }
   }
@@ -54,14 +54,14 @@
   .containerNav {
     display: flex;
     align-items: center;
-    gap: $--spacing-md;
+    gap: $spacing-md;
     flex: none;
     justify-content: flex-start;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: $--color-bg-card-dark;
+    background: $color-bg-dark;
     flex-direction: column;
     padding: 0;
     max-height: 0;
@@ -69,13 +69,13 @@
     transition: max-height 0.3s ease;
 
     &[data-open="true"] {
-      max-height: 500px;
+      max-height: 100vh;
     }
 
-    @media (min-width: $--tablet) {
+    @media (min-width: $tablet) {
       position: static;
       flex-direction: row;
-      gap: $--spacing-xl;
+      gap: $spacing-xl;
       flex: 1;
       justify-content: space-between;
       max-height: none;
@@ -96,40 +96,42 @@
   gap: 1.6rem;
   width: 100%;
   margin: 0;
-  margin-left: 62px;
+  padding: 0 0 0 15px;
   display: flex;
+  z-index: 1;
+  background: $color-bg-dark;
 
-  @media (min-width: $--tablet) {
+  @media (min-width: $tablet) {
     flex-direction: row;
-    gap: $--spacing-xl;
+    gap: $spacing-xl;
     width: auto;
     margin: 0 auto;
   }
 }
 
 .navLink {
-  color: $--color-light;
-  font-size: $--font-size-xs;
+  color: $color-light;
+  font-size: $font-size-xs;
   text-decoration: none;
   transition: color 0.2s;
   font-weight: 400;
   &:hover {
-    color: $--color-secondary;
+    color: $color-secondary;
   }
 }
 
 .actions {
   display: flex;
-  gap: $--spacing-sm;
+  gap: $spacing-sm;
   align-items: center;
   flex: 0 0 auto;
   flex-direction: column;
   width: 100%;
-  gap: $--spacing-md;
+  gap: $spacing-md;
 
-  @media (min-width: $--tablet) {
+  @media (min-width: $tablet) {
     flex-direction: row;
     width: auto;
-    gap: $--spacing-sm;
+    gap: $spacing-sm;
   }
 }

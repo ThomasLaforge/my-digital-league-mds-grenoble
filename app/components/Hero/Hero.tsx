@@ -38,22 +38,22 @@ export default function Hero() {
           <SplideSlide className={styles.slide}>
             <CardIcon
               icon={<GroupIcon color="grey" />}
-              titre="Rassemblez vos coéquipiers"
-              sousTitre="Faites équipe avec vos amis et participez ensemble à des tournois communautaires !"
+              title="Rassemblez vos coéquipiers"
+              subtitle="Faites équipe avec vos amis et participez ensemble à des tournois communautaires !"
             />
           </SplideSlide>
           <SplideSlide className={styles.slide}>
             <CardIcon
               icon={<CupIcon color="grey" />}
-              titre="Tournois communautaires"
-              sousTitre="Devenez organisateur et contribuez à bâtir la communauté Rematch"
+              title="Tournois communautaires"
+              subtitle="Devenez organisateur et contribuez à bâtir la communauté Rematch"
             />
           </SplideSlide>
           <SplideSlide className={styles.slide}>
             <CardIcon
               icon={<PodiumIcon color="grey" />}
-              titre="Participez pour gagner des prix"
-              sousTitre="You will soon be able to compete in tournaments and earn in-game rewards"
+              title="Participez pour gagner des prix"
+              subtitle="You will soon be able to compete in tournaments and earn in-game rewards"
             />
           </SplideSlide>
         </Splide>

@@ -16,21 +16,17 @@ export const CardWrapper = ({
   headerLabel,
   backButtonLabel,
   backButtonHref,
-  showSocial
+  showSocial,
 }: CardWrapperProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <h1>Auth</h1>
+        <h1>Authentification</h1>
         <p>{headerLabel}</p>
       </div>
-      <div className={styles.content}>
-        {children}
-      </div>
+      <div className={styles.content}>{children}</div>
       <div className={styles.footer}>
-        <Link href={backButtonHref}>
-          {backButtonLabel}
-        </Link>
+        <Link href={backButtonHref}>{backButtonLabel}</Link>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@use "../../styles/variables" as *;
 
 .cardIconContainer {
   display: flex;
@@ -6,33 +6,32 @@
   align-items: center;
   align-content: center;
   text-align: center;
-  border-radius: $--border-radius-md;
+  padding: $spacing-sm;
+  border-radius: $border-radius-md;
   background-color: inherit;
   max-width: 350px;
   height: auto;
 
   .cardIcon {
-    background-color: $--color-bg-dark;
+    background-color: $color-bg-dark;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: $--border-radius-sm;
-    margin-bottom: $--spacing-sm;
-    padding: $--spacing-md;
-    aspect-ratio: 1 / 1;
-    width: 72px;
+    border-radius: $border-radius-sm;
+    margin-bottom: $spacing-sm;
+    padding: $spacing-md;
   }
 
   .cardIconTitle {
-    color: $--color-light;
-    font-size: $--font-size-md;
+    color: $color-light;
+    font-size: $font-size-md;
     text-transform: uppercase;
     text-align: center;
-    margin-bottom: $--spacing-xs;
+    margin-bottom: $spacing-xs;
   }
   .cardIconSubtitle {
-    color: $--color-light;
-    font-size: $--font-size-sm;
+    color: $color-light;
+    font-size: $font-size-sm;
     text-align: center;
     margin: 0;
   }

@@ -18,20 +18,22 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
   const { email, password } = validatedFields.data;
 
   const existingUser = await prisma.user.findUnique({
-    where: { email }
+    where: { email },
   });
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: "Invalid credentials!" }
+    return { error: "Invalid credentials!" };
   }
 
   if (!existingUser.emailVerified) {
-    const verificationToken = await generateVerificationToken(existingUser.email);
+    const verificationToken = await generateVerificationToken(
+      existingUser.email
+    );
 
     try {
       await sendVerificationEmail(
         verificationToken.email,
-        verificationToken.token,
+        verificationToken.token
       );
     } catch {
       return { error: "Could not send confirmation email. Please try again." };
@@ -44,15 +46,15 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     await signIn("credentials", {
       email,
       password,
-      redirectTo: "/", // Or default
+      redirectTo: "/",
     });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return { error: "Invalid credentials!" }
+          return { error: "Invalid credentials!" };
         default:
-          return { error: "Something went wrong!" }
+          return { error: "Something went wrong!" };
       }
     }
 

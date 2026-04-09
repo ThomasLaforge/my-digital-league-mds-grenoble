@@ -16,16 +16,16 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     icon: "",
-    titre: "Hello :)",
-    sousTitre: "Come play with us !",
+    title: "Hello :)",
+    subtitle: "Come play with us !",
   },
 };
 
 export const Tournois: Story = {
   args: {
     icon: "",
-    titre: "Rassemblez vos coéquipiers",
-    sousTitre:
+    title: "Rassemblez vos coéquipiers",
+    subtitle:
       "Faites équipe et participez à nos tournois pour gagner des prix incroyables !",
   },
 };
@@ -33,8 +33,8 @@ export const Tournois: Story = {
 export const Equipe: Story = {
   args: {
     icon: "",
-    titre: "Tournois communautaires",
-    sousTitre:
+    title: "Tournois communautaires",
+    subtitle:
       "Devenez organisateur de tournois et créez des événements passionnants pour la communauté !",
   },
 };

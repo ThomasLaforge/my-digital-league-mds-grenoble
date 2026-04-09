@@ -8,7 +8,7 @@ import { FormError } from "@/app/components/auth/FormError";
 import { FormSuccess } from "@/app/components/auth/FormSuccess";
 import styles from "./Auth.module.scss";
 
-import Input from "@/app/components/input/Input";
+import Input from "@/app/components/Input/Input";
 import Button from "@/app/components/Button/Button";
 import { useLogin } from "@/hooks/auth/useLogin";
 export const LoginForm = () => {
@@ -16,8 +16,8 @@ export const LoginForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Welcome back"
-      backButtonLabel="Don't have an account?"
+      headerLabel="Bon retour !"
+      backButtonLabel="Vous n'avez pas encore de compte ?"
       backButtonHref="/auth/register"
       showSocial
     >
@@ -47,7 +47,7 @@ export const LoginForm = () => {
             name="password"
             render={({ field }) => (
               <Input
-                label="Password"
+                label="Mot de passe"
                 type="password"
                 placeholder="******"
                 value={field.value}
@@ -61,13 +61,13 @@ export const LoginForm = () => {
         </div>
 
         <Link href="/auth/reset" className={styles.forgotPassword}>
-          Forgot password?
+          Mot de passe oublié ?
         </Link>
 
         <FormError message={error} />
         <FormSuccess message={success} />
         <Button
-          label={isPending ? "Logging in..." : "Login"}
+          label={isPending ? "Connexion en cours..." : "Connexion"}
           type="primary"
           fullWidth
           disabled={isPending}

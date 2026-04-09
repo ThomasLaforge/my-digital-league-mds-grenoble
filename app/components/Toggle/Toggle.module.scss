@@ -1,9 +1,9 @@
-@use "../../styles/variables.scss" as *;
+@use "../../styles/variables" as *;
 
 .toggleContainer {
   display: flex;
   flex-direction: column;
-  gap: $--spacing-xs;
+  gap: $spacing-xs;
 
   &.small {
     --width: 34px;
@@ -40,7 +40,7 @@
 .toggleWrapper {
   display: flex;
   align-items: center;
-  gap: $--spacing-sm;
+  gap: $spacing-sm;
   cursor: pointer;
 }
 
@@ -51,7 +51,7 @@
   height: 0;
 
   &:checked + .slider {
-    background-color: $--color-primary;
+    background-color: $color-primary;
 
     &::before {
       transform: translateX(var(--travel-distance));
@@ -59,7 +59,7 @@
   }
 
   &:focus + .slider {
-    box-shadow: 0 0 0 2px $--color-primary-light;
+    box-shadow: 0 0 0 2px $color-primary-light;
   }
 }
 
@@ -68,8 +68,8 @@
   display: inline-block;
   width: var(--width);
   height: var(--height);
-  background-color: $--color-icon-dark;
-  border-radius: $--border-radius-xl;
+  background-color: $color-icon-dark;
+  border-radius: $border-radius-xl;
   transition: 0.3s ease;
 
   &::before {
@@ -79,19 +79,19 @@
     width: var(--dot-size);
     left: 4px;
     bottom: 4px;
-    background-color: $--color-light;
+    background-color: $color-light;
     border-radius: 50%;
     transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
 .label {
-  font-size: $--font-size-sm;
-  color: $--color-light;
+  font-size: $font-size-sm;
+  color: $color-light;
 }
 
 .helperText {
-  font-size: $--font-size-xs;
-  color: $--color-text-dark;
-  margin-left: calc(var(--width) + $--spacing-sm);
+  font-size: $font-size-xs;
+  color: $color-text-dark;
+  margin-left: calc(var(--width) + $spacing-sm);
 }

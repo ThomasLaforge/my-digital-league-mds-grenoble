@@ -9,16 +9,16 @@
 
 ## Couleurs
 
-| Variable                 | Valeur    | Usage                                    |
-| ------------------------ | --------- | ---------------------------------------- |
-| `$--color-bg-card-dark`  | `#1a1c26` | Fond des cartes (thème sombre)           |
-| `$--color-bg-dark`       | `#272932` | Fond principal (thème sombre)            |
-| `$--color-light`         | `#ffffff` | Texte et éléments clairs                 |
-| `$--color-text-dark`     | `#a9a9ad` | Texte secondaire (thème sombre)          |
-| `$--color-icon-dark`     | `#8f8f8f` | Icônes (thème sombre)                    |
-| `$--color-primary`       | `#5921cb` | Couleur principale                       |
-| `$--color-primary-light` | `#e6def7` | Variante claire de la couleur principale |
-| `$--color-secondary`     | `#8c67f6` | Couleur secondaire                       |
+| Variable                     | Valeur    | Usage                                    |
+| ---------------------------- | --------- | ---------------------------------------- |
+| `$--color-bg-component-dark` | `#1a1c26` | Fond des cartes (thème sombre)           |
+| `$--color-bg-dark`           | `#272932` | Fond principal (thème sombre)            |
+| `$--color-light`             | `#ffffff` | Texte et éléments clairs                 |
+| `$--color-text-dark`         | `#a9a9ad` | Texte secondaire (thème sombre)          |
+| `$--color-icon-dark`         | `#8f8f8f` | Icônes (thème sombre)                    |
+| `$--color-primary`           | `#5921cb` | Couleur principale                       |
+| `$--color-primary-light`     | `#e6def7` | Variante claire de la couleur principale |
+| `$--color-secondary`         | `#8c67f6` | Couleur secondaire                       |
 
 ---
 

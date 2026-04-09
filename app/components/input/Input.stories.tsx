@@ -35,7 +35,7 @@ export const Email: Story = {
   },
 };
 
-export const error: Story = {
+export const Error: Story = {
   args: {
     label: "Date de début",
     placeholder: "",

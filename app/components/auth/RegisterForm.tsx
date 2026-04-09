@@ -5,7 +5,7 @@ import { CardWrapper } from "@/app/components/auth/CardWrapper";
 import { FormError } from "@/app/components/auth/FormError";
 import { FormSuccess } from "@/app/components/auth/FormSuccess";
 import Button from "@/app/components/Button/Button";
-import Input from "@/app/components/input/Input";
+import Input from "@/app/components/Input/Input";
 import { useRegister } from "@/hooks/auth/useRegister";
 import styles from "./Auth.module.scss";
 
@@ -14,8 +14,8 @@ export const RegisterForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Create an account"
-      backButtonLabel="Already have an account?"
+      headerLabel="Créer un compte !"
+      backButtonLabel="Vous avez déjà un compte ?"
       backButtonHref="/auth/login"
       showSocial
     >
@@ -26,7 +26,7 @@ export const RegisterForm = () => {
             name="name"
             render={({ field }) => (
               <Input
-                label="Name"
+                label="Nom"
                 placeholder="John Doe"
                 disabled={isPending}
                 value={field.value}
@@ -63,7 +63,7 @@ export const RegisterForm = () => {
             name="password"
             render={({ field }) => (
               <Input
-                label="Password"
+                label="Mot de passe"
                 type="password"
                 placeholder="******"
                 disabled={isPending}
@@ -81,7 +81,7 @@ export const RegisterForm = () => {
 
         <Button
           type="primary"
-          label={isPending ? "Creating account..." : "Create an account"}
+          label={isPending ? "Création du compte..." : "Créer un compte"}
           fullWidth
           disabled={isPending}
         />

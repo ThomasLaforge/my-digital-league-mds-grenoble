@@ -1,8 +1,8 @@
 // ===== IMPORTS =====
-
-@import "./reset.scss";
-@import "./variables.scss";
-@import "./mixins.scss";
+@use "./reset" as *;
+@use "./variables" as *;
+@use "./mixins" as *;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
 
 // ===== GLOBAL STYLES =====
 
@@ -14,25 +14,25 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: var(--font-inter), sans-serif;
+  font-family: $font-family-inter;
   line-height: 1.5;
-  background-color: $--color-bg-card-dark;
+  background-color: $color-bg-dark;
   padding-inline: clamp(0rem, 8vw, 15rem);
 }
 
 h1 {
   font-size: 3.2rem;
   font-weight: 700;
-  font-family: var(--font-montserrat), sans-serif;
+  font-family: $font-family-montserrat;
 }
 
 h2 {
   font-size: 2.4rem;
   font-weight: 600;
-  font-family: var(--font-montserrat), sans-serif;
+  font-family: $font-family-montserrat;
 }
 h3 {
   font-size: 2rem;
   font-weight: 500;
-  font-family: var(--font-montserrat), sans-serif;
+  font-family: $font-family-montserrat;
 }

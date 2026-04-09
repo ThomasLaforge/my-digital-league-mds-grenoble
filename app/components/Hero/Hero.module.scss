@@ -1,15 +1,15 @@
-@import "../../styles/variables.scss";
+@use "../../styles/_variables.scss" as *;
 
 .hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid $--color-primary-hover;
-  border-radius: $--border-radius-md;
-  color: $--color-light;
-  padding: $--spacing-md;
-  @media screen and (min-width: $--tablet) {
-    padding: $--spacing-xl calc($--spacing-xl * 2);
+  border: 1px solid $color-primary-hover;
+  border-radius: $border-radius-md;
+  color: $color-light;
+  padding: $spacing-md;
+  @media screen and (min-width: $tablet) {
+    padding: $spacing-xl calc($spacing-xl * 2);
   }
 }
 
@@ -18,7 +18,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: $--spacing-sm;
+  gap: $spacing-sm;
   max-width: 551px;
   height: 100%;
 }
@@ -26,39 +26,39 @@
 .buttons {
   display: flex;
 
-  gap: $--spacing-md;
-  margin-top: $--spacing-xxl;
-  font-size: $--font-size-sm;
+  gap: $spacing-md;
+  margin-top: $spacing-xxl;
+  font-size: $font-size-sm;
 }
 
 .gameYear {
   font-family: var(--font-montserrat), sans-serif;
-  font-size: $--font-size-xs;
+  font-size: $font-size-xs;
   font-weight: bold;
-  margin-top: $--spacing-xl;
+  margin-top: $spacing-xl;
 }
 
 .heroTitle {
   font-family: var(--font-montserrat), sans-serif;
-  font-size: $--font-size-xl;
+  font-size: $font-size-xl;
   font-weight: bold;
 }
 
 .heroDesc {
   display: flex;
   flex-direction: column;
-  gap: $--spacing-xs;
+  gap: $spacing-xs;
   font-family: var(--font-inter), sans-serif;
-  font-size: $--font-size-xs;
+  font-size: $font-size-xs;
   font-weight: 400;
-  color: $--color-disabled;
+  color: $color-disabled;
 }
 
 .carouselContainer {
   display: none;
-  margin-top: $--spacing-lg;
+  margin-top: $spacing-lg;
   position: relative;
-  @media screen and (min-width: $--tablet) {
+  @media screen and (min-width: $tablet) {
     display: block;
   }
 
@@ -66,7 +66,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: $--spacing-xl;
+    padding-bottom: $spacing-xl;
   }
 
   :global(.splide) {
@@ -79,14 +79,14 @@
   }
 
   :global(.splide__pagination__page) {
-    background: $--color-icon-dark;
+    background: $color-icon-dark;
     opacity: 0.6;
     transition: all 0.2s ease;
     pointer-events: auto;
   }
 
   :global(.splide__pagination__page.is-active) {
-    background: $--color-primary !important;
+    background: $color-primary !important;
     opacity: 1;
     transform: scale(1.4);
   }
@@ -113,6 +113,6 @@
   }
 
   :global(.splide__arrow svg) {
-    fill: $--color-light;
+    fill: $color-light;
   }
 }
