@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/date";
 import { Options } from "@splidejs/splide";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Card from "../components/Card/Card";
+import Avatar from "../components/Avatar/Avatar";
 import {
   BulbIcon,
   ChevronLeftIcon,
@@ -150,7 +151,6 @@ export default function ProfileClient() {
   const [name, setName] = useState("");
   const [draftName, setDraftName] = useState("");
   const [email, setEmail] = useState("");
-  const [image, setImage] = useState<string | null>(null);
   const [isOrga, setIsOrga] = useState(false);
   const [createdAt, setCreatedAt] = useState("");
   const [events, setEvents] = useState<ProfileEvent[]>([]);
@@ -228,7 +228,6 @@ export default function ProfileClient() {
         setName(data.name ?? "");
         setDraftName(data.name ?? "");
         setEmail(data.email);
-        setImage(data.image ?? null);
         setIsOrga(data.isOrga);
         setCreatedAt(data.createdAt);
         setEvents(mappedEvents);
@@ -371,18 +370,11 @@ export default function ProfileClient() {
         <div className={styles.profileBanner} />
 
         <div className={styles.profileHeader}>
-          <div className={styles.avatarWrapper}>
-            {image ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={image}
-                alt={`Avatar de ${name || "l'utilisateur"}`}
-                className={styles.avatar}
-              />
-            ) : (
-              <div className={styles.avatarFallback} aria-hidden="true" />
-            )}
-          </div>
+          <Avatar
+            letter={name || email || "U"}
+            variant="profile"
+            textColor="primary"
+          />
 
           <div className={styles.identity}>
             {isEditingName ? (
@@ -409,9 +401,6 @@ export default function ProfileClient() {
               </h1>
             )}
             <p>{email}</p>
-            <p className={styles.nameHint}>
-              Double-clique sur le nom pour le modifier.
-            </p>
             <p className={styles.createdAt}>
               Inscrit le {createdAt ? formatDate(createdAt) : "-"}
             </p>

@@ -87,6 +87,17 @@
   font-size: $font-size-xl;
   cursor: text;
   user-select: none;
+  border: 1px dashed rgba($color-light, 0.55);
+  border-radius: $border-radius-sm;
+  padding: 0.2rem 0.8rem;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+
+  &:hover {
+    border-color: $color-secondary;
+    background: rgba($color-light, 0.04);
+  }
 }
 
 .nameInput {
@@ -105,12 +116,6 @@
     outline: 1px solid $color-secondary;
     border-color: $color-secondary;
   }
-}
-
-.nameHint {
-  margin: 0;
-  color: $color-text-dark;
-  font-size: $font-size-xs;
 }
 
 .createdAt {
