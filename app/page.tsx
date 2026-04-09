@@ -1,12 +1,15 @@
 "use client";
 
 import Card, { BaseCard } from "./components/Card/Card";
+import Header from "./components/Header/Header";
+import Hero from "./components/Hero/Hero";
 import { BulbIcon } from "./components/Icons/Icons";
 
 export default function Home() {
   return (
     <div>
       <main>
+        <Hero />
         <section style={{ marginBottom: "3rem" }}>
           <h2>Card register</h2>
 
