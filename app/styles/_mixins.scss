@@ -7,33 +7,33 @@
   flex-direction: row;
   align-items: center;
 
-  @media (min-width: $--mobile) {
+  @media (min-width: $mobile) {
     flex-direction: column;
   }
 }
 
 @mixin visible-from-tablet {
   display: none;
-  @media (min-width: $--tablet) {
+  @media (min-width: $tablet) {
     display: block;
   }
 }
 
 @mixin visible-from-desktop {
   display: none;
-  @media (min-width: $--desktop) {
+  @media (min-width: $desktop) {
     display: block;
   }
 }
 
 @mixin hidden-from-tablet {
-  @media (min-width: $--tablet) {
+  @media (min-width: $tablet) {
     display: none !important;
   }
 }
 
 @mixin hidden-from-desktop {
-  @media (min-width: $--desktop) {
+  @media (min-width: $desktop) {
     display: none !important;
   }
 }

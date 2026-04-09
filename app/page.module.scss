@@ -1,3 +1,136 @@
+@use "./styles/_variables" as *;
+
 .main {
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xxl;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin: 0;
+  color: $color-light;
+  font-family: $font-family-montserrat;
+  font-size: $font-size-md;
+  font-weight: 700;
+}
+
+.sectionChevron {
+  display: inline-flex;
+  align-items: center;
+  color: $color-light;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.controlButton {
+  color: $color-light;
+  cursor: pointer;
+  background-color: $color-bg-component-dark;
+  border: none;
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider {
+  width: 100%;
+}
+
+.sliderTrack:global(.splide__track) {
+  overflow: hidden !important;
+  padding-bottom: 0.2rem;
+}
+
+.cardSlide {
+  display: flex;
+  align-items: stretch;
+
+  > * {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+.rowImage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-lg;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+
+  @media (min-width: $tablet) {
+    > .logoCard {
+      justify-content: center;
+    }
+  }
+}
+
+.logoCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: auto;
+  max-width: 100%;
+  height: 120px;
+  border-radius: $border-radius-md;
+}
+
+/*
+ * Surcharges de style du carrousel Splide
+ * Personnalise le comportement du composant curseur Splide par défaut
+ * 
+ * - `.splide__list`: Étire les diapositives enfants pour remplir la hauteur disponible
+ * - `.splide__slide`: Permet aux diapositives de se dimensionner naturellement en fonction du contenu plutôt que d'une hauteur fixe
+ */
+:global(.splide__list) {
+  align-items: stretch;
+}
+
+:global(.splide__slide) {
+  height: auto;
+}
+
+@media (max-width: calc(#{$tablet} - 1px)) {
+  .sectionHeader {
+    align-items: flex-start;
+  }
+
+  .sectionTitle {
+    font-size: $font-size-lg;
+  }
+
+  .controls {
+    gap: $spacing-sm;
+  }
 }
