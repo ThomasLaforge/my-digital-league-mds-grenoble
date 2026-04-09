@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Input from "@/app/components/input/Input";
+import Input from "@/app/components/Input/Input";
 import Toggle from "@/app/components/Toggle/Toggle";
 import Button from "@/app/components/Button/Button";
 import {
@@ -23,17 +23,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const MOCK_CATEGORIES = [
-  "FPS",
-  "RPG",
-  "Platformer",
-  "Puzzle",
-  "Simulation",
+  "Solo",
+  "Course contre la montre",
+  "Equipe",
   "Stratégie",
   "Autre",
 ];
 const MOCK_FORMATS = ["Solo", "Duo", "Équipe (3-5)", "Équipe (6+)"];
 const MOCK_NIVEAUX = ["Débutant", "Intermédiaire", "Avancé", "Expert"];
-const MOCK_MAX_PART = ["50", "100", "200", "500", "1000", "Illimité"];
+const MOCK_MAX_PART = ["10", "100", "200", "500", "1000", "Illimité"];
 
 const errorDateFin =
   "La date et l'heure de fin doivent être postérieures à la date et l'heure de début";
@@ -79,20 +77,33 @@ const AVATARS = [
   },
 ];
 
+type Game = {
+  id: string;
+  title: string;
+};
+
 export default function CreerGameJamPage() {
+  const router = useRouter();
+
   const [titre, setTitre] = useState("");
   const [description, setDescription] = useState("");
-  const [categorie, setCategorie] = useState("");
-  const [format, setFormat] = useState("");
-  const [niveau, setNiveau] = useState("");
-  const [maxPart, setMaxPart] = useState("");
   const [dateDebut, setDateDebut] = useState("");
   const [heureDebut, setHeureDebut] = useState("");
   const [dateFin, setDateFin] = useState("");
   const [heureFin, setHeureFin] = useState("");
+  const [gameTitle, setGameTitle] = useState("");
+
+  const [categorie, setCategorie] = useState("");
+  const [format, setFormat] = useState("");
+  const [niveau, setNiveau] = useState("");
+  const [maxPart, setMaxPart] = useState("");
   const [avatar, setAvatar] = useState("dice");
   const [publier, setPublier] = useState(false);
   const [inscriptions, setInscriptions] = useState(true);
+
+  const [games, setGames] = useState<Game[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const isDateFinInvalid = (): boolean => {
     if (!dateDebut || !heureDebut || !dateFin || !heureFin) return false;
@@ -111,24 +122,58 @@ export default function CreerGameJamPage() {
     return h > 0 ? `${h} heures` : "";
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isDateFinInvalid()) return;
-    console.log({
-      titre,
-      description,
-      categorie,
-      format,
-      niveau,
-      maxPart,
-      dateDebut,
-      heureDebut,
-      dateFin,
-      heureFin,
-      avatar,
-      publier,
-      inscriptions,
-    });
+    setSubmitError(null);
+    setIsLoading(true);
+
+    const selectedGame = games.find((g) => g.title === gameTitle);
+
+    if (!selectedGame) {
+      setSubmitError("Veuillez sélectionner un jeu valide");
+      setIsLoading(false);
+      return;
+    }
+
+    const body = {
+      name: titre,
+      rules: description,
+      date: new Date(`${dateDebut}T${heureDebut}`).toISOString(),
+      inscriptionDeadline: new Date(`${dateFin}T${heureFin}`).toISOString(),
+      gameId: selectedGame.id,
+    };
+
+    try {
+      const res = await fetch("/api/events", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setSubmitError(data.error || "Une erreur est survenue");
+        return;
+      }
+
+      router.push(`/organisateur/evenements/${data.id}`);
+    } catch {
+      setSubmitError("Erreur réseau, veuillez réessayer");
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  const isFormInvalid =
+    isDateFinInvalid() ||
+    !titre ||
+    !description ||
+    !dateDebut ||
+    !heureDebut ||
+    !dateFin ||
+    !heureFin ||
+    !gameTitle;
 
   return (
     <div className={styles.page}>
@@ -167,6 +212,20 @@ export default function CreerGameJamPage() {
               placeholder="Décrivez votre game jam en quelques phrases..."
               value={description}
               onChange={setDescription}
+              obligatory
+            />
+
+            <Input
+              label="Jeu associé"
+              type="select"
+              value={gameTitle}
+              onChange={setGameTitle}
+              options={games.map((g) => g.title)}
+              placeholder={
+                games.length === 0
+                  ? "Chargement des jeux..."
+                  : "Sélectionner un jeu"
+              }
               obligatory
             />
 
@@ -341,14 +400,16 @@ export default function CreerGameJamPage() {
             </ul>
           </div>
 
+          {submitError && <p className={styles.submitError}>{submitError}</p>}
+
           <Button
-            label="Publier la Game Jam"
+            label={isLoading ? "Création en cours..." : "Publier la Game Jam"}
             type="primary"
             fullWidth
             icon={<PlusIcon width={14} height={14} color="currentColor" />}
             iconPosition="left"
             onClick={handleSubmit}
-            disabled={isDateFinInvalid()}
+            disabled={isFormInvalid || isLoading}
           />
         </aside>
       </div>
