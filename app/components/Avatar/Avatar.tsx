@@ -3,7 +3,7 @@ import styles from "./Avatar.module.scss";
 export default function Avatar({ letter }: { letter: string }) {
   return (
     <div className={styles.avatarContainer}>
-      <span className={styles.avatarLetter}>{letter}</span>
+      <span className={styles.avatarLetter}>{letter[0]?.toUpperCase()}</span>
     </div>
   );
 }
