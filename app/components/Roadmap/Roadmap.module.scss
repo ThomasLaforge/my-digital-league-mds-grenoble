@@ -1,0 +1,113 @@
+@import "../../styles/variables.scss";
+
+.roadmapContainer {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-lg;
+}
+
+.stepBlock {
+  display: flex;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $color-icon-dark;
+  z-index: 2;
+  margin-top: 8px;
+
+  &.active {
+    background-color: $color-secondary;
+  }
+}
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xs;
+}
+
+.title {
+  font-family: $font-family-montserrat;
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-light;
+  margin: 0;
+}
+
+.upcomingBadge {
+  background-color: rgba($color-primary, 0.2);
+  color: $color-primary;
+  border: 1px solid $color-primary;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.verticalLine {
+  width: 2px;
+  flex-grow: 1;
+  background-color: $color-bg-component-dark;
+  min-height: 50px;
+
+  &.active {
+    background-color: $color-primary;
+  }
+}
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: $spacing-xs;
+
+  .title {
+    font-family: $font-family-montserrat;
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $color-light;
+    margin: 0 0 $spacing-xs 0;
+    max-width: 700px;
+  }
+
+  .description {
+    font-size: $font-size-md;
+    color: $color-text-dark;
+    line-height: 1.4;
+    margin-top: $spacing-xs;
+    margin-bottom: $spacing-xs;
+  }
+
+  .dateRow {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+
+    svg {
+      width: 35px;
+      height: 35px;
+      margin-left: -8px;
+    }
+
+    .dateText {
+      font-size: $font-size-md;
+      font-weight: 600;
+      color: $color-text-dark;
+    }
+  }
+}
