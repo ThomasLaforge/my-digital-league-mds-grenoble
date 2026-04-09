@@ -11,7 +11,7 @@ async function getEvents() {
   });
 
   if (!res.ok) {
-    throw new Error("Erreur lors du chargement des événements");
+    return [];
   }
 
   return res.json();
