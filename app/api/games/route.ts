@@ -26,14 +26,18 @@ export const POST = auth(async (req) => {
     return NextResponse.json({ error: "Accès interdit" }, { status: 403 });
   }
 
-  const { title, description } = await req.json();
+  const { title, description, imageUrl } = await req.json();
 
   if (!title) {
     return NextResponse.json({ error: "Le titre est requis" }, { status: 400 });
   }
 
   const game = await prisma.game.create({
-    data: { title, description: description || null },
+    data: {
+      title,
+      description: description || null,
+      imageUrl: imageUrl || null,
+    },
     include: { _count: { select: { events: true } } },
   });
 

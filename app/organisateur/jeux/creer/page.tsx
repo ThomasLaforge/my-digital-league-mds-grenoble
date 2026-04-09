@@ -12,6 +12,7 @@ export default function CreerJeuPage() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isChecking, setIsChecking] = useState(false);
   const [titleExists, setTitleExists] = useState(false);
@@ -70,6 +71,7 @@ export default function CreerJeuPage() {
         body: JSON.stringify({
           title: title.trim(),
           description,
+          imageUrl,
         }),
       });
 
@@ -150,6 +152,13 @@ export default function CreerJeuPage() {
               value={description}
               onChange={setDescription}
             />
+
+            <Input
+              label="URL de l'image"
+              placeholder="https://exemples.com/image.jpg"
+              value={imageUrl}
+              onChange={setImageUrl}
+            />
           </section>
         </main>
 
@@ -163,6 +172,7 @@ export default function CreerJeuPage() {
               <li>Utilisez le nom officiel du jeu</li>
               <li>Précisez la version si nécessaire</li>
               <li>Une description claire aide les participants</li>
+              <li>Une image de couverture rend le jeu plus attractif</li>
             </ul>
           </div>
 
