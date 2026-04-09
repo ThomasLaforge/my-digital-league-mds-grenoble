@@ -157,7 +157,7 @@ export default function CreerGameJamPage() {
         return;
       }
 
-      router.push(`/organisateur/evenements/${data.id}`);
+      router.push("/");
     } catch {
       setSubmitError("Erreur réseau, veuillez réessayer");
     } finally {
