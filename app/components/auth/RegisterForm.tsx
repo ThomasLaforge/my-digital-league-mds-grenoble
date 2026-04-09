@@ -5,7 +5,7 @@ import { CardWrapper } from "../../../app/components/auth/CardWrapper";
 import { FormError } from "../../../app/components/auth/FormError";
 import { FormSuccess } from "../../../app/components/auth/FormSuccess";
 import Button from "../../../app/components/Button/Button";
-import Input from "../../../app/components/input/Input";
+import Input from "../Input/Input";
 import { useRegister } from "../../../hooks/auth/useRegister";
 import styles from "./Auth.module.scss";
 
