@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Input from "@/app/components/input/Input";
+import Input from "@/app/components/Input/Input";
 import Toggle from "@/app/components/Toggle/Toggle";
 import Button from "@/app/components/Button/Button";
 import {
