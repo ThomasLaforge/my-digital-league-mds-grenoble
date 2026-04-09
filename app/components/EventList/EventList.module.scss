@@ -1,0 +1,15 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listContainer {
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-lg;
+}
