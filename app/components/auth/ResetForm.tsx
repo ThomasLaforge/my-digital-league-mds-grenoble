@@ -1,9 +1,9 @@
 "use client";
 
-import { CardWrapper } from "@/app/components/auth/CardWrapper";
-import { FormError } from "@/app/components/auth/FormError";
-import { FormSuccess } from "@/app/components/auth/FormSuccess";
-import { useReset } from "@/hooks/auth/useForgotPassword";
+import { CardWrapper } from "../../../app/components/auth/CardWrapper";
+import { FormError } from "../../../app/components/auth/FormError";
+import { FormSuccess } from "../../../app/components/auth/FormSuccess";
+import { useReset } from "../../../hooks/auth/useForgotPassword";
 import styles from "./Auth.module.scss";
 
 export const ResetForm = () => {

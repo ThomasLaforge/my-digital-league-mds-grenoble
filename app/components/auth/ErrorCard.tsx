@@ -1,4 +1,4 @@
-import { CardWrapper } from "@/app/components/auth/CardWrapper";
+import { CardWrapper } from "../../../app/components/auth/CardWrapper";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import styles from "./Auth.module.scss";
 
