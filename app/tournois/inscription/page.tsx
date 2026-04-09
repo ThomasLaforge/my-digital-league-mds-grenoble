@@ -2,7 +2,7 @@
 
 import { Suspense, useState, useEffect, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import Input from "@/app/components/input/Input";
+import Input from "@/app/components/Input/Input";
 import Radio from "@/app/components/Radio/Radio";
 import Button from "@/app/components/Button/Button";
 import {
@@ -14,6 +14,7 @@ import {
   EnvelopIcon,
   ChevronRightIcon,
 } from "@/app/components/Icons/Icons";
+import { EVENT_LEVEL_OPTIONS } from "@/lib/event-level";
 import styles from "./page.module.scss";
 
 type EventData = {
@@ -31,6 +32,7 @@ type EventData = {
   rewards?: string | null;
 };
 
+const NIVEAUX = EVENT_LEVEL_OPTIONS.map((option) => option.label);
 function InscriptionContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -231,11 +233,13 @@ function InscriptionContent() {
 
                   <Input
                     label="Niveau de jeu"
-                    placeholder="Ex: Débutant, Gold, Diamond…"
+                    type="select"
                     value={formData.level}
                     onChange={(value) =>
                       setFormData((prev) => ({ ...prev, level: value }))
                     }
+                    options={NIVEAUX}
+                    placeholder="Sélectionner le niveau"
                   />
 
                   {submitError && (
