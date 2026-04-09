@@ -1,0 +1,87 @@
+@import "../../../styles/variables.scss";
+
+.page {
+  color: $color-light;
+}
+
+.header {
+  margin-bottom: $spacing-xl;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  align-items: start;
+  @media (min-width: $laptop) {
+    grid-template-columns: 1fr 30rem;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.section {
+  background: $color-bg-component-dark;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  p {
+    color: $color-text-dark;
+  }
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+}
+
+.sectionIcon {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  background: $color-bg-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  @media (min-width: $laptop) {
+    position: sticky;
+    top: $spacing-lg;
+  }
+}
+
+.card {
+  background: $color-bg-component-dark;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.cardTitle {
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-bg-dark;
+}
+
+.tips {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  li {
+    font-size: $font-size-sm;
+  }
+}
