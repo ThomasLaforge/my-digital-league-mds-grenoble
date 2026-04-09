@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import Input from "../../app/components/Input/Input";
+import Input from "../../app/components/input/Input";
 
 describe("Input Component", () => {
   it("devrait afficher le label et le placeholder correctement", () => {
