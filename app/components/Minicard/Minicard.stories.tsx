@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import Minicard from "./Minicard";
 
 const meta = {
-  title: "Components/MinicardComponent",
+  title: "Components/Minicard",
   component: Minicard,
   parameters: {
     layout: "centered",
