@@ -5,12 +5,33 @@ import { NextResponse } from "next/server";
 const userSelect = {
   id: true,
   name: true,
+  email: true,
+  createdAt: true,
   image: true,
   isOrga: true,
   participations: {
     include: {
       event: {
-        select: { id: true, name: true, date: true },
+        select: {
+          id: true,
+          name: true,
+          date: true,
+          game: {
+            select: {
+              title: true,
+            },
+          },
+        },
+      },
+      results: {
+        select: {
+          score: true,
+          updatedAt: true,
+        },
+        orderBy: {
+          updatedAt: "desc" as const,
+        },
+        take: 1,
       },
     },
   },
@@ -48,12 +69,12 @@ export const PATCH = auth(async (req) => {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // TODO: ajouter `description` quand l'UX valide le champ
-  const { image } = await req.json();
+  const { image, name } = await req.json();
 
   const updated = await prisma.user.update({
     where: { id: session.user.id },
     data: {
+      ...(name !== undefined && { name: name || null }),
       ...(image !== undefined && { image: image || null }),
     },
     select: userSelect,

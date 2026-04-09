@@ -34,9 +34,11 @@ export default function RootLayout({
         className={`${montserrat.variable} ${interSans.variable}`}
         suppressHydrationWarning
       >
-        <Header />
-        <Providers>{children}</Providers>
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
