@@ -36,7 +36,7 @@
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.2.3",
     "mailtrap": "^4.4.0",
-    "next": "16.1.6",
+    "next": "16.1.7",
     "next-auth": "^5.0.0-beta.30",
     "nodemailer": "^7.0.7",
     "pg": "^8.17.2",
