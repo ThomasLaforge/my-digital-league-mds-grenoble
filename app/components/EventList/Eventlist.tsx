@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BulbIcon } from "../Icons/Icons";
 import Card from "../Card/Card";
 import styles from "./EventList.module.scss";
@@ -17,20 +17,10 @@ type EventType = {
   game: { id: string; title: string };
 };
 
-export default function EventsList() {
-  const [events, setEvents] = useState<EventType[]>([]);
+export default function EventsList({ events }: { events: EventType[] }) {
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
-    fetch("/api/events")
-      .then((res) => res.json())
-      .then((data) => setEvents(data))
-      .catch((err) =>
-        console.error("Erreur lors du chargement des événements :", err)
-      );
-  }, []);
-
-  const visibleEvents = showAll ? events : events.slice(0, 1);
+  const visibleEvents = showAll ? events : events.slice(0, 6);
 
   return (
     <div className={styles.container}>
@@ -67,7 +57,7 @@ export default function EventsList() {
         })}
       </div>
 
-      {events.length > 1 && (
+      {events.length > 6 && (
         <Button
           label={showAll ? "Voir moins" : "Voir plus"}
           onClick={() => setShowAll(!showAll)}
