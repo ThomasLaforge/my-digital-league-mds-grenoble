@@ -11,16 +11,14 @@ export default function Home() {
       title: "Ouverture des inscriptions - Révélation du Thème",
       description: "Cérémonie d'ouverture en direct à regarder.",
       isCompleted: true,
-      date: "20 Mars",
-      heure: "18:00",
+      date: new Date("2026-03-20T18:00:00"),
       isUpcoming: true,
     },
     {
       id: "2",
-      title: "Matchs des ouverrtures - test",
+      title: "Matchs d'ouverture - Tournoi de qualification",
       description: "Phase de poules.",
-      date: "21 Mars",
-      heure: "19:00",
+      date: new Date("2026-03-21T19:00:00"),
       isCompleted: true,
     },
     {
@@ -28,16 +26,14 @@ export default function Home() {
       title: "Ouverture des inscriptions - Révélation du Thème",
       description: "Cérémonie d'ouverture en direct à regarder.",
       isCompleted: true,
-      date: "20 Mars",
-      heure: "18:00",
+      date: new Date("2026-03-20T18:00:00"),
     },
     {
       id: "4",
       title: "Ouverture des inscriptions - Révélation du Thème",
       description: "Cérémonie d'ouverture en direct à regarder.",
       isCompleted: true,
-      date: "20 Mars",
-      heure: "18:00",
+      date: new Date("2026-03-20T18:00:00"),
     },
   ];
 

@@ -1,6 +1,7 @@
 import styles from "./Roadmap.module.scss";
 import { RoadmapStep } from "./Roadmap.types";
 import { CalendarIcon } from "../Icons/Icons";
+import { formatDate } from "../../../lib/date";
 
 interface RoadmapProps {
   steps: RoadmapStep[];
@@ -36,7 +37,11 @@ export const Roadmap = ({ steps, title }: RoadmapProps) => {
             <div className={styles.dateRow}>
               <CalendarIcon color="#ffffff" />
               <span className={styles.dateText}>
-                {step.date} - {step.heure}
+                {formatDate(step.date)} -{" "}
+                {step.date.toLocaleTimeString("fr-FR", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
               </span>
             </div>
           </div>
