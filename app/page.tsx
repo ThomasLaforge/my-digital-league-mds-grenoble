@@ -5,7 +5,7 @@ import { BulbIcon } from "./components/Icons/Icons";
 import { Roadmap } from "./components/Roadmap/Roadmap";
 
 export default function Home() {
-  const testSteps = [
+  const testRoadmap = [
     {
       id: "1",
       title: "Ouverture des inscriptions - Révélation du Thème",
@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <div>
       <main>
-        <Roadmap steps={testSteps} title="Roadmap" />
+        <Roadmap steps={testRoadmap} title="Roadmap" />
         <section style={{ marginBottom: "3rem" }}>
           <h2>Card register</h2>
 
