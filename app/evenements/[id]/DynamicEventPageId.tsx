@@ -1,13 +1,13 @@
 "use client";
 
 import styles from "./page.module.scss";
+import { useRouter } from "next/navigation";
 import { CupIcon, ClockIcon, JoystickIcon } from "@/app/components/Icons/Icons";
 import Button from "@/app/components/Button/Button";
 import { Roadmap } from "@/app/components/Roadmap/Roadmap";
 import Minicard from "@/app/components/Minicard/Minicard";
 import { FaUser } from "react-icons/fa";
 import { EVENT_LEVEL_OPTIONS, type EventLevel } from "@/lib/event-level";
-import router from "next/router";
 
 type EventPageClientProps = {
   event: {
@@ -31,6 +31,8 @@ const getLevelLabel = (level?: EventLevel | null) => {
 };
 
 export default function DynamicEventPageId({ event }: EventPageClientProps) {
+  const router = useRouter();
+
   const startDate = new Date(event.date);
   const deadline = new Date(event.inscriptionDeadline);
 
@@ -90,12 +92,10 @@ export default function DynamicEventPageId({ event }: EventPageClientProps) {
               </span>
               <div>
                 <h3>À propos de l&apos;événement</h3>
-                <p>
-                  {event.game.description ??
-                    "Découvrez cet événement de création de jeux vidéo intensif et rejoignez une communauté de créateurs passionnés."}
-                </p>
               </div>
             </div>
+
+            <p className={styles.rules}>{event.rules}</p>
 
             <div className={styles.grid2}>
               <Minicard title="Jeu associé" text={event.game.title} />
@@ -153,7 +153,7 @@ export default function DynamicEventPageId({ event }: EventPageClientProps) {
           <section className={styles.section}>
             <div className={styles.sectionHead}>
               <span className={styles.sectionIcon}>
-                <FaUser width={18} height={18} color="var(--color-icon-dark)" />
+                <FaUser color="var(--color-icon-dark)" />
               </span>
               <div>
                 <h3>Règles de l&apos;événement</h3>
