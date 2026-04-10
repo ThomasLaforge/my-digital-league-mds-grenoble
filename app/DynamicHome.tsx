@@ -1,30 +1,18 @@
 "use client";
 
-import styles from "./page.module.scss";
-import Image from "next/image";
-import { ReactNode, useRef } from "react";
-import Hero from "./components/Hero/Hero";
-import Card from "./components/Card/Card";
+import { Event, Game } from "@/generated/prisma/client";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import type { Options } from "@splidejs/splide";
+import Image from "next/image";
+import { ReactNode, useRef } from "react";
+import Card from "./components/Card/Card";
+import Hero from "./components/Hero/Hero";
 import {
   BulbIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "./components/Icons/Icons";
-
-type EventApi = {
-  id: string;
-  name: string;
-  date: string;
-  inscriptionDeadline: string;
-  rules: string;
-  gameId: string;
-  createdAt: string;
-  updatedAt: string;
-  game: { id: string; title: string };
-  _count: { participants: number };
-};
+import styles from "./page.module.scss";
 
 type SplideController = {
   go: (control: string | number) => void;
@@ -105,10 +93,11 @@ function HomeSection({
 }
 
 type DynamicHomeProps = {
-  events: EventApi[];
+  events: Event[];
+  games: Game[];
 };
 
-export default function DynamicHome({ events }: DynamicHomeProps) {
+export default function DynamicHome({ events, games }: DynamicHomeProps) {
   const tournamentsSliderRef = useRef<SplideController | null>(null);
   const gameJamsSliderRef = useRef<SplideController | null>(null);
 
@@ -197,34 +186,31 @@ export default function DynamicHome({ events }: DynamicHomeProps) {
         </Splide>
       </HomeSection>
 
-      <HomeSection
-        title="Jeux populaires"
-        previousLabel="Jeux précédents"
-        nextLabel="Jeux suivants"
-        showControls={false}
-      >
-        <div className={styles.rowImage}>
-          <article className={styles.logoCard}>
-            <Image
-              className={styles.logo}
-              src="/balatro.jpg"
-              alt="logo balatro"
-              width={160}
-              height={40}
-            />
-          </article>
-
-          <article className={styles.logoCard}>
-            <Image
-              className={styles.logo}
-              src="/tetris.jpg"
-              alt="logo tetris"
-              width={160}
-              height={80}
-            />
-          </article>
-        </div>
-      </HomeSection>
+      {games.length > 0 && (
+        <HomeSection
+          title="Jeux populaires"
+          previousLabel="Jeux précédents"
+          nextLabel="Jeux suivants"
+          showControls={false}
+        >
+          <div className={styles.rowImage}>
+            {games.map((game) => (
+              <article key={game.id} className={styles.logoCard}>
+                <Image
+                  className={styles.logo}
+                  src={game.imageUrl as string}
+                  alt={`logo ${game.title}`}
+                  width={160}
+                  height={120}
+                  unoptimized={
+                    !!game.imageUrl && !game.imageUrl.startsWith("/")
+                  }
+                />
+              </article>
+            ))}
+          </div>
+        </HomeSection>
+      )}
     </main>
   );
 }
