@@ -2,6 +2,11 @@
 import styles from "./Input.module.scss";
 import { ChevronDownIcon } from "@/app/components/Icons/Icons";
 
+interface OptionItem {
+  value: string;
+  label: string;
+}
+
 interface InputProps {
   label?: string;
   placeholder?: string;
@@ -12,7 +17,7 @@ interface InputProps {
   error?: boolean;
   errorMessage?: string;
   obligatory?: boolean;
-  options?: string[];
+  options?: string[] | OptionItem[];
 }
 
 export default function Input(props: InputProps) {
@@ -46,11 +51,16 @@ export default function Input(props: InputProps) {
             disabled={props.disabled}
           >
             {props.placeholder && <option value="">{props.placeholder}</option>}
-            {props.options?.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
+            {props.options?.map((opt) => {
+              const isObjectOption = typeof opt === "object";
+              const value = isObjectOption ? opt.value : opt;
+              const label = isObjectOption ? opt.label : opt;
+              return (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              );
+            })}
           </select>
           <span className={styles.chevron}>
             <ChevronDownIcon

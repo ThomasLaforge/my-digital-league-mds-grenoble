@@ -11,12 +11,12 @@ import {
 import Input from "@/app/components/Input/Input";
 import Radio from "@/app/components/Radio/Radio";
 import { EventWithGame } from "@/app/tournois/inscription/page";
+import { Participant } from "@/generated/prisma/client";
 import { EVENT_LEVEL_OPTIONS } from "@/lib/event-level";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./page.module.scss";
-
-const NIVEAUX = EVENT_LEVEL_OPTIONS.map((option) => option.label);
 
 type DynamicLoadEventProps = {
   eventId: string | null;
@@ -28,14 +28,36 @@ export default function DynamicLoadEvent({
   event,
 }: DynamicLoadEventProps) {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [existingParticipant, setExistingParticipant] =
+    useState<Participant | null>(null);
   const [formData, setFormData] = useState({
     registrationType: "team",
     pseudo: "",
     level: "",
   });
+
+  useEffect(() => {
+    const checkRegistration = async () => {
+      if (!eventId || !session?.user?.id) return;
+
+      try {
+        const res = await fetch(`/api/events/${eventId}/participants`);
+        const participants = await res.json();
+        const userParticipant = participants.find(
+          (p: Participant) => p.userId === session.user.id
+        );
+        setExistingParticipant(userParticipant || null);
+      } catch {
+        console.error("Erreur lors de la vérification de l'inscription");
+      }
+    };
+
+    checkRegistration();
+  }, [eventId, session?.user?.id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,6 +84,32 @@ export default function DynamicLoadEvent({
       }
 
       router.push(`/tournois/${eventId}/confirmation`);
+    } catch {
+      setSubmitError("Une erreur réseau est survenue.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleUnregister = async () => {
+    if (!existingParticipant) return;
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const res = await fetch(`/api/participants/${existingParticipant.id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setSubmitError(data.error || "Une erreur est survenue.");
+        return;
+      }
+
+      setExistingParticipant(null);
+      router.refresh();
     } catch {
       setSubmitError("Une erreur réseau est survenue.");
     } finally {
@@ -151,75 +199,107 @@ export default function DynamicLoadEvent({
           )}
 
           <div className={styles.formCard}>
-            {!event.isSolo && (
+            {existingParticipant ? (
               <>
-                <h2 className={styles.cardTitle}>Type d&apos;inscription</h2>
+                <div className={styles.alreadyRegisteredMessage}>
+                  <p>
+                    Déjà inscrit en tant que{" "}
+                    <strong>{existingParticipant.pseudo}</strong>
+                  </p>
+                </div>
 
-                <div className={styles.registrationTypeRow}>
-                  {[
-                    { label: "Inscription équipe", value: "team" },
-                    { label: "Inscription solo", value: "solo" },
-                  ].map((item) => (
-                    <Radio
-                      key={item.value}
-                      label={item.label}
-                      name="registrationType"
-                      value={item.value}
-                      checked={formData.registrationType === item.value}
-                      onChange={() =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          registrationType: item.value,
-                        }))
-                      }
-                    />
-                  ))}
+                {submitError && (
+                  <p className={styles.submitError}>{submitError}</p>
+                )}
+
+                <div className={styles.separator} />
+
+                <div className={styles.submitRow}>
+                  <Button
+                    label={
+                      submitting ? "Désinscription en cours…" : "Se désinscrire"
+                    }
+                    type="primary"
+                    disabled={submitting}
+                    onClick={handleUnregister}
+                  />
                 </div>
               </>
+            ) : (
+              <>
+                {!event.isSolo && (
+                  <>
+                    <h2 className={styles.cardTitle}>
+                      Type d&apos;inscription
+                    </h2>
+
+                    <div className={styles.registrationTypeRow}>
+                      {[
+                        { label: "Inscription équipe", value: "team" },
+                        { label: "Inscription solo", value: "solo" },
+                      ].map((item) => (
+                        <Radio
+                          key={item.value}
+                          label={item.label}
+                          name="registrationType"
+                          value={item.value}
+                          checked={formData.registrationType === item.value}
+                          onChange={() =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              registrationType: item.value,
+                            }))
+                          }
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                <h3 className={styles.sectionTitle}>Vos informations</h3>
+
+                <form className={styles.form} onSubmit={handleSubmit}>
+                  <Input
+                    label="Pseudo in-game"
+                    placeholder="Votre pseudo"
+                    value={formData.pseudo}
+                    onChange={(value) =>
+                      setFormData((prev) => ({ ...prev, pseudo: value }))
+                    }
+                    obligatory
+                  />
+
+                  <Input
+                    label="Niveau de jeu"
+                    type="select"
+                    value={formData.level}
+                    onChange={(value) =>
+                      setFormData((prev) => ({ ...prev, level: value }))
+                    }
+                    options={EVENT_LEVEL_OPTIONS}
+                    placeholder="Sélectionner le niveau"
+                  />
+
+                  {submitError && (
+                    <p className={styles.submitError}>{submitError}</p>
+                  )}
+
+                  <div className={styles.separator} />
+
+                  <div className={styles.submitRow}>
+                    <Button
+                      label={
+                        submitting
+                          ? "Inscription en cours…"
+                          : "Confirmer l'inscription"
+                      }
+                      type="primary"
+                      disabled={submitting || !formData.pseudo.trim()}
+                    />
+                  </div>
+                </form>
+              </>
             )}
-
-            <h3 className={styles.sectionTitle}>Vos informations</h3>
-
-            <form className={styles.form} onSubmit={handleSubmit}>
-              <Input
-                label="Pseudo in-game"
-                placeholder="Votre pseudo"
-                value={formData.pseudo}
-                onChange={(value) =>
-                  setFormData((prev) => ({ ...prev, pseudo: value }))
-                }
-                obligatory
-              />
-
-              <Input
-                label="Niveau de jeu"
-                type="select"
-                value={formData.level}
-                onChange={(value) =>
-                  setFormData((prev) => ({ ...prev, level: value }))
-                }
-                options={NIVEAUX}
-                placeholder="Sélectionner le niveau"
-              />
-
-              {submitError && (
-                <p className={styles.submitError}>{submitError}</p>
-              )}
-
-              <div className={styles.separator} />
-
-              <div className={styles.submitRow}>
-                <Button
-                  label={
-                    submitting
-                      ? "Inscription en cours…"
-                      : "Confirmer l'inscription"
-                  }
-                  type="primary"
-                  disabled={submitting || !formData.pseudo.trim()}
-                />
-              </div>
-            </form>
           </div>
         </section>
 
