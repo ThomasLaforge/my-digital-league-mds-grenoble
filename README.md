@@ -15,7 +15,26 @@ Ce dépôt contient une application [Next.js](https://nextjs.org) initialisée a
 
 ## Documentation technique
 
+### 📊 Démarrer ici
+
+- **[Audit Summary](docs/AUDIT_SUMMARY.md)** — État du projet, recommandations prioritaires
+
+### Backend
+
+- [Backend Guide](docs/BACKEND_GUIDE.md) — Guide complet du développement backend
+- [Architecture Backend](docs/BACKEND_ARCHITECTURE.md) — Endpoints, patterns, auth
+- [Schéma Base de Données](docs/DATABASE_SCHEMA.md) — Modèles Prisma et relations
+
+### Frontend
+
+- [Frontend Guide](docs/FRONTEND_GUIDE.md) — Patterns et best practices (👈 start here!)
+- [Architecture Frontend](docs/FRONTEND_ARCHITECTURE.md) — Structure, composants, standards
+- [Quick Wins](docs/FRONTEND_QUICK_WINS.md) — Tâches de refactoring rapides
+
+### Général
+
 - [Authentification](docs/authentication.md)
+- [Tech Stack](docs/TECH_STACK.md) — Dépendances et configuration
 
 ## Prérequis
 
