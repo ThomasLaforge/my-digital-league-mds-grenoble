@@ -1,6 +1,6 @@
-import DynamicLoadEvent from "./DynamicLoadEvent";
 import { EventGetPayload } from "@/generated/prisma/models/Event";
 import { notFound } from "next/navigation";
+import DynamicLoadEvent from "./DynamicLoadEvent";
 
 type PageProps = {
   searchParams: Promise<{ eventId?: string }>;

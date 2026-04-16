@@ -1,20 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Input from "@/app/components/Input/Input";
-import Radio from "@/app/components/Radio/Radio";
 import Button from "@/app/components/Button/Button";
 import {
   CalendarIcon,
-  ClockIcon,
-  CircleQuestionIcon,
-  EnvelopIcon,
   ChevronRightIcon,
+  CircleQuestionIcon,
+  ClockIcon,
+  EnvelopIcon,
 } from "@/app/components/Icons/Icons";
-import { EVENT_LEVEL_OPTIONS } from "@/lib/event-level";
-import styles from "./page.module.scss";
+import Input from "@/app/components/Input/Input";
+import Radio from "@/app/components/Radio/Radio";
 import { EventWithGame } from "@/app/tournois/inscription/page";
+import { EVENT_LEVEL_OPTIONS } from "@/lib/event-level";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import styles from "./page.module.scss";
 
 const NIVEAUX = EVENT_LEVEL_OPTIONS.map((option) => option.label);
 
@@ -134,43 +134,49 @@ export default function DynamicLoadEvent({
             </div>
           </div>
 
-          <div className={styles.highlightCard}>
-            <div className={styles.highlightHeader}>
-              <CircleQuestionIcon width={16} height={16} color="#FFFFFF" />
-              <h2 className={styles.highlightTitle}>
-                Recherche d&apos;équipe activée
-              </h2>
+          {!event.isSolo && (
+            <div className={styles.highlightCard}>
+              <div className={styles.highlightHeader}>
+                <CircleQuestionIcon width={16} height={16} color="#FFFFFF" />
+                <h2 className={styles.highlightTitle}>
+                  Recherche d&apos;équipe activée
+                </h2>
+              </div>
+              <p className={styles.highlightText}>
+                Vous serez inscrit en tant que participant en recherche
+                d&apos;équipe. Vous pourrez être contacté par d&apos;autres
+                joueurs pour compléter leurs équipes.
+              </p>
             </div>
-            <p className={styles.highlightText}>
-              Vous serez inscrit en tant que participant en recherche
-              d&apos;équipe. Vous pourrez être contacté par d&apos;autres
-              joueurs pour compléter leurs équipes.
-            </p>
-          </div>
+          )}
 
           <div className={styles.formCard}>
-            <h2 className={styles.cardTitle}>Type d&apos;inscription</h2>
+            {!event.isSolo && (
+              <>
+                <h2 className={styles.cardTitle}>Type d&apos;inscription</h2>
 
-            <div className={styles.registrationTypeRow}>
-              {[
-                { label: "Inscription équipe", value: "team" },
-                { label: "Inscription solo", value: "solo" },
-              ].map((item) => (
-                <Radio
-                  key={item.value}
-                  label={item.label}
-                  name="registrationType"
-                  value={item.value}
-                  checked={formData.registrationType === item.value}
-                  onChange={() =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      registrationType: item.value,
-                    }))
-                  }
-                />
-              ))}
-            </div>
+                <div className={styles.registrationTypeRow}>
+                  {[
+                    { label: "Inscription équipe", value: "team" },
+                    { label: "Inscription solo", value: "solo" },
+                  ].map((item) => (
+                    <Radio
+                      key={item.value}
+                      label={item.label}
+                      name="registrationType"
+                      value={item.value}
+                      checked={formData.registrationType === item.value}
+                      onChange={() =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          registrationType: item.value,
+                        }))
+                      }
+                    />
+                  ))}
+                </div>
+              </>
+            )}
 
             <h3 className={styles.sectionTitle}>Vos informations</h3>
 
