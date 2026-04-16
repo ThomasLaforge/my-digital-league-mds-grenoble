@@ -1,0 +1,126 @@
+@use "../../styles/variables" as *;
+
+.userMenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-xs;
+  border-radius: $border-radius-md;
+  color: $color-light;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: rgba($color-light, 0.08);
+  }
+
+  &:focus {
+    outline: 2px solid $color-secondary;
+    outline-offset: $spacing-xs;
+  }
+}
+
+.dotsIcon {
+  width: $spacing-lg;
+  height: $spacing-lg;
+  color: $color-light;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + $spacing-sm);
+  right: 0;
+  background: $color-bg-component-dark;
+  border: 1px solid rgba($color-light, 0.12);
+  border-radius: $border-radius-md;
+  box-shadow: 0 0.4rem 1.2rem rgba($color-bg-dark, 0.48);
+  min-width: 20rem;
+  z-index: 1000;
+  overflow: hidden;
+  animation: dropdownSlideIn 0.2s ease forwards;
+
+  @media (max-width: calc(#{$tablet} - 1px)) {
+    right: -$spacing-md;
+    min-width: calc(100vw - $spacing-lg * 2);
+  }
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-$spacing-sm);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.userInfo {
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.userName {
+  margin: 0;
+  color: $color-light;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.userEmail {
+  margin: 0;
+  color: $color-text-dark;
+  font-size: $font-size-xs;
+  word-break: break-all;
+}
+
+.divider {
+  height: 1px;
+  background: rgba($color-light, 0.08);
+  margin: 0;
+}
+
+.profileLink,
+.logoutButton {
+  width: 100%;
+  padding: $spacing-md;
+  border: none;
+  background: none;
+  color: $color-light;
+  font-size: $font-size-sm;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: inherit;
+
+  &:hover {
+    background: rgba($color-light, 0.08);
+  }
+
+  &:focus {
+    outline: 2px solid $color-secondary;
+    outline-offset: -2px;
+  }
+}
+
+.logoutButton {
+  color: $color-error;
+  border-top: 1px solid rgba($color-light, 0.08);
+
+  &:hover {
+    background: rgba($color-error, 0.08);
+  }
+}

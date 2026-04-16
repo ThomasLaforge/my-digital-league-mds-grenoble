@@ -19,6 +19,14 @@
   width: 40px;
 }
 
+.variant-compact {
+  width: $spacing-xl;
+
+  .avatarLetter {
+    font-size: $font-size-md;
+  }
+}
+
 .variant-profile {
   width: 122px;
   border: 8px solid $color-bg-component-dark;

@@ -2,12 +2,15 @@
 
 import styles from "./Header.module.scss";
 import Button from "../Button/Button";
+import UserMenu from "./UserMenu";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { data: session } = useSession();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -70,18 +73,24 @@ export default function Header() {
         </ul>
 
         <div className={styles.actions}>
-          <Button
-            fullWidth
-            type="primary"
-            href="/auth/login"
-            label="Connexion"
-          />
-          <Button
-            fullWidth
-            type="secondary"
-            href="/auth/register"
-            label="Inscription"
-          />
+          {session?.user ? (
+            <UserMenu />
+          ) : (
+            <>
+              <Button
+                fullWidth
+                type="primary"
+                href="/auth/login"
+                label="Connexion"
+              />
+              <Button
+                fullWidth
+                type="secondary"
+                href="/auth/register"
+                label="Inscription"
+              />
+            </>
+          )}
         </div>
       </nav>
     </header>

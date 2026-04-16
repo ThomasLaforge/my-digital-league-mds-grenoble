@@ -8,7 +8,7 @@ export default function Avatar({
   textColor = "white",
 }: {
   letter: string;
-  variant?: "header" | "profile";
+  variant?: "header" | "profile" | "compact";
   textColor?: TextColor;
 }) {
   const colorClass = variant === "header" ? "white" : textColor;
