@@ -1,12 +1,12 @@
 "use client";
 
-import styles from "./Header.module.scss";
-import Button from "../Button/Button";
-import UserMenu from "./UserMenu";
-import { useState } from "react";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import Button from "../Button/Button";
+import styles from "./Header.module.scss";
+import UserMenu from "./UserMenu";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,7 +52,7 @@ export default function Header() {
         <ul className={styles.nav}>
           <li>
             <a className={styles.navLink} href="/jeu">
-              Jeu
+              Jeux
             </a>
           </li>
           <li>
