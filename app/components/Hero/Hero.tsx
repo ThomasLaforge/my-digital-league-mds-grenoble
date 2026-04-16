@@ -24,7 +24,11 @@ export default function Hero() {
         </p>
         <div className={styles.buttons}>
           {session?.user.isOrga ? (
-            <Button type="primary" label="Créer un évenement" />
+            <Button
+              type="primary"
+              label="Créer un évenement"
+              href="/organisateur/evenements/creer"
+            />
           ) : null}
         </div>
       </div>
