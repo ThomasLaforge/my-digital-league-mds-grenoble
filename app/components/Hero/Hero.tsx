@@ -1,12 +1,14 @@
 "use client";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { useSession } from "next-auth/react";
 import Button from "../Button/Button";
 import CardIcon from "../CardIcon/CardIcon";
 import { CupIcon, GroupIcon, PodiumIcon } from "../Icons/Icons";
 import styles from "./Hero.module.scss";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
 
 export default function Hero() {
+  const { data: session } = useSession();
+
   return (
     <div className={styles.hero}>
       <div className={styles.mainContent}>
@@ -21,8 +23,9 @@ export default function Hero() {
           </span>
         </p>
         <div className={styles.buttons}>
-          <Button type="primary" label="Créer un évenement" />
-          <Button type="secondary" label="Rejoindre une team" />
+          {session?.user.isOrga ? (
+            <Button type="primary" label="Créer un évenement" />
+          ) : null}
         </div>
       </div>
       <div className={styles.carouselContainer}>

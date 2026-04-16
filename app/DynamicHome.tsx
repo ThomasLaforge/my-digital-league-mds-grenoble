@@ -99,12 +99,7 @@ type DynamicHomeProps = {
 
 export default function DynamicHome({ events, games }: DynamicHomeProps) {
   const tournamentsSliderRef = useRef<SplideController | null>(null);
-  const gameJamsSliderRef = useRef<SplideController | null>(null);
-
-  // si plus tard tu veux filtrer différemment:
-  const tournaments = events.filter((e) => true);
-  const featuredGameJams = events.filter((e) => true);
-
+  // Tournois en cours: la date du tournoi est passée (date <= maintenant)
   return (
     <main className={styles.main}>
       <Hero />
@@ -123,52 +118,13 @@ export default function DynamicHome({ events, games }: DynamicHomeProps) {
           aria-label="Slider des tournois en cours"
         >
           <SplideTrack className={styles.sliderTrack}>
-            {tournaments.map((event) => (
+            {events.map((event) => (
               <SplideSlide key={event.id} className={styles.cardSlide}>
                 <Card
                   icon={<BulbIcon />}
                   id={event.id}
                   variant="register"
                   status="ongoing"
-                  name={event.name}
-                  description={event.rules}
-                  date={new Date(event.date)}
-                  inscriptionDeadline={new Date(event.inscriptionDeadline)}
-                  heure={undefined}
-                  lieu={undefined}
-                  rules={event.rules}
-                  gameId={event.gameId}
-                  createdAt={new Date(event.createdAt)}
-                  updatedAt={new Date(event.updatedAt)}
-                />
-              </SplideSlide>
-            ))}
-          </SplideTrack>
-        </Splide>
-      </HomeSection>
-
-      <HomeSection
-        title="Gamejam en vedette"
-        previousLabel="Gamejams précédents"
-        nextLabel="Gamejams suivants"
-        onPrevious={() => gameJamsSliderRef.current?.go("<")}
-        onNext={() => gameJamsSliderRef.current?.go(">")}
-      >
-        <Splide
-          options={cardSliderOptions}
-          hasTrack={false}
-          className={styles.slider}
-          ref={gameJamsSliderRef}
-          aria-label="Slider des gamejams en vedette"
-        >
-          <SplideTrack className={styles.sliderTrack}>
-            {featuredGameJams.map((event) => (
-              <SplideSlide key={event.id} className={styles.cardSlide}>
-                <Card
-                  icon={<BulbIcon />}
-                  id={event.id}
-                  variant="featured"
-                  status="upcoming"
                   name={event.name}
                   description={event.rules}
                   date={new Date(event.date)}
