@@ -1,0 +1,1 @@
+- est ce que tu peux me conserver que la page tournois/[id] stp ? Il faut supprimer l'autre et changer les url qui menaient à l'autre page pour qu'elles pointent vers celle ci.

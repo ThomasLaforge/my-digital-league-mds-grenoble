@@ -1,14 +1,14 @@
 import DynamicCreerGameJamPage from "./DynamicCreationEvent";
-import { getAppUrl } from "@/lib/getAppUrl";
+import { prisma } from "@/lib/prisma";
 
 export default async function CreerEvenementPage() {
-  const baseUrl = getAppUrl();
-  const res = await fetch(`${baseUrl}/api/games`);
-  let data = await res.json();
+  let games = [];
 
-  if (!res.ok) {
-    data = [];
+  try {
+    games = await prisma.game.findMany();
+  } catch (error) {
+    console.error("Failed to fetch games:", error);
   }
 
-  return <DynamicCreerGameJamPage games={data} />;
+  return <DynamicCreerGameJamPage games={games} />;
 }
