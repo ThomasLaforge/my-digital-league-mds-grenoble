@@ -1,7 +1,8 @@
 import { EventGetPayload } from "@/generated/prisma/models/Event";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import DynamicLoadEvent from "./DynamicLoadEvent";
 import { getBaseUrl } from "@/lib/getBaseUrl";
+import { auth } from "@/auth";
 
 type PageProps = {
   searchParams: Promise<{ eventId?: string }>;
@@ -14,6 +15,12 @@ export type EventWithGame = EventGetPayload<{
   };
 }>;
 export default async function InscriptionPage({ searchParams }: PageProps) {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/auth/login");
+  }
+
   const { eventId } = await searchParams;
 
   if (!eventId) {
