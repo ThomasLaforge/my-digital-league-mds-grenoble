@@ -215,7 +215,8 @@ export default function ProfileClient() {
 
         if (!active) return;
 
-        const mappedEvents: ProfileEvent[] = data.participations
+        const userData = data as ApiMeResponse;
+        const mappedEvents: ProfileEvent[] = userData.participations
           .map((participation) => ({
             id: participation.event.id,
             name: participation.event.name,
@@ -225,11 +226,11 @@ export default function ProfileClient() {
           }))
           .sort((a, b) => +new Date(b.date) - +new Date(a.date));
 
-        setName(data.name ?? "");
-        setDraftName(data.name ?? "");
-        setEmail(data.email);
-        setIsOrga(data.isOrga);
-        setCreatedAt(data.createdAt);
+        setName(userData.name ?? "");
+        setDraftName(userData.name ?? "");
+        setEmail(userData.email);
+        setIsOrga(userData.isOrga);
+        setCreatedAt(userData.createdAt);
         setEvents(mappedEvents);
       } catch {
         if (!active) return;
@@ -434,14 +435,21 @@ export default function ProfileClient() {
               {displayOngoingEvents.map((event) => (
                 <SplideSlide key={event.id} className={styles.cardSlide}>
                   <Card
+                    id={event.id}
                     icon={<BulbIcon />}
                     name={event.name}
-                    date={event.date}
+                    date={new Date(event.date)}
                     description={event.description}
                     heure={event.heure}
                     lieu={event.lieu}
                     variant="register"
                     status="ongoing"
+                    inscriptionDeadline={new Date(event.date)}
+                    rules={event.description}
+                    gameId=""
+                    createdAt={new Date()}
+                    updatedAt={new Date()}
+                    isSolo={false}
                   />
                 </SplideSlide>
               ))}
@@ -471,14 +479,21 @@ export default function ProfileClient() {
               {displayFutureEvents.map((event) => (
                 <SplideSlide key={event.id} className={styles.cardSlide}>
                   <Card
+                    id={event.id}
                     icon={<BulbIcon />}
                     name={event.name}
-                    date={event.date}
+                    date={new Date(event.date)}
                     description={event.description}
                     heure={event.heure}
                     lieu={event.lieu}
                     variant="register"
                     status="upcoming"
+                    inscriptionDeadline={new Date(event.date)}
+                    rules={event.description}
+                    gameId=""
+                    createdAt={new Date()}
+                    updatedAt={new Date()}
+                    isSolo={false}
                   />
                 </SplideSlide>
               ))}
