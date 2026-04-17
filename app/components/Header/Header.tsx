@@ -1,5 +1,6 @@
 "use client";
 
+import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,6 @@ import { useState } from "react";
 import Button from "../Button/Button";
 import styles from "./Header.module.scss";
 import UserMenu from "./UserMenu";
-import type { Session } from "next-auth";
 
 export default function Header({ session: initialSession }: { session: Session | null }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,24 +54,24 @@ export default function Header({ session: initialSession }: { session: Session |
       <nav className={styles.containerNav} data-open={isMenuOpen}>
         <ul className={styles.nav}>
           <li>
-            <a className={styles.navLink} href="/jeu">
+            <Link className={styles.navLink} href="/jeu">
               Jeux
-            </a>
+            </Link>
           </li>
           <li>
-            <a className={styles.navLink} href="/tournois">
+            <Link className={styles.navLink} href="/tournois">
               Tournois
-            </a>
+            </Link>
           </li>
           <li>
-            <a className={styles.navLink} href="/communaute">
+            <Link className={styles.navLink} href="/communaute">
               Communauté
-            </a>
+            </Link>
           </li>
           <li>
-            <a className={styles.navLink} href="/support">
+            <Link className={styles.navLink} href="/support">
               Support
-            </a>
+            </Link>
           </li>
         </ul>
 

@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
+import NextAuth from "next-auth";
 
 const { auth } = NextAuth(authConfig);
 
@@ -10,7 +10,6 @@ export default auth((req) => {
 
   const isApiAuthRoute = nextUrl.pathname.startsWith("/api/auth");
   const isAuthRoute = nextUrl.pathname.startsWith("/auth");
-  const isPublicRoute = nextUrl.pathname === "/";
   const isOrganisateurRoute = nextUrl.pathname.startsWith("/organisateur");
 
   if (isApiAuthRoute) {

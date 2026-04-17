@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import Card, { BaseCard } from "./Card";
 import { BulbIcon } from "../Icons/Icons";
+import Card, { BaseCard } from "./Card";
 
 const meta = {
   title: "Components/Card",
@@ -21,6 +21,7 @@ export const Base: Story = {
     gameId: "base-game",
     createdAt: new Date("2026-02-26T09:00:00"),
     updatedAt: new Date("2026-02-26T09:00:00"),
+    isSolo: false,
   },
   render: () => (
     <BaseCard>
@@ -48,6 +49,7 @@ export const Minimale: Story = {
     variant: "minimale",
     status: "upcoming",
     icon: <BulbIcon />,
+    isSolo: true,
   },
 };
 
@@ -59,6 +61,7 @@ export const Register: Story = {
     icon: <BulbIcon />,
     heure: "14h00",
     lieu: "MyDigitalSchool",
+    isSolo: true,
   },
 };
 
@@ -70,5 +73,6 @@ export const Featured: Story = {
     icon: <BulbIcon />,
     duration: "2 jours",
     animatedBy: "Stella @ MyDigitalSchool",
+    isSolo: false,
   },
 };

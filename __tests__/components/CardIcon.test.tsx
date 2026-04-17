@@ -1,7 +1,6 @@
-import { PlusIcon } from "@/app/components/Icons/Icons";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
 import CardIcon from "@/app/components/CardIcon/CardIcon";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 
 const MockIcon = () => <svg data-testid="plus-icon" />;
 
