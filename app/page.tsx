@@ -1,8 +1,14 @@
 import { Event, Game } from "@/generated/prisma/client";
 import DynamicHome from "./DynamicHome";
 
+export type EventWithRegistration = Event & {
+  game: { id: string; title: string };
+  _count: { participants: number };
+  isUserRegistered: boolean;
+};
+
 export default async function HomePage() {
-  let events: Event[] = [];
+  let events: EventWithRegistration[] = [];
   let games: Game[] = [];
 
   try {
@@ -18,7 +24,7 @@ export default async function HomePage() {
     }
     if (gamesRes.ok) {
       games = (await gamesRes.json()) as Game[];
-      games = games.filter((g: Game) => g.imageUrl); // Filtrer les jeux sans image
+      games = games.filter((g: Game) => g.imageUrl);
     }
   } catch (error) {
     console.error("Error fetching home data:", error);

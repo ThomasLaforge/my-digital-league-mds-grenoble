@@ -22,3 +22,14 @@
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
+
+.sectionTitle {
+  margin: $spacing-lg 0 $spacing-md;
+  padding: 0 $spacing-lg;
+  color: $color-light;
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-family: $font-family-montserrat;
+  width: 100%;
+  text-align: left;
+}
