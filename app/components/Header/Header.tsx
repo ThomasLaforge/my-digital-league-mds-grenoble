@@ -7,10 +7,13 @@ import { useState } from "react";
 import Button from "../Button/Button";
 import styles from "./Header.module.scss";
 import UserMenu from "./UserMenu";
+import type { Session } from "next-auth";
 
-export default function Header() {
+export default function Header({ session: initialSession }: { session: Session | null }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { data: session } = useSession();
+  const { data: sessionData } = useSession();
+  // Utilise la session passée en prop (SSR) en priorité, sinon utilise celle du hook
+  const session = initialSession || sessionData;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -74,7 +77,7 @@ export default function Header() {
 
         <div className={styles.actions}>
           {session?.user ? (
-            <UserMenu />
+            <UserMenu session={session} />
           ) : (
             <>
               <Button

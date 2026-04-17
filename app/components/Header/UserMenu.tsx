@@ -4,9 +4,12 @@ import { useSession, signOut } from "next-auth/react";
 import { useState, useRef, useEffect } from "react";
 import Avatar from "../Avatar/Avatar";
 import styles from "./UserMenu.module.scss";
+import type { Session } from "next-auth";
 
-export default function UserMenu() {
-  const { data: session } = useSession();
+export default function UserMenu({ session: initialSession }: { session: Session }) {
+  const { data: sessionData } = useSession();
+  // Utilise la session passée en prop (SSR) en priorité pour éviter le blinking
+  const session = initialSession || sessionData;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 

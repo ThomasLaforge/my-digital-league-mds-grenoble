@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import "./styles/globals.scss";
 import "@splidejs/react-splide/css";
 import Footer from "./components/Footer/Footer";
+import { auth } from "@/auth";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -24,11 +25,13 @@ export const metadata: Metadata = {
     "La plateforme gaming de MyDigitalSchool Grenoble - Tournois, GameJams et communauté esports",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="fr">
       <body
@@ -36,7 +39,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <Providers>
-          <Header />
+          <Header session={session} />
           {children}
           <Footer />
         </Providers>
