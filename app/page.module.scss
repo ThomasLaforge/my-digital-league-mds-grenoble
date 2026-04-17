@@ -116,13 +116,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 200px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: $border-radius-md;
 }
 
 .logo {
-  width: auto;
-  max-width: 100%;
-  height: 120px;
-  border-radius: $border-radius-md;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /*
