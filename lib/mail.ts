@@ -2,7 +2,7 @@ import { getAppUrl } from "./getAppUrl";
 
 const domain = getAppUrl();
 const apiKey = process.env.SENDGRID_API_KEY;
-const sender = "noreply@mydigitalleague.dev";
+const sender = "thomas.laforge.38@gmail.com";
 
 console.log("SendGrid API Key present:", !!apiKey);
 console.log("Domain:", domain);
