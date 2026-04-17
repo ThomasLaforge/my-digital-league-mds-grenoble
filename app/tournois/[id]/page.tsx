@@ -42,7 +42,9 @@ export default async function TournoisDetailPage({ params }: Props) {
       isUserRegistered,
     };
 
-    return <DynamicEventPageId event={eventData} />;
+    const isOrganizer = session?.user?.isOrga || false;
+
+    return <DynamicEventPageId event={eventData} isOrganizer={isOrganizer} />;
   } catch (error) {
     console.error("Failed to fetch tournament:", error);
     return <div>Événement introuvable</div>;

@@ -1,7 +1,12 @@
 "use client";
 
 import Button from "@/app/components/Button/Button";
-import { ClockIcon, CupIcon, JoystickIcon } from "@/app/components/Icons/Icons";
+import {
+  ClockIcon,
+  CupIcon,
+  JoystickIcon,
+  PencilIcon,
+} from "@/app/components/Icons/Icons";
 import Minicard from "@/app/components/Minicard/Minicard";
 import { Roadmap } from "@/app/components/Roadmap/Roadmap";
 import { EVENT_LEVEL_OPTIONS, type EventLevel } from "@/lib/event-level";
@@ -21,6 +26,7 @@ type EventPageClientProps = {
     _count: { participants: number };
     isUserRegistered?: boolean;
   };
+  isOrganizer?: boolean;
 };
 
 const getLevelLabel = (level?: EventLevel | null) => {
@@ -31,7 +37,10 @@ const getLevelLabel = (level?: EventLevel | null) => {
   );
 };
 
-export default function DynamicEventPageId({ event }: EventPageClientProps) {
+export default function DynamicEventPageId({
+  event,
+  isOrganizer,
+}: EventPageClientProps) {
   const router = useRouter();
 
   const startDate = new Date(event.date);
@@ -185,6 +194,20 @@ export default function DynamicEventPageId({ event }: EventPageClientProps) {
                 router.push(`/tournois/inscription?eventId=${event.id}`)
               }
             />
+            {isOrganizer && (
+              <Button
+                label="Modifier l'événement"
+                type="secondary"
+                fullWidth
+                icon={
+                  <PencilIcon width={14} height={14} color="currentColor" />
+                }
+                iconPosition="left"
+                onClick={() =>
+                  router.push(`/organisateur/evenements/modifier/${event.id}`)
+                }
+              />
+            )}
           </div>
 
           <div className={styles.card}>
