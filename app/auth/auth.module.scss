@@ -1,0 +1,16 @@
+@use "../styles/variables" as *;
+
+.authContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg;
+
+  // Subtle gradient overlay for visual interest
+  background: linear-gradient(
+    135deg,
+    $color-bg-dark 0%,
+    rgba($color-primary, 0.03) 50%,
+    $color-bg-dark 100%
+  );
+}

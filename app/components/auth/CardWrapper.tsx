@@ -16,7 +16,6 @@ export const CardWrapper = ({
   headerLabel,
   backButtonLabel,
   backButtonHref,
-  showSocial,
 }: CardWrapperProps) => {
   return (
     <div className={styles.card}>
