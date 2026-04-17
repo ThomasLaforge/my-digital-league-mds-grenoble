@@ -1,19 +1,20 @@
-import { Event, Game } from "@/generated/prisma/client";
-import { auth } from "@/auth";
-import { prisma } from "@/lib/prisma";
+import { Game } from "@/generated/prisma/client";
 import DynamicHome from "./DynamicHome";
 
-export type EventWithRegistration = Omit<
-  Event,
-  "date" | "inscriptionDeadline" | "createdAt" | "updatedAt"
-> & {
+export type EventWithRegistration = {
+  id: string;
+  name: string;
+  date: string;
+  inscriptionDeadline: string;
+  rules: string;
+  level?: string | null;
   game: { id: string; title: string; description: string | null };
   _count: { participants: number };
   isUserRegistered: boolean;
-  date: string;
-  inscriptionDeadline: string;
   createdAt: string;
   updatedAt: string;
+  isSolo: boolean;
+  gameId: string;
 };
 
 export default async function HomePage() {
@@ -21,49 +22,18 @@ export default async function HomePage() {
   let games: Game[] = [];
 
   try {
-    const session = await auth();
-
-    const [dbEvents, dbGames] = await Promise.all([
-      prisma.event.findMany({
-        include: {
-          game: { select: { id: true, title: true, description: true } },
-          _count: { select: { participants: true } },
-        },
-        orderBy: { date: "asc" },
-      }),
-      prisma.game.findMany(),
+    const [eventsRes, gamesRes] = await Promise.all([
+      fetch("/api/events", { cache: "no-store" }).catch(() => null),
+      fetch("/api/games", { cache: "no-store" }).catch(() => null),
     ]);
 
-    if (session?.user?.id) {
-      events = await Promise.all(
-        dbEvents.map(async (event) => {
-          const participant = await prisma.participant.findUnique({
-            where: {
-              userId_eventId: { userId: session.user.id, eventId: event.id },
-            },
-          });
-          return {
-            ...event,
-            date: event.date.toISOString(),
-            inscriptionDeadline: event.inscriptionDeadline.toISOString(),
-            createdAt: event.createdAt.toISOString(),
-            updatedAt: event.updatedAt.toISOString(),
-            isUserRegistered: !!participant,
-          };
-        })
-      );
-    } else {
-      events = dbEvents.map((event) => ({
-        ...event,
-        date: event.date.toISOString(),
-        inscriptionDeadline: event.inscriptionDeadline.toISOString(),
-        createdAt: event.createdAt.toISOString(),
-        updatedAt: event.updatedAt.toISOString(),
-        isUserRegistered: false,
-      }));
+    if (eventsRes?.ok) {
+      events = await eventsRes.json();
     }
 
-    games = dbGames.filter((g) => g.imageUrl);
+    if (gamesRes?.ok) {
+      games = await gamesRes.json();
+    }
   } catch (error) {
     console.error(
       "Error fetching home data:",

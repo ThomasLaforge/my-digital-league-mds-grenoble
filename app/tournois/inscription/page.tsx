@@ -1,7 +1,6 @@
 import { EventGetPayload } from "@/generated/prisma/models/Event";
 import { notFound } from "next/navigation";
 import DynamicLoadEvent from "./DynamicLoadEvent";
-import { getAppUrl } from "@/lib/getAppUrl";
 
 type PageProps = {
   searchParams: Promise<{ eventId?: string }>;
@@ -23,16 +22,12 @@ export default async function InscriptionPage({ searchParams }: PageProps) {
   let event: EventWithGame | null = null;
 
   try {
-    const baseUrl = getAppUrl();
-    const res = await fetch(`${baseUrl}/api/events/${eventId}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(`/api/events/${eventId}`, { cache: "no-store" });
 
     if (!res.ok) {
       return notFound();
-    } else {
-      event = await res.json();
     }
+    event = await res.json();
   } catch {
     return notFound();
   }

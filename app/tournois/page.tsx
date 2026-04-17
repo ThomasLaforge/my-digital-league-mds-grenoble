@@ -1,7 +1,5 @@
 import styles from "./tournois.module.scss";
 import EventsList from "../components/EventList/Eventlist";
-import { prisma } from "@/lib/prisma";
-import { auth } from "@/auth";
 
 export const metadata = {
   title: "Tournois",
@@ -9,44 +7,15 @@ export const metadata = {
 
 async function getEvents() {
   try {
-    const session = await auth();
-
-    const events = await prisma.event.findMany({
-      include: {
-        game: { select: { id: true, title: true, description: true } },
-        _count: { select: { participants: true } },
-      },
-      orderBy: { date: "asc" },
+    const res = await fetch("/api/events", {
+      cache: "no-store",
     });
 
-    if (session?.user?.id) {
-      return await Promise.all(
-        events.map(async (event) => {
-          const participant = await prisma.participant.findUnique({
-            where: {
-              userId_eventId: { userId: session.user.id, eventId: event.id },
-            },
-          });
-          return {
-            ...event,
-            date: event.date.toISOString(),
-            inscriptionDeadline: event.inscriptionDeadline.toISOString(),
-            createdAt: event.createdAt.toISOString(),
-            updatedAt: event.updatedAt.toISOString(),
-            isUserRegistered: !!participant,
-          };
-        })
-      );
+    if (!res.ok) {
+      return [];
     }
 
-    return events.map((event) => ({
-      ...event,
-      date: event.date.toISOString(),
-      inscriptionDeadline: event.inscriptionDeadline.toISOString(),
-      createdAt: event.createdAt.toISOString(),
-      updatedAt: event.updatedAt.toISOString(),
-      isUserRegistered: false,
-    }));
+    return await res.json();
   } catch (error) {
     console.error("Failed to fetch events:", error);
     return [];
