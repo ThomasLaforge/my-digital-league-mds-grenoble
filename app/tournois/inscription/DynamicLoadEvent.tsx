@@ -83,7 +83,7 @@ export default function DynamicLoadEvent({
         return;
       }
 
-      router.push(`/tournois/${eventId}/confirmation`);
+      router.push(`/tournois/${eventId}`);
     } catch {
       setSubmitError("Une erreur réseau est survenue.");
     } finally {
