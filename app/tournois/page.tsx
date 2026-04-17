@@ -1,12 +1,14 @@
 import styles from "./tournois.module.scss";
 import EventsList from "../components/EventList/Eventlist";
+import { getAppUrl } from "@/lib/getAppUrl";
 
 export const metadata = {
   title: "Tournois",
 };
 
 async function getEvents() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/events`, {
+  const baseUrl = getAppUrl();
+  const res = await fetch(`${baseUrl}/api/events`, {
     cache: "no-store",
   });
 

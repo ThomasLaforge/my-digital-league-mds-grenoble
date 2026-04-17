@@ -1,4 +1,5 @@
 import { Event, Game } from "@/generated/prisma/client";
+import { getAppUrl } from "@/lib/getAppUrl";
 import DynamicHome from "./DynamicHome";
 
 export type EventWithRegistration = Event & {
@@ -12,7 +13,7 @@ export default async function HomePage() {
   let games: Game[] = [];
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+    const baseUrl = getAppUrl();
 
     const [eventsRes, gamesRes] = await Promise.all([
       fetch(`${baseUrl}/api/events`, { cache: "no-store" }),

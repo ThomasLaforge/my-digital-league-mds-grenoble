@@ -1,5 +1,6 @@
 import DynamicEventPageId from "@/app/evenements/[id]/DynamicEventPageId";
 import { cookies } from "next/headers";
+import { getAppUrl } from "@/lib/getAppUrl";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -8,15 +9,13 @@ type Props = {
 export default async function EventPage({ params }: Props) {
   const { id } = await params;
   const cookieStore = await cookies();
+  const baseUrl = getAppUrl();
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/events/${id}`,
-    {
-      headers: {
-        cookie: cookieStore.toString(),
-      },
-    }
-  );
+  const res = await fetch(`${baseUrl}/api/events/${id}`, {
+    headers: {
+      cookie: cookieStore.toString(),
+    },
+  });
 
   const data = await res.json();
 

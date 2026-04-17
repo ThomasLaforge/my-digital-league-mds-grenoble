@@ -1,6 +1,7 @@
 import { Resend } from "resend";
+import { getAppUrl } from "./getAppUrl";
 
-const domain = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+const domain = getAppUrl();
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
