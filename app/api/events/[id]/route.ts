@@ -6,6 +6,7 @@ type Context = { params: Promise<{ id: string }> };
 
 export async function GET(_req: NextRequest, { params }: Context) {
   const { id } = await params;
+  const session = await auth();
 
   const event = await prisma.event.findUnique({
     where: { id },
@@ -16,10 +17,25 @@ export async function GET(_req: NextRequest, { params }: Context) {
   });
 
   if (!event) {
-    return NextResponse.json({ error: "Événement introuvable" }, { status: 404 });
+    return NextResponse.json(
+      { error: "Événement introuvable" },
+      { status: 404 }
+    );
   }
 
-  return NextResponse.json(event);
+  // Vérifier si l'utilisateur est inscrit
+  let isUserRegistered = false;
+  if (session?.user?.id) {
+    const participant = await prisma.participant.findUnique({
+      where: { userId_eventId: { userId: session.user.id, eventId: id } },
+    });
+    isUserRegistered = !!participant;
+  }
+
+  return NextResponse.json({
+    ...event,
+    isUserRegistered,
+  });
 }
 
 export const PUT = auth(async (req, context) => {
@@ -36,7 +52,9 @@ export const PUT = auth(async (req, context) => {
     data: {
       ...(name && { name }),
       ...(date && { date: new Date(date) }),
-      ...(inscriptionDeadline && { inscriptionDeadline: new Date(inscriptionDeadline) }),
+      ...(inscriptionDeadline && {
+        inscriptionDeadline: new Date(inscriptionDeadline),
+      }),
       ...(rules && { rules }),
       ...(gameId && { gameId }),
     },

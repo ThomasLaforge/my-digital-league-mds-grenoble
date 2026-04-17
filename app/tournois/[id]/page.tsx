@@ -5,7 +5,7 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-export default async function EventPage({ params }: Props) {
+export default async function TournoisDetailPage({ params }: Props) {
   const { id } = await params;
   const cookieStore = await cookies();
 

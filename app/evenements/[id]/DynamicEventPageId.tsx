@@ -19,6 +19,7 @@ type EventPageClientProps = {
     level?: EventLevel | null;
     game: { id: string; title: string; description: string | null };
     _count: { participants: number };
+    isUserRegistered?: boolean;
   };
 };
 
@@ -180,10 +181,16 @@ export default function DynamicEventPageId({ event }: EventPageClientProps) {
             </ul>
 
             <Button
-              label="S'inscrire maintenant"
+              label={
+                event.isUserRegistered
+                  ? "Modifier mon inscription"
+                  : "S'inscrire maintenant"
+              }
               type="primary"
               fullWidth
-              onClick={() => router.push("/tournois/inscription")}
+              onClick={() =>
+                router.push(`/tournois/inscription?eventId=${event.id}`)
+              }
             />
           </div>
 
