@@ -9,7 +9,7 @@ console.log("Domain:", domain);
 
 const resend = new Resend(apiKey);
 
-const sender = "noreply@mydigitalleague.dev";
+const sender = "onboarding@resend.dev";
 
 export const sendVerificationEmail = async (email: string, token: string) => {
   const confirmLink = `${domain}/auth/new-verification?token=${token}`;
@@ -25,6 +25,11 @@ export const sendVerificationEmail = async (email: string, token: string) => {
       html: `<p>Cliquez <a href="${confirmLink}">ici</a> pour confirmer votre adresse e-mail.</p>`,
     });
     console.log("Email sent result:", result);
+
+    if (result.error) {
+      console.error("Resend error:", result.error);
+      throw new Error(`Resend error: ${result.error.message}`);
+    }
   } catch (error) {
     console.error("Erreur lors de l'envoi de l'email de vérification:", error);
     throw error;
@@ -45,6 +50,11 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
       html: `<p>Cliquez <a href="${resetLink}">ici</a> pour réinitialiser votre mot de passe.</p>`,
     });
     console.log("Password reset email sent result:", result);
+
+    if (result.error) {
+      console.error("Resend error:", result.error);
+      throw new Error(`Resend error: ${result.error.message}`);
+    }
   } catch (error) {
     console.error(
       "Erreur lors de l'envoi de l'email de réinitialisation:",
