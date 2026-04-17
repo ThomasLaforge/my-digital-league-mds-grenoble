@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { LoginSchema } from "@/schemas";
 import { authService } from "@/services/auth/authService";
 
 export const useLogin = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
@@ -30,20 +32,21 @@ export const useLogin = () => {
     setError("");
     setSuccess("");
 
-    startTransition(() => {
-      authService
-        .login(values)
-        .then((data) => {
-          if (data?.error) {
-            form.reset();
-            setError(data.error);
-          }
-          if (data?.success) {
-            form.reset();
-            setSuccess(data.success);
-          }
-        })
-        .catch(() => setError("Something went wrong"));
+    startTransition(async () => {
+      const data = await authService.login(values);
+      if (data?.error) {
+        form.reset();
+        setError(data.error);
+      }
+      if (data?.success && !data?.error) {
+        form.reset();
+        setSuccess(data.success);
+        // Attendre un moment avant de rediriger pour que la page se mette à jour
+        setTimeout(() => {
+          router.push("/");
+          router.refresh();
+        }, 500);
+      }
     });
   };
 
