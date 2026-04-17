@@ -13,7 +13,14 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   console.log("Sending verification email to:", email);
   console.log("Confirmation link:", confirmLink);
 
-  const htmlContent = `<a href="${confirmLink}">Cliquez ici pour confirmer votre adresse e-mail</a>`;
+  const htmlContent = `
+    <p>Bienvenue!</p>
+    <p>Pour confirmer votre adresse e-mail, veuillez copier-coller le lien suivant dans votre navigateur:</p>
+    <p style="word-break: break-all; background-color: #f5f5f5; padding: 12px; border-radius: 4px; font-family: monospace;">
+      ${confirmLink}
+    </p>
+    <p>Ce lien expirera dans 24 heures.</p>
+  `;
   console.log("HTML content:", htmlContent);
 
   try {
@@ -62,7 +69,15 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
   console.log("Sending password reset email to:", email);
   console.log("Reset link:", resetLink);
 
-  const htmlContent = `<a href="${resetLink}">Cliquez ici pour réinitialiser votre mot de passe</a>`;
+  const htmlContent = `
+    <p>Vous avez demandé une réinitialisation de mot de passe.</p>
+    <p>Veuillez copier-coller le lien suivant dans votre navigateur:</p>
+    <p style="word-break: break-all; background-color: #f5f5f5; padding: 12px; border-radius: 4px; font-family: monospace;">
+      ${resetLink}
+    </p>
+    <p>Ce lien expirera dans 24 heures.</p>
+    <p>Si vous n'avez pas demandé une réinitialisation, ignorez cet email.</p>
+  `;
   console.log("HTML content:", htmlContent);
 
   try {
