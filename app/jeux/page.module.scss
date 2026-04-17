@@ -112,6 +112,10 @@
   flex-direction: column;
   gap: $spacing-sm;
   margin-top: auto;
+
+  & > :only-child {
+    margin-bottom: 0;
+  }
 }
 
 .linkButton {

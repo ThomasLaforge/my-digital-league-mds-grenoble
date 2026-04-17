@@ -9,9 +9,13 @@ import styles from "./page.module.scss";
 
 type DynamicGamesListProps = {
   games: Game[];
+  isOrganizer: boolean;
 };
 
-export default function DynamicGamesList({ games }: DynamicGamesListProps) {
+export default function DynamicGamesList({
+  games,
+  isOrganizer,
+}: DynamicGamesListProps) {
   return (
     <main className={styles.page}>
       <header className={styles.header}>
@@ -58,20 +62,26 @@ export default function DynamicGamesList({ games }: DynamicGamesListProps) {
                       fullWidth
                     />
                   </Link>
-                  <Link
-                    href="/organisateur/evenements/creer"
-                    className={styles.linkButton}
-                  >
-                    <Button
-                      label="Créer un événement"
-                      type="secondary"
-                      icon={
-                        <PlusIcon width={14} height={14} color="currentColor" />
-                      }
-                      iconPosition="left"
-                      fullWidth
-                    />
-                  </Link>
+                  {isOrganizer && (
+                    <Link
+                      href="/organisateur/evenements/creer"
+                      className={styles.linkButton}
+                    >
+                      <Button
+                        label="Créer un événement"
+                        type="secondary"
+                        icon={
+                          <PlusIcon
+                            width={14}
+                            height={14}
+                            color="currentColor"
+                          />
+                        }
+                        iconPosition="left"
+                        fullWidth
+                      />
+                    </Link>
+                  )}
                 </div>
               </div>
             </article>

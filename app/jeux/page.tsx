@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { getBaseUrl } from "@/lib/getBaseUrl";
 import DynamicGamesList from "./DynamicGamesList";
 
@@ -24,7 +25,9 @@ async function getGames() {
 }
 
 export default async function JeuxPage() {
-  const games = await getGames();
+  const [games, session] = await Promise.all([getGames(), auth()]);
 
-  return <DynamicGamesList games={games} />;
+  const isOrganizer = session?.user?.isOrga || false;
+
+  return <DynamicGamesList games={games} isOrganizer={isOrganizer} />;
 }
