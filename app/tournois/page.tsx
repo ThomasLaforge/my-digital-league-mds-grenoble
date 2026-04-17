@@ -1,5 +1,6 @@
 import styles from "./tournois.module.scss";
 import EventsList from "../components/EventList/Eventlist";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 
 export const metadata = {
   title: "Tournois",
@@ -7,7 +8,8 @@ export const metadata = {
 
 async function getEvents() {
   try {
-    const res = await fetch("/api/events", {
+    const baseUrl = await getBaseUrl();
+    const res = await fetch(`${baseUrl}/api/events`, {
       cache: "no-store",
     });
 
