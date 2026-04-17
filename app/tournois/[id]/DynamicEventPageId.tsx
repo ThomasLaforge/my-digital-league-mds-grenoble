@@ -12,6 +12,7 @@ import { Roadmap } from "@/app/components/Roadmap/Roadmap";
 import { EVENT_LEVEL_OPTIONS, type EventLevel } from "@/lib/event-level";
 import { useRouter } from "next/navigation";
 import { FaUser } from "react-icons/fa";
+import ReactMarkdown from "react-markdown";
 import styles from "./page.module.scss";
 
 type EventPageClientProps = {
@@ -97,7 +98,9 @@ export default function DynamicEventPageId({
               </div>
             </div>
 
-            <p className={styles.rules}>{event.rules}</p>
+            <div className={styles.markdownContent}>
+              <ReactMarkdown>{event.rules}</ReactMarkdown>
+            </div>
 
             <div className={styles.grid2}>
               <Minicard title="Jeu associé" text={event.game.title} />
@@ -164,7 +167,9 @@ export default function DynamicEventPageId({
               </div>
             </div>
 
-            <p className={styles.rules}>{event.rules}</p>
+            <div className={styles.markdownContent}>
+              <ReactMarkdown>{event.rules}</ReactMarkdown>
+            </div>
           </section>
         </main>
 

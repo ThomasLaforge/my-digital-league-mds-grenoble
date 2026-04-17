@@ -214,6 +214,111 @@
   }
 }
 
+.markdownContent {
+  color: $color-text-dark;
+  line-height: 1.6;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $color-light;
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-md;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
+
+  p {
+    margin-bottom: $spacing-md;
+  }
+
+  ul,
+  ol {
+    margin-left: $spacing-lg;
+    margin-bottom: $spacing-md;
+
+    li {
+      margin-bottom: $spacing-sm;
+    }
+  }
+
+  a {
+    color: $color-secondary;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  code {
+    background-color: $color-bg-dark;
+    color: $color-secondary;
+    padding: 0.2rem 0.6rem;
+    border-radius: $border-radius-sm;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+
+  pre {
+    background-color: $color-bg-dark;
+    color: $color-light;
+    padding: $spacing-md;
+    border-radius: $border-radius-md;
+    overflow-x: auto;
+    margin-bottom: $spacing-md;
+
+    code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid $color-primary;
+    padding-left: $spacing-md;
+    margin-left: 0;
+    margin-bottom: $spacing-md;
+    color: $color-text-dark;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: $spacing-md;
+
+    th,
+    td {
+      border: 1px solid $color-bg-component-dark;
+      padding: $spacing-sm;
+      text-align: left;
+    }
+
+    th {
+      background-color: $color-bg-component-dark;
+      color: $color-light;
+      font-weight: 600;
+    }
+  }
+}
+
 /* pour éviter que Minicard reste trop étroit */
 :global(.minicardContainer) {
   max-width: 100%;
