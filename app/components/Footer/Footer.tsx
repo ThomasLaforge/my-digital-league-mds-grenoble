@@ -1,12 +1,46 @@
 import Link from "next/link";
-import { DiscordIcon, EnvelopIcon, InstagramIcon } from "../Icons/Icons";
+import Image from "next/image";
+import { getBaseUrl } from "@/lib/getBaseUrl";
+import { EnvelopIcon, GithubIcon } from "../Icons/Icons";
 import styles from "./Footer.module.scss";
+import type { Game, Event } from "@/generated/prisma/client";
 
-export default function Footer() {
+async function getFooterData() {
+  try {
+    const baseUrl = await getBaseUrl();
+
+    const [gamesRes, eventsRes] = await Promise.all([
+      fetch(`${baseUrl}/api/games`, { cache: "no-store" }).catch(() => null),
+      fetch(`${baseUrl}/api/events`, { cache: "no-store" }).catch(() => null),
+    ]);
+
+    let games: Game[] = [];
+    let events: Event[] = [];
+
+    if (gamesRes?.ok) {
+      const allGames = await gamesRes.json();
+      games = allGames.slice(0, 5);
+    }
+
+    if (eventsRes?.ok) {
+      const allEvents = await eventsRes.json();
+      events = allEvents.slice(0, 5);
+    }
+
+    return { games, events };
+  } catch (error) {
+    console.error("Failed to fetch footer data:", error);
+    return { games: [], events: [] };
+  }
+}
+
+export default async function Footer() {
+  const { games, events } = await getFooterData();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.brand}>
-        <img
+        <Image
           className={styles.logo}
           src="/logo.svg"
           alt="Logo"
@@ -18,25 +52,17 @@ export default function Footer() {
         </p>
         <div className={styles.socials}>
           <Link
-            href="https://discord.gg/your-discord-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <DiscordIcon width={24} height={24} color="white" />
-          </Link>
-          <Link
-            href="https://instagram.com/your-instagram-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <InstagramIcon width={24} height={24} color="white" />
-          </Link>
-          <Link
-            href="mailto:contact@mydigitalleague.com"
-            target="_blank"
+            href="mailto:thomas.laforge.ext@eduservices.org"
             rel="noopener noreferrer"
           >
             <EnvelopIcon width={24} height={24} color="white" />
+          </Link>
+          <Link
+            href="https://github.com/ThomasLaforge/my-digital-league-mds-grenoble"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GithubIcon width={24} height={24} color="white" />
           </Link>
         </div>
       </div>
@@ -45,62 +71,58 @@ export default function Footer() {
           <div className={styles.links}>
             <p className={styles.categoryLink}>Jeux</p>
             <ul>
-              <li>
-                <Link href="/jeux">Balatro</Link>
-              </li>
-              <li>
-                <Link href="/jeux">Tetris</Link>
-              </li>
+              {games.length > 0 ? (
+                games.map((game: Game) => (
+                  <li key={game.id}>
+                    <Link href="/jeux">{game.title}</Link>
+                  </li>
+                ))
+              ) : (
+                <li>
+                  <Link href="/jeux">Tous les jeux</Link>
+                </li>
+              )}
             </ul>
           </div>
           <div className={styles.links}>
             <p className={styles.categoryLink}>Tournois</p>
             <ul>
-              <li>
-                <Link href="/jeux">No lo se</Link>
-              </li>
-              <li>
-                <Link href="/jeux">No lo se</Link>
-              </li>
+              {events.length > 0 ? (
+                events.map((event: Event) => (
+                  <li key={event.id}>
+                    <Link href={`/tournois/${event.id}`}>{event.name}</Link>
+                  </li>
+                ))
+              ) : (
+                <li>
+                  <Link href="/tournois">Tous les tournois</Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
-        <div className={styles.linksBottom}>
-          <div className={styles.links}>
-            <p className={styles.categoryLink}>Communauté</p>
-            <ul>
-              <li>
-                <Link href="/jeux">Discord</Link>
-              </li>
-              <li>
-                <Link href="/jeux">Équipe</Link>
-              </li>
-              <li>
-                <Link href="/jeux">Classement</Link>
-              </li>
-            </ul>
-          </div>
+        {/* <div className={styles.linksBottom}>
           <div className={styles.links}>
             <p className={styles.categoryLink}>Support</p>
             <ul>
               <li>
-                <Link href="/jeux">FAQ</Link>
+                <Link href="#">FAQ</Link>
               </li>
               <li>
-                <Link href="/jeux">Règlements</Link>
+                <Link href="#">Règlements</Link>
               </li>
               <li>
-                <Link href="/jeux">Contact</Link>
+                <Link href="#">Contact</Link>
               </li>
               <li>
-                <Link href="/jeux">Mentions légales</Link>
+                <Link href="#">Mentions légales</Link>
               </li>
               <li>
-                <Link href="/jeux">Confidentialité</Link>
+                <Link href="#">Confidentialité</Link>
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

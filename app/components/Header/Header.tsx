@@ -67,16 +67,6 @@ export default function Header({
               Tournois
             </Link>
           </li>
-          <li>
-            <Link className={styles.navLink} href="/communaute">
-              Communauté
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.navLink} href="/support">
-              Support
-            </Link>
-          </li>
         </ul>
 
         <div className={styles.actions}>

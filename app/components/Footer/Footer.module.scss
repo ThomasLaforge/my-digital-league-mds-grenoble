@@ -116,10 +116,7 @@
   flex-direction: column;
   gap: $spacing-md;
   min-width: 0;
-  white-space: nowrap;
-  overflow-wrap: normal;
-  word-break: normal;
-  width: 50%;
+  flex: 0 0 auto;
 
   ul {
     display: flex;
