@@ -1,4 +1,4 @@
-import DynamicEventPageId from "@/app/evenements/[id]/DynamicEventPageId";
+import DynamicEventPageId from "./DynamicEventPageId";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 

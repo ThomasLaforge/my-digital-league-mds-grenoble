@@ -1,13 +1,13 @@
 "use client";
 
-import styles from "./page.module.scss";
-import { useRouter } from "next/navigation";
-import { CupIcon, ClockIcon, JoystickIcon } from "@/app/components/Icons/Icons";
 import Button from "@/app/components/Button/Button";
-import { Roadmap } from "@/app/components/Roadmap/Roadmap";
+import { ClockIcon, CupIcon, JoystickIcon } from "@/app/components/Icons/Icons";
 import Minicard from "@/app/components/Minicard/Minicard";
-import { FaUser } from "react-icons/fa";
+import { Roadmap } from "@/app/components/Roadmap/Roadmap";
 import { EVENT_LEVEL_OPTIONS, type EventLevel } from "@/lib/event-level";
+import { useRouter } from "next/navigation";
+import { FaUser } from "react-icons/fa";
+import styles from "./page.module.scss";
 
 type EventPageClientProps = {
   event: {
@@ -111,7 +111,8 @@ export default function DynamicEventPageId({ event }: EventPageClientProps) {
               <div>
                 <h3>Catégories de jeu</h3>
                 <p>
-                  Blocs visuels fixes pour l’instant (en attendant le back).
+                  Blocs visuels fixes pour l&apos;instant (en attendant le
+                  back).
                 </p>
               </div>
             </div>

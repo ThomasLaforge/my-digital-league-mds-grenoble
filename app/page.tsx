@@ -65,7 +65,10 @@ export default async function HomePage() {
 
     games = dbGames.filter((g) => g.imageUrl);
   } catch (error) {
-    console.error("Error fetching home data:", error);
+    console.error(
+      "Error fetching home data:",
+      error instanceof Error ? error.message : String(error)
+    );
   }
 
   return <DynamicHome events={events} games={games} />;
