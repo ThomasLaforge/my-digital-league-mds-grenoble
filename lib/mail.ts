@@ -13,28 +13,34 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   console.log("Sending verification email to:", email);
   console.log("Confirmation link:", confirmLink);
 
+  const htmlContent = `<a href="${confirmLink}">Cliquez ici pour confirmer votre adresse e-mail</a>`;
+  console.log("HTML content:", htmlContent);
+
   try {
+    const payload = {
+      personalizations: [
+        {
+          to: [{ email }],
+        },
+      ],
+      from: { email: sender },
+      subject: "Confirmez votre adresse e-mail",
+      content: [
+        {
+          type: "text/html",
+          value: htmlContent,
+        },
+      ],
+    };
+    console.log("SendGrid payload:", JSON.stringify(payload));
+
     const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        personalizations: [
-          {
-            to: [{ email }],
-          },
-        ],
-        from: { email: sender },
-        subject: "Confirmez votre adresse e-mail",
-        content: [
-          {
-            type: "text/html",
-            value: `<p>Cliquez <a href="${confirmLink}">ici</a> pour confirmer votre adresse e-mail.</p>`,
-          },
-        ],
-      }),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
@@ -56,28 +62,34 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
   console.log("Sending password reset email to:", email);
   console.log("Reset link:", resetLink);
 
+  const htmlContent = `<a href="${resetLink}">Cliquez ici pour réinitialiser votre mot de passe</a>`;
+  console.log("HTML content:", htmlContent);
+
   try {
+    const payload = {
+      personalizations: [
+        {
+          to: [{ email }],
+        },
+      ],
+      from: { email: sender },
+      subject: "Réinitialisation de votre mot de passe",
+      content: [
+        {
+          type: "text/html",
+          value: htmlContent,
+        },
+      ],
+    };
+    console.log("SendGrid payload:", JSON.stringify(payload));
+
     const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        personalizations: [
-          {
-            to: [{ email }],
-          },
-        ],
-        from: { email: sender },
-        subject: "Réinitialisation de votre mot de passe",
-        content: [
-          {
-            type: "text/html",
-            value: `<p>Cliquez <a href="${resetLink}">ici</a> pour réinitialiser votre mot de passe.</p>`,
-          },
-        ],
-      }),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
