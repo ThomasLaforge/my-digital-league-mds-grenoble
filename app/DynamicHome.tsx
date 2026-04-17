@@ -196,20 +196,21 @@ export default function DynamicHome({ events, games }: DynamicHomeProps) {
           showControls={false}
         >
           <div className={styles.rowImage}>
-            {games.map((game) => (
-              <article key={game.id} className={styles.logoCard}>
-                <Image
-                  className={styles.logo}
-                  src={game.imageUrl as string}
-                  alt={`logo ${game.title}`}
-                  width={160}
-                  height={120}
-                  unoptimized={
-                    !!game.imageUrl && !game.imageUrl.startsWith("/")
-                  }
-                />
-              </article>
-            ))}
+            {games.map((game) => {
+              if (!game.imageUrl) return null;
+              return (
+                <article key={game.id} className={styles.logoCard}>
+                  <Image
+                    className={styles.logo}
+                    src={game.imageUrl}
+                    alt={`logo ${game.title}`}
+                    width={160}
+                    height={120}
+                    unoptimized={!game.imageUrl.startsWith("/")}
+                  />
+                </article>
+              );
+            })}
           </div>
         </HomeSection>
       )}
