@@ -87,7 +87,7 @@ export default function DynamicGamesList({
                         />
                       </Link>
                       <Link
-                        href="/organisateur/evenements/creer"
+                        href={`/organisateur/evenements/creer?gameId=${game.id}`}
                         className={styles.linkButton}
                       >
                         <Button

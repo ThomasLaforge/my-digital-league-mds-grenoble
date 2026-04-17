@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Input from "@/app/components/Input/Input";
 import Toggle from "@/app/components/Toggle/Toggle";
@@ -84,7 +84,13 @@ type Game = {
   title: string;
 };
 
-export default function DynamicCreerGameJamPage({ games }: { games: Game[] }) {
+export default function DynamicCreerGameJamPage({
+  games,
+  preSelectedGameId,
+}: {
+  games: Game[];
+  preSelectedGameId?: string;
+}) {
   const router = useRouter();
 
   const [titre, setTitre] = useState("");
@@ -94,6 +100,15 @@ export default function DynamicCreerGameJamPage({ games }: { games: Game[] }) {
   const [dateFin, setDateFin] = useState("");
   const [heureFin, setHeureFin] = useState("");
   const [gameTitle, setGameTitle] = useState("");
+
+  useEffect(() => {
+    if (preSelectedGameId) {
+      const selectedGame = games.find((g) => g.id === preSelectedGameId);
+      if (selectedGame) {
+        setGameTitle(selectedGame.title);
+      }
+    }
+  }, [preSelectedGameId, games]);
 
   const [categorie, setCategorie] = useState("");
   const [format, setFormat] = useState("");
