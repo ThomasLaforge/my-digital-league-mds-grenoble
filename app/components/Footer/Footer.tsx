@@ -46,10 +46,10 @@ export default function Footer() {
             <p className={styles.categoryLink}>Jeux</p>
             <ul>
               <li>
-                <Link href="/jeu">Balatro</Link>
+                <Link href="/jeux">Balatro</Link>
               </li>
               <li>
-                <Link href="/jeu">Tetris</Link>
+                <Link href="/jeux">Tetris</Link>
               </li>
             </ul>
           </div>
@@ -57,10 +57,10 @@ export default function Footer() {
             <p className={styles.categoryLink}>Tournois</p>
             <ul>
               <li>
-                <Link href="/jeu">No lo se</Link>
+                <Link href="/jeux">No lo se</Link>
               </li>
               <li>
-                <Link href="/jeu">No lo se</Link>
+                <Link href="/jeux">No lo se</Link>
               </li>
             </ul>
           </div>
@@ -70,13 +70,13 @@ export default function Footer() {
             <p className={styles.categoryLink}>Communauté</p>
             <ul>
               <li>
-                <Link href="/jeu">Discord</Link>
+                <Link href="/jeux">Discord</Link>
               </li>
               <li>
-                <Link href="/jeu">Équipe</Link>
+                <Link href="/jeux">Équipe</Link>
               </li>
               <li>
-                <Link href="/jeu">Classement</Link>
+                <Link href="/jeux">Classement</Link>
               </li>
             </ul>
           </div>
@@ -84,19 +84,19 @@ export default function Footer() {
             <p className={styles.categoryLink}>Support</p>
             <ul>
               <li>
-                <Link href="/jeu">FAQ</Link>
+                <Link href="/jeux">FAQ</Link>
               </li>
               <li>
-                <Link href="/jeu">Règlements</Link>
+                <Link href="/jeux">Règlements</Link>
               </li>
               <li>
-                <Link href="/jeu">Contact</Link>
+                <Link href="/jeux">Contact</Link>
               </li>
               <li>
-                <Link href="/jeu">Mentions légales</Link>
+                <Link href="/jeux">Mentions légales</Link>
               </li>
               <li>
-                <Link href="/jeu">Confidentialité</Link>
+                <Link href="/jeux">Confidentialité</Link>
               </li>
             </ul>
           </div>

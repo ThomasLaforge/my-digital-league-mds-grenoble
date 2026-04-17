@@ -9,7 +9,11 @@ import Button from "../Button/Button";
 import styles from "./Header.module.scss";
 import UserMenu from "./UserMenu";
 
-export default function Header({ session: initialSession }: { session: Session | null }) {
+export default function Header({
+  session: initialSession,
+}: {
+  session: Session | null;
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: sessionData } = useSession();
   // Utilise la session passée en prop (SSR) en priorité, sinon utilise celle du hook
@@ -54,7 +58,7 @@ export default function Header({ session: initialSession }: { session: Session |
       <nav className={styles.containerNav} data-open={isMenuOpen}>
         <ul className={styles.nav}>
           <li>
-            <Link className={styles.navLink} href="/jeu">
+            <Link className={styles.navLink} href="/jeux">
               Jeux
             </Link>
           </li>
