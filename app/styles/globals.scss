@@ -38,6 +38,12 @@ h3 {
   font-family: $font-family-montserrat;
 }
 
+main {
+  @media (min-width: $tablet) {
+    min-height: 65vh;
+  }
+}
+
 :root {
   --color-bg-dark: #{$color-bg-dark};
   --color-bg-card-dark: #{$color-bg-dark};
