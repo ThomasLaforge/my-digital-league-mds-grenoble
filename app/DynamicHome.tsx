@@ -114,46 +114,48 @@ export default function DynamicHome({ events, games }: DynamicHomeProps) {
   return (
     <main className={styles.main}>
       <Hero />
-      <HomeSection
-        title="Tournois en cours"
-        previousLabel="Tournois précédents"
-        nextLabel="Tournois suivants"
-        onPrevious={() => tournamentsSliderRef.current?.go("<")}
-        onNext={() => tournamentsSliderRef.current?.go(">")}
-      >
-        <Splide
-          options={cardSliderOptions}
-          hasTrack={false}
-          className={styles.slider}
-          ref={tournamentsSliderRef}
-          aria-label="Slider des tournois en cours"
+      {tournaments.length > 0 && (
+        <HomeSection
+          title="Tournois en cours"
+          previousLabel="Tournois précédents"
+          nextLabel="Tournois suivants"
+          onPrevious={() => tournamentsSliderRef.current?.go("<")}
+          onNext={() => tournamentsSliderRef.current?.go(">")}
         >
-          <SplideTrack className={styles.sliderTrack}>
-            {tournaments.map((event) => (
-              <SplideSlide key={event.id} className={styles.cardSlide}>
-                <Card
-                  icon={<BulbIcon />}
-                  id={event.id}
-                  variant="register"
-                  status="ongoing"
-                  name={event.name}
-                  description={event.rules}
-                  date={new Date(event.date)}
-                  inscriptionDeadline={new Date(event.inscriptionDeadline)}
-                  heure={undefined}
-                  lieu={undefined}
-                  rules={event.rules}
-                  gameId={event.gameId}
-                  createdAt={new Date(event.createdAt)}
-                  updatedAt={new Date(event.updatedAt)}
-                  isSolo={event.isSolo}
-                  isRegistered={event.isUserRegistered}
-                />
-              </SplideSlide>
-            ))}
-          </SplideTrack>
-        </Splide>
-      </HomeSection>
+          <Splide
+            options={cardSliderOptions}
+            hasTrack={false}
+            className={styles.slider}
+            ref={tournamentsSliderRef}
+            aria-label="Slider des tournois en cours"
+          >
+            <SplideTrack className={styles.sliderTrack}>
+              {tournaments.map((event) => (
+                <SplideSlide key={event.id} className={styles.cardSlide}>
+                  <Card
+                    icon={<BulbIcon />}
+                    id={event.id}
+                    variant="register"
+                    status="ongoing"
+                    name={event.name}
+                    description={event.rules}
+                    date={new Date(event.date)}
+                    inscriptionDeadline={new Date(event.inscriptionDeadline)}
+                    heure={undefined}
+                    lieu={undefined}
+                    rules={event.rules}
+                    gameId={event.gameId}
+                    createdAt={new Date(event.createdAt)}
+                    updatedAt={new Date(event.updatedAt)}
+                    isSolo={event.isSolo}
+                    isRegistered={event.isUserRegistered}
+                  />
+                </SplideSlide>
+              ))}
+            </SplideTrack>
+          </Splide>
+        </HomeSection>
+      )}
 
       {upcomingTournaments.length > 0 && (
         <HomeSection
