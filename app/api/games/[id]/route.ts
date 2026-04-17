@@ -25,13 +25,14 @@ export const PUT = auth(async (req, context) => {
   }
 
   const { id } = await (context as Context).params;
-  const { title, description } = await req.json();
+  const { title, description, imageUrl } = await req.json();
 
   const game = await prisma.game.update({
     where: { id },
     data: {
       ...(title && { title }),
       ...(description !== undefined && { description: description || null }),
+      ...(imageUrl !== undefined && { imageUrl: imageUrl || null }),
     },
     include: { _count: { select: { events: true } } },
   });

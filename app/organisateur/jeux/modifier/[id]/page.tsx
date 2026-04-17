@@ -1,14 +1,23 @@
 "use client";
 
 import Button from "@/app/components/Button/Button";
-import { BulbIcon, JoystickIcon, PlusIcon } from "@/app/components/Icons/Icons";
+import {
+  BulbIcon,
+  JoystickIcon,
+  PencilIcon,
+} from "@/app/components/Icons/Icons";
 import Input from "@/app/components/Input/Input";
 import { Game } from "@/generated/prisma/client";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import styles from "./page.module.scss";
 
-export default function CreerJeuPage() {
+export default function ModifierJeuPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = use(params);
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -17,9 +26,41 @@ export default function CreerJeuPage() {
   const [isChecking, setIsChecking] = useState(false);
   const [titleExists, setTitleExists] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isInitializing, setIsInitializing] = useState(true);
+  const [originalTitle, setOriginalTitle] = useState("");
+
+  useEffect(() => {
+    const fetchGame = async () => {
+      try {
+        const response = await fetch(`/api/games/${id}`);
+        if (!response.ok) {
+          setError("Jeu non trouvé");
+          return;
+        }
+        const game = await response.json();
+        setTitle(game.title);
+        setDescription(game.description || "");
+        setImageUrl(game.imageUrl || "");
+        setOriginalTitle(game.title);
+      } catch (err) {
+        console.error("Error fetching game:", err);
+        setError("Erreur lors du chargement du jeu");
+      } finally {
+        setIsInitializing(false);
+      }
+    };
+
+    fetchGame();
+  }, [id]);
 
   useEffect(() => {
     if (!title.trim()) {
+      setTitleExists(false);
+      return;
+    }
+
+    // Si le titre n'a pas changé, pas besoin de vérifier
+    if (title.toLowerCase() === originalTitle.toLowerCase()) {
       setTitleExists(false);
       return;
     }
@@ -46,7 +87,7 @@ export default function CreerJeuPage() {
 
     const timeoutId = setTimeout(checkTitle, 500);
     return () => clearTimeout(timeoutId);
-  }, [title]);
+  }, [title, originalTitle]);
 
   const handleSubmit = async () => {
     if (!title) {
@@ -63,8 +104,8 @@ export default function CreerJeuPage() {
     setError(null);
 
     try {
-      const response = await fetch("/api/games", {
-        method: "POST",
+      const response = await fetch(`/api/games/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -93,11 +134,24 @@ export default function CreerJeuPage() {
     }
   };
 
+  if (isInitializing) {
+    return <div className={styles.page}>Chargement...</div>;
+  }
+
+  if (error && isInitializing === false && !title) {
+    return (
+      <div className={styles.page}>
+        <p>{error}</p>
+        <Button label="Retour" type="primary" onClick={() => router.back()} />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <h1>Ajouter un Jeu</h1>
-        <p>Référencez un nouveau jeu pour vos futurs événements</p>
+        <h1>Modifier un Jeu</h1>
+        <p>Mettez à jour les informations du jeu</p>
       </header>
 
       <div className={styles.layout}>
@@ -177,10 +231,10 @@ export default function CreerJeuPage() {
           </div>
 
           <Button
-            label={isLoading ? "Création..." : "Ajouter le jeu"}
+            label={isLoading ? "Modification..." : "Modifier le jeu"}
             type="primary"
             fullWidth
-            icon={<PlusIcon width={14} height={14} color="currentColor" />}
+            icon={<PencilIcon width={14} height={14} color="currentColor" />}
             iconPosition="left"
             onClick={handleSubmit}
             disabled={isLoading || !title || titleExists || isChecking}

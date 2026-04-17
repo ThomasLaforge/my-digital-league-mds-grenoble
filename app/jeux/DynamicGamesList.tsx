@@ -4,7 +4,11 @@ import { Game } from "@/generated/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/app/components/Button/Button";
-import { JoystickIcon, PlusIcon } from "@/app/components/Icons/Icons";
+import {
+  JoystickIcon,
+  PlusIcon,
+  PencilIcon,
+} from "@/app/components/Icons/Icons";
 import styles from "./page.module.scss";
 
 type DynamicGamesListProps = {
@@ -63,24 +67,44 @@ export default function DynamicGamesList({
                     />
                   </Link>
                   {isOrganizer && (
-                    <Link
-                      href="/organisateur/evenements/creer"
-                      className={styles.linkButton}
-                    >
-                      <Button
-                        label="Créer un événement"
-                        type="secondary"
-                        icon={
-                          <PlusIcon
-                            width={14}
-                            height={14}
-                            color="currentColor"
-                          />
-                        }
-                        iconPosition="left"
-                        fullWidth
-                      />
-                    </Link>
+                    <>
+                      <Link
+                        href={`/organisateur/jeux/modifier/${game.id}`}
+                        className={styles.linkButton}
+                      >
+                        <Button
+                          label="Modifier le jeu"
+                          type="secondary"
+                          icon={
+                            <PencilIcon
+                              width={14}
+                              height={14}
+                              color="currentColor"
+                            />
+                          }
+                          iconPosition="left"
+                          fullWidth
+                        />
+                      </Link>
+                      <Link
+                        href="/organisateur/evenements/creer"
+                        className={styles.linkButton}
+                      >
+                        <Button
+                          label="Créer un événement"
+                          type="secondary"
+                          icon={
+                            <PlusIcon
+                              width={14}
+                              height={14}
+                              color="currentColor"
+                            />
+                          }
+                          iconPosition="left"
+                          fullWidth
+                        />
+                      </Link>
+                    </>
                   )}
                 </div>
               </div>
