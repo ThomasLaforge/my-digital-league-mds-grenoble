@@ -50,22 +50,14 @@ export default function DynamicEventPageId({ event }: EventPageClientProps) {
   const roadmapSteps = [
     {
       id: 1,
-      title: "Début des inscriptions",
+      title: "Fin des inscriptions",
       description:
-        "Ouverture officielle des inscriptions pour rejoindre l'événement.",
+        "Clôture des inscriptions avant le lancement officiel de l'événement.",
       date: deadline,
       isCompleted: false,
     },
     {
       id: 2,
-      title: "Fin des inscriptions",
-      description:
-        "Clôture des inscriptions avant le lancement officiel de l'événement.",
-      date: startDate,
-      isCompleted: false,
-    },
-    {
-      id: 3,
       title: "Début de l'événement",
       description: "Lancement officiel de la game jam et début du challenge.",
       date: startDate,
