@@ -1,9 +1,23 @@
 import DynamicModifierEvent from "./DynamicModifierEvent";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
+import type { Game } from "@/generated/prisma/client";
 
 type Props = {
   params: Promise<{ id: string }>;
+};
+
+type EventWithGame = {
+  id: string;
+  name: string;
+  date: Date;
+  inscriptionDeadline: Date;
+  rules: string;
+  gameId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  isSolo: boolean;
+  game: { id: string; title: string } | null;
 };
 
 export default async function ModifierEvenementPage({ params }: Props) {
@@ -14,8 +28,8 @@ export default async function ModifierEvenementPage({ params }: Props) {
     return <div>Accès refusé</div>;
   }
 
-  let games = [];
-  let event = null;
+  let games: Game[] = [];
+  let event: EventWithGame | null = null;
 
   try {
     [games, event] = await Promise.all([
@@ -33,10 +47,18 @@ export default async function ModifierEvenementPage({ params }: Props) {
     return <div>Événement introuvable</div>;
   }
 
+  if (!event.game) {
+    return <div>Jeu non trouvé pour cet événement</div>;
+  }
+
   const eventData = {
-    ...event,
+    id: event.id,
+    name: event.name,
     date: event.date.toISOString(),
     inscriptionDeadline: event.inscriptionDeadline.toISOString(),
+    rules: event.rules,
+    gameId: event.gameId,
+    game: event.game,
   };
 
   return <DynamicModifierEvent event={eventData} games={games} />;
